@@ -27,17 +27,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""VisualeX"",
+                    ""name"": ""RotazioneVista"",
                     ""type"": ""Value"",
                     ""id"": ""48b4a186-eefa-4850-af5b-6ce767905507"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""VisualeY"",
-                    ""type"": ""Value"",
-                    ""id"": ""21d216c6-d494-49bf-90fc-dff914e3b977"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -63,7 +55,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Tastiera"",
                     ""id"": ""4dcc89e8-1e17-40d5-8b8b-021e323ed295"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -122,18 +114,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""VisualeX"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""36807ee3-2e67-45dc-882e-db92b3fd6dca"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""VisualeY"",
+                    ""action"": ""RotazioneVista"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -205,8 +186,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         // Giocatore
         m_Giocatore = asset.FindActionMap("Giocatore", throwIfNotFound: true);
         m_Giocatore_Movimento = m_Giocatore.FindAction("Movimento", throwIfNotFound: true);
-        m_Giocatore_VisualeX = m_Giocatore.FindAction("VisualeX", throwIfNotFound: true);
-        m_Giocatore_VisualeY = m_Giocatore.FindAction("VisualeY", throwIfNotFound: true);
+        m_Giocatore_RotazioneVista = m_Giocatore.FindAction("RotazioneVista", throwIfNotFound: true);
         m_Giocatore_Salto = m_Giocatore.FindAction("Salto", throwIfNotFound: true);
         m_Giocatore_Sparo = m_Giocatore.FindAction("Sparo", throwIfNotFound: true);
         // Generali
@@ -262,8 +242,7 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Giocatore;
     private IGiocatoreActions m_GiocatoreActionsCallbackInterface;
     private readonly InputAction m_Giocatore_Movimento;
-    private readonly InputAction m_Giocatore_VisualeX;
-    private readonly InputAction m_Giocatore_VisualeY;
+    private readonly InputAction m_Giocatore_RotazioneVista;
     private readonly InputAction m_Giocatore_Salto;
     private readonly InputAction m_Giocatore_Sparo;
     public struct GiocatoreActions
@@ -271,8 +250,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         private @InputManager m_Wrapper;
         public GiocatoreActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movimento => m_Wrapper.m_Giocatore_Movimento;
-        public InputAction @VisualeX => m_Wrapper.m_Giocatore_VisualeX;
-        public InputAction @VisualeY => m_Wrapper.m_Giocatore_VisualeY;
+        public InputAction @RotazioneVista => m_Wrapper.m_Giocatore_RotazioneVista;
         public InputAction @Salto => m_Wrapper.m_Giocatore_Salto;
         public InputAction @Sparo => m_Wrapper.m_Giocatore_Sparo;
         public InputActionMap Get() { return m_Wrapper.m_Giocatore; }
@@ -287,12 +265,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Movimento.started -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnMovimento;
                 @Movimento.performed -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnMovimento;
                 @Movimento.canceled -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnMovimento;
-                @VisualeX.started -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnVisualeX;
-                @VisualeX.performed -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnVisualeX;
-                @VisualeX.canceled -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnVisualeX;
-                @VisualeY.started -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnVisualeY;
-                @VisualeY.performed -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnVisualeY;
-                @VisualeY.canceled -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnVisualeY;
+                @RotazioneVista.started -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnRotazioneVista;
+                @RotazioneVista.performed -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnRotazioneVista;
+                @RotazioneVista.canceled -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnRotazioneVista;
                 @Salto.started -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnSalto;
                 @Salto.performed -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnSalto;
                 @Salto.canceled -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnSalto;
@@ -306,12 +281,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Movimento.started += instance.OnMovimento;
                 @Movimento.performed += instance.OnMovimento;
                 @Movimento.canceled += instance.OnMovimento;
-                @VisualeX.started += instance.OnVisualeX;
-                @VisualeX.performed += instance.OnVisualeX;
-                @VisualeX.canceled += instance.OnVisualeX;
-                @VisualeY.started += instance.OnVisualeY;
-                @VisualeY.performed += instance.OnVisualeY;
-                @VisualeY.canceled += instance.OnVisualeY;
+                @RotazioneVista.started += instance.OnRotazioneVista;
+                @RotazioneVista.performed += instance.OnRotazioneVista;
+                @RotazioneVista.canceled += instance.OnRotazioneVista;
                 @Salto.started += instance.OnSalto;
                 @Salto.performed += instance.OnSalto;
                 @Salto.canceled += instance.OnSalto;
@@ -358,8 +330,7 @@ public class @InputManager : IInputActionCollection, IDisposable
     public interface IGiocatoreActions
     {
         void OnMovimento(InputAction.CallbackContext context);
-        void OnVisualeX(InputAction.CallbackContext context);
-        void OnVisualeY(InputAction.CallbackContext context);
+        void OnRotazioneVista(InputAction.CallbackContext context);
         void OnSalto(InputAction.CallbackContext context);
         void OnSparo(InputAction.CallbackContext context);
     }

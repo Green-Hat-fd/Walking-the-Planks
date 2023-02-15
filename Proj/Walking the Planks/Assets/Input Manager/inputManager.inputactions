@@ -14,17 +14,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "VisualeX",
+                    "name": "RotazioneVista",
                     "type": "Value",
                     "id": "48b4a186-eefa-4850-af5b-6ce767905507",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "VisualeY",
-                    "type": "Value",
-                    "id": "21d216c6-d494-49bf-90fc-dff914e3b977",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -50,7 +42,7 @@
                 {
                     "name": "Tastiera",
                     "id": "4dcc89e8-1e17-40d5-8b8b-021e323ed295",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -109,18 +101,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "VisualeX",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "36807ee3-2e67-45dc-882e-db92b3fd6dca",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "VisualeY",
+                    "action": "RotazioneVista",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
