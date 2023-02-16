@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RotazioneTelecamPrimaPers : MonoBehaviour
+{
+    [SerializeField] float velRotazione = 10;
+
+    [SerializeField] Transform corpoGiocat;
+
+    float xRotaz = 0f;
+
+
+    void Update()
+    {
+        //Prende le (X,Y) del mouse
+        float mouseX = GameManager.inst.inputManager.Giocatore.RotazioneVista.ReadValue<Vector2>().x * velRotazione * Time.deltaTime;
+        float mouseY = GameManager.inst.inputManager.Giocatore.RotazioneVista.ReadValue<Vector2>().y * velRotazione * Time.deltaTime;
+
+
+        //Movimento mouse * sensibilità (dalle impost.)
+//        mouseX *= OpzioniMainScript.moltipSensibilita;
+//        mouseY *= OpzioniMainScript.moltipSensibilita;
+
+
+        xRotaz -= mouseY;
+        xRotaz = Mathf.Clamp(xRotaz, -90f, 90f);        //Restrige la rotazione tra su (-90°) e giù (90°)
+
+        transform.localRotation = Quaternion.Euler(xRotaz, 0f, 0f);         //La Y la porta come rotazione X della camera...
+        corpoGiocat.Rotate(Vector3.up * mouseX);           //...e la X come rotazione Y del giocatore
+    }
+}
