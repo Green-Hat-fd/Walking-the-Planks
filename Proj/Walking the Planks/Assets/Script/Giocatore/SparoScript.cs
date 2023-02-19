@@ -24,8 +24,14 @@ public class SparoScript : MonoBehaviour
             Physics.Raycast(transform.position, transform.forward, out hitInfo, maxDistSparo);
 
             // DEBUG
-            if (hitInfo.transform  &&  !hitInfo.transform.CompareTag("Player"))
-                print(hitInfo.transform.name);
+            if (ComparaTagRaycastHitInfo())
+                //print(hitInfo.transform.name);
+                switch (hitInfo.transform.tag)
+                {
+                    case "Gun-Target":
+                        hitInfo.transform.GetComponent<BersaglioScript>().AttivaOggetti();
+                        break;
+                }
         }
     }
 
@@ -41,5 +47,11 @@ public class SparoScript : MonoBehaviour
                !hitInfo.transform.CompareTag("Player")  //Se non è il giocatore
                &&
                hitInfo.transform.CompareTag(tagDaComparare);
+    }
+    public bool ComparaTagRaycastHitInfo()
+    {
+        return hitInfo.transform  //Se il raycast ha colpito qualcosa
+               &&
+               !hitInfo.transform.CompareTag("Player");  //Se non è il giocatore
     }
 }

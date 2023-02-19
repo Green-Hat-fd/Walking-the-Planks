@@ -32,9 +32,9 @@ public class MovimentoGiocat : MonoBehaviour
 
     void Update()
     {
-        #region Controlla se si trova a terra (con una sfera)
+        #region Controlla se si trova a terra (con un cubo)
 
-        //La CheckSphere()
+        //La CheckBox()
         siTrovaATerra = 
                    Physics.CheckBox(controllatoreTerr.position - Vector3.up * (minDistanzaTerr/2),   //Posizione del Box
                                     new Vector3(2/3, minDistanzaTerr, 2/3),      //Dimensioni del Box
