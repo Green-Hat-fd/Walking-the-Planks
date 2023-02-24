@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RotazioneTelecamPrimaPers : MonoBehaviour
 {
@@ -10,9 +11,18 @@ public class RotazioneTelecamPrimaPers : MonoBehaviour
 
     float xRotaz = 0f;
 
+    bool mouseAlCentro = true;
+
 
     void Update()
     {
+        //Renstringe
+        Cursor.lockState = mouseAlCentro
+                           ?
+                          CursorLockMode.Locked
+                           :
+                          CursorLockMode.None ;
+
         //Prende le (X,Y) del mouse
         float mouseX = GameManager.inst.inputManager.Giocatore.RotazioneVista.ReadValue<Vector2>().x * velRotazione * Time.deltaTime;
         float mouseY = GameManager.inst.inputManager.Giocatore.RotazioneVista.ReadValue<Vector2>().y * velRotazione * Time.deltaTime;
@@ -28,5 +38,10 @@ public class RotazioneTelecamPrimaPers : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotaz, 0f, 0f);         //La Y la porta come rotazione X della camera...
         corpoGiocat.Rotate(Vector3.up * mouseX);           //...e la X come rotazione Y del giocatore
+    }
+
+    void CambiaMouseAlCentro(bool value)
+    {
+        mouseAlCentro = value;
     }
 }

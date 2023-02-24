@@ -15,8 +15,8 @@ public class PiattMovScript : MonoBehaviour
      * Piattaforme moventi
      *   [X] Un'array di transform, dove prendono ogni e la ciclano a ping-pong (ex. 1-2-3-4-3-2-1-2-3-...)
      *   [X] Velocita'
-     *   [ ] Wait time(Vector3 con X= inizio, Y= quelli a metà, Z= fine)
-     *   [X] Un'opzione per l'easing (bool easingAttivo + AnimationCurve)
+     *   [X] Wait time(Vector3 con X= inizio, Y= quelli a metà, Z= fine)
+     *   [ ] Un'opzione per l'easing (bool easingAttivo + AnimationCurve)
      */
     [SerializeField] StileMovim_EnumT stileMovimento; 
 
@@ -25,41 +25,95 @@ public class PiattMovScript : MonoBehaviour
     [SerializeField] float velPiatt = 1;
     int prossimaPosiz = 0;
 
+    bool reverse;
+
     #region Tooltip()
-    [Tooltip("X   --> \tTempo di attesa all'inizio \nY   --> \tTempo di attesa per ogni \n\tangolo/posizione in mezzo \nZ   -> \tTempo di attesa alla fine \n")]
+    [Tooltip("X = il tempo di attesa nella prima posizione (indice 0), \nY = Tempo di attesa per ogni posiz. in mezzo, \nZ = Tempo di attesa nell'ultima posiz.")]
     #endregion
     [Space(10)]
     [SerializeField] Vector3 tempoAttesa;
+    float tempoTrascorso, quantoDevoAspettare;
+    bool stoAspettando;
 
+    /*
     [Space(15)]
     [SerializeField] bool isEasingAttivo = false;
     [SerializeField] AnimationCurve curvaEasing = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
+    */
 
-    bool reverse;
+
 
     void Update()
     {
         float distanzaTraPosiz = Vector3.Distance(transform.position, posizioni[prossimaPosiz].position);
 
-        curvaEasing.keys[1].time = distanzaTraPosiz;
+        #region Non utilizzato
+        /*float fattEasing = isEasingAttivo
+                              ?
+                             curvaEasing.Evaluate(distanzaTraPosiz / distMaxPrimaEDopo)
+                              :
+                             1;
+        */
+        #endregion
 
-        /* TODO: Migliorare l'easing + capire l'interazione con la AnimationCurve
-         * TODO: implementare il tempo di attesa (riga 32) 
-         */
-        float fattEasing = isEasingAttivo
-                            ?
-                           curvaEasing.Evaluate(distanzaTraPosiz) * velPiatt
-                            :
-                           velPiatt;
+        #region Cambia il tempo di attesa 
 
-        //Movimento verso la prossima posizione
-        transform.position = Vector3.MoveTowards(transform.position,
-                                                 posizioni[prossimaPosiz].position,
-                                                 velPiatt * fattEasing * Time.deltaTime);
+        //Capisce in che punto si trova e agisce di conseguenza
+        switch (stileMovimento)
+        {
+            case StileMovim_EnumT.PingPong:
+                if (transform.position == posizioni[0].position)
+                {
+                    quantoDevoAspettare = tempoAttesa.x;  //Se si trova nella prima posizione
+                }
+                else
+                {
+                    if (transform.position == posizioni[posizioni.Length-1].position)
+                    {
+                        quantoDevoAspettare = tempoAttesa.z;  //Se si trova all'ultima posizione
+                    }
+                    else
+                    {
+                        quantoDevoAspettare = tempoAttesa.y;  //Se si trova nelle posizioni tra la prima e l'ultima
+                    }
+                }
+                break;
+
+            case StileMovim_EnumT.Cicla:
+                quantoDevoAspettare = tempoAttesa.y;  //Prende il tempo di attesa al centro
+                break;
+        }
+
+        #endregion
+
+        if (stoAspettando)
+        {
+            //Se e' passato abbastanza tempo...
+            if (tempoTrascorso >= tempoAttesa[0])
+            {
+                stoAspettando = false;  //Non aspettare piu', muoviti! (vedi else sotto)
+                tempoTrascorso = 0;     //Resetta il timer
+            }
+            else
+            {
+
+                tempoTrascorso += Time.deltaTime;  //Aumenta il conteggio del tempo trascorso
+            }
+        }
+        else
+        {
+            //Movimento verso la prossima posizione
+            transform.position = Vector3.MoveTowards(transform.position,
+                                                        posizioni[prossimaPosiz].position,
+                                                        velPiatt * Time.deltaTime);
+        }
+
 
         //Controllo delle posizioni
-        if(transform.position == posizioni[prossimaPosiz].position)//distanzaTraPosiz <= 0.1f)
+        if(transform.position == posizioni[prossimaPosiz].position)
         {
+            //int old_posiz = prossimaPosiz;
+
             switch (stileMovimento)
             {
                 #region Ping-Pong
@@ -98,6 +152,10 @@ public class PiattMovScript : MonoBehaviour
 
                 #endregion
             }
+
+            //distMaxPrimaEDopo = Vector3.Distance(posizioni[old_posiz].position, posizioni[prossimaPosiz].position);
+
+            stoAspettando = true;
         }
     }
 
