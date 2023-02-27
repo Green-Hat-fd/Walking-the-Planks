@@ -104,8 +104,8 @@ public class PiattMovScript : MonoBehaviour
         {
             //Movimento verso la prossima posizione
             transform.position = Vector3.MoveTowards(transform.position,
-                                                        posizioni[prossimaPosiz].position,
-                                                        velPiatt * Time.deltaTime);
+                                                     posizioni[prossimaPosiz].position,
+                                                     velPiatt * Time.deltaTime);
         }
 
 
