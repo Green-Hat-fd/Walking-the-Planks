@@ -13,6 +13,8 @@ public class CannoneSpecialeScript : MonoBehaviour
     [SerializeField] Transform puntoOrigineProiet;
     [SerializeField] GameObject proiettile;
 
+    bool sonoAttivo;
+
 
     void Start()
     {
@@ -39,7 +41,8 @@ public class CannoneSpecialeScript : MonoBehaviour
         }
         else
         {
-            tempoTrascorso += Time.deltaTime;  //Aumenta il conteggio del tempo trascorso
+            if(sonoAttivo)
+                tempoTrascorso += Time.deltaTime;  //Aumenta il conteggio del tempo trascorso
         }
     }
 
@@ -56,5 +59,14 @@ public class CannoneSpecialeScript : MonoBehaviour
     {
         //Prende un nuovo tempo a caso tra il range scelto nella variabile
         secDaAspettare = Random.Range(rangeSecDaAspettare.x, rangeSecDaAspettare.y);
+    }
+
+    public void AttivaCannoneSpeciale()
+    {
+        sonoAttivo = true;
+    }
+    public void DisattivaCannoneSpeciale()
+    {
+        sonoAttivo = false;
     }
 }

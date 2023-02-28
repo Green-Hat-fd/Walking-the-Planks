@@ -1,38 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PulsanteToggleScript : MonoBehaviour
 {
-    [SerializeField] Attivazione_Class[] objDaAttivare;
+    [SerializeField] HingeJoint joint;
 
-    bool pulsanteToggleAttivo;
-    Vector3 posizIniziale;
-    ConfigurableJoint joint;
+    #region Tooltip()
+    [Tooltip("La rotazione [-45, 45] per attivare il pulsante")]
+    #endregion
+    [Space(10), Range(-45, 45)]
+    [SerializeField] float sogliaAttivazione = 7.5f;
+
+    [Space(15)]
+    [SerializeField] UnityEvent onActivated,
+                                onDeactivated;
 
 
     private void Awake()
     {
-        posizIniziale = transform.position;
-        joint = GetComponent<ConfigurableJoint>();
+        //Prende il componente Joint se esso non e' stato assegnato
+        //(da se' stesso o dai figli)
+        if (joint == null)
+        {
+            if(GetComponent<HingeJoint>())
+                joint = GetComponent<HingeJoint>();
+            else
+                if(GetComponentInChildren<HingeJoint>())
+                    joint = GetComponentInChildren<HingeJoint>();
+        }
     }
 
     void Update()
     {
-        //TODO: Funzioni che cambiano la variabile (questo è il toggle)
-        
-        //TODO: PS usa ConfigurableJoint.linearLimit.limit per a pressione
-        //      e HingeJoint.angle per il toggle (es. angle<10 attivo angle>=10 disattivo) 
-    }
-
-    void InvertiIsAttivoPerOgniOggetto()
-    {
-        foreach (Attivazione_Class act in objDaAttivare)
-                act.InvertiAttivo();
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(posizIniziale, .01f);
+        //Controlla se il bottone e' stato premuto abbastanza
+        if (joint.angle >= sogliaAttivazione)
+        {
+            //Attiva ogni oggetto di conseguenza
+            onActivated.Invoke();
+        }
+        else
+        {
+            //Lo disattiva se viene rilasciato
+            onDeactivated.Invoke();
+        }
     }
 }

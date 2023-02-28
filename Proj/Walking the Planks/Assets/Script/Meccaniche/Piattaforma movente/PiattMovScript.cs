@@ -25,6 +25,8 @@ public class PiattMovScript : MonoBehaviour
     [SerializeField] float velPiatt = 1;
     int prossimaPosiz = 0;
 
+    bool sonoAttivo;
+
     bool reverse;
 
     #region Tooltip()
@@ -102,10 +104,11 @@ public class PiattMovScript : MonoBehaviour
         }
         else
         {
-            //Movimento verso la prossima posizione
-            transform.position = Vector3.MoveTowards(transform.position,
-                                                     posizioni[prossimaPosiz].position,
-                                                     velPiatt * Time.deltaTime);
+            if (sonoAttivo)
+                //Movimento verso la prossima posizione
+                transform.position = Vector3.MoveTowards(transform.position,
+                                                         posizioni[prossimaPosiz].position,
+                                                         velPiatt * Time.deltaTime);
         }
 
 
@@ -157,6 +160,15 @@ public class PiattMovScript : MonoBehaviour
 
             stoAspettando = true;
         }
+    }
+
+    public void AttivaPiattaforma()
+    {
+        sonoAttivo = true;
+    }
+    public void DisattivaPiattaforma()
+    {
+        sonoAttivo = false;
     }
 
     private void OnDrawGizmosSelected()

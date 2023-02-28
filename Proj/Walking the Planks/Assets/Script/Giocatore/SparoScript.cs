@@ -10,12 +10,6 @@ public class SparoScript : MonoBehaviour
     RaycastHit hitInfo;
 
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        if (GameManager.inst.inputManager.Giocatore.Sparo.triggered)
-            Gizmos.DrawLine(transform.position, transform.position + transform.forward * maxDistSparo);
-    }
 
     void Update()
     {

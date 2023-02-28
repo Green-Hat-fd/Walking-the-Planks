@@ -12,6 +12,8 @@ public class CannoneSempliceScript : MonoBehaviour
     [SerializeField] Transform puntoOrigineProiet;
     [SerializeField] GameObject proiettile;
 
+    bool sonoAttivo;
+
 
     void Update()
     {
@@ -23,7 +25,8 @@ public class CannoneSempliceScript : MonoBehaviour
         }
         else
         {
-            tempoTrascorso += Time.deltaTime;  //Aumenta il conteggio del tempo trascorso
+            if(sonoAttivo)
+                tempoTrascorso += Time.deltaTime;  //Aumenta il conteggio del tempo trascorso
         }
     }
 
@@ -34,5 +37,14 @@ public class CannoneSempliceScript : MonoBehaviour
 
         //Propelle la palla di cannone e la fa rotolare
         proiet.GetComponent<Rigidbody>().AddForce(puntoOrigineProiet.up * potenzaImpulso, ForceMode.Impulse);
+    }
+
+    public void AttivaCannoneSemplice()
+    {
+        sonoAttivo = true;
+    }
+    public void DisattivaCannoneSemplice()
+    {
+        sonoAttivo = false;
     }
 }
