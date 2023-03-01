@@ -217,7 +217,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -413,10 +413,34 @@ MonoBehaviour:
   sogliaAttivazione: 0.65
   onPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1660827426}
+        m_TargetAssemblyTypeName: PiattMovScript, Assembly-CSharp
+        m_MethodName: AttivaPiattaforma
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onReleased:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1660827426}
+        m_TargetAssemblyTypeName: PiattMovScript, Assembly-CSharp
+        m_MethodName: DisattivaPiattaforma
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &279464488
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +535,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -769,11 +793,11 @@ GameObject:
   - component: {fileID: 384277293}
   m_Layer: 0
   m_Name: Player (2)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &384277293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,11 +807,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 384277292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af7637f44d24ad9428cc7fb258e8b5cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 69323f00fc9b4df44bffcc28825f3252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velGiocat: 7.5
-  altezzaSalto: 3
+  velGiocat: 10
+  potenzaSalto: 7.5
+  attritoTerr: 5
+  attritoAria: 1
+  sogliaRilevaTerreno: 0.25
+  hf: {x: 1, y: 0, z: 1}
 --- !u!54 &384277294
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -802,7 +830,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &384277295
 CapsuleCollider:
@@ -879,6 +907,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 279464489}
+  - {fileID: 2024614093}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -946,7 +975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &553794147
 Transform:
   m_ObjectHideFlags: 0
@@ -1958,7 +1987,7 @@ ConfigurableJoint:
     maximumForce: 3.4028233e+38
   m_YDrive:
     serializedVersion: 3
-    positionSpring: 85
+    positionSpring: 40
     positionDamper: 20
     maximumForce: 3.4028233e+38
   m_ZDrive:
@@ -2408,35 +2437,10 @@ MonoBehaviour:
   sogliaAttivazione: 7.5
   onActivated:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1660827426}
-        m_TargetAssemblyTypeName: PiattMovScript, Assembly-CSharp
-        m_MethodName: AttivaPiattaforma
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onDeactivated:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1660827426}
-        m_TargetAssemblyTypeName: PiattMovScript, Assembly-CSharp
-        m_MethodName: DisattivaPiattaforma
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  D_VAR: 
+      m_Calls: []
 --- !u!1 &1444093946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2513,7 +2517,7 @@ GameObject:
   - component: {fileID: 1468596484}
   m_Layer: 0
   m_Name: Player (1)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2802,6 +2806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841a49e54b7988e4d953a8487bf5ee88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonoAttivo: 1
   stileMovimento: 0
   posizioni:
   - {fileID: 1918406351}
@@ -2942,6 +2947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841a49e54b7988e4d953a8487bf5ee88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonoAttivo: 0
   stileMovimento: 1
   posizioni:
   - {fileID: 1793893248}
@@ -3288,6 +3294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12bf54944e5c41d45bddce0d328608ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonoAttivo: 1
   potenzaImpulso: 10
   secDaAspettare: 10
   puntoOrigineProiet: {fileID: 1796545424}
@@ -3321,6 +3328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929186266fbc94f4fbee3305980405c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonoAttivo: 1
   potenzaImpulso: 10
   rangeSecDaAspettare: {x: 0.1, y: 1}
   puntoOrigineProiet: {fileID: 1796545424}
@@ -3671,6 +3679,89 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926659011}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2024614092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2024614093}
+  - component: {fileID: 2024614095}
+  - component: {fileID: 2024614094}
+  m_Layer: 0
+  m_Name: Camera (3 pers) (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2024614093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024614092}
+  m_LocalRotation: {x: 0.3214394, y: -0, z: -0, w: 0.94693017}
+  m_LocalPosition: {x: 0, y: 4, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 384277298}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 37.5, y: 0, z: 0}
+--- !u!81 &2024614094
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024614092}
+  m_Enabled: 1
+--- !u!20 &2024614095
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024614092}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &2096853934
 GameObject:
   m_ObjectHideFlags: 0

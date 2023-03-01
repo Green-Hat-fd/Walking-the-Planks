@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CannoneSpecialeScript : MonoBehaviour
 {
+    [SerializeField] bool sonoAttivo;
+
+    [Space(10)]
     [SerializeField] float potenzaImpulso = 10;
     [SerializeField] Vector2 rangeSecDaAspettare = new Vector2(3, 5);
     float secDaAspettare,
@@ -12,8 +15,6 @@ public class CannoneSpecialeScript : MonoBehaviour
     [Space(15)]
     [SerializeField] Transform puntoOrigineProiet;
     [SerializeField] GameObject proiettile;
-
-    bool sonoAttivo;
 
 
     void Start()

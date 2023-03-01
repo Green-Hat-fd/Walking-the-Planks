@@ -18,14 +18,15 @@ public class PiattMovScript : MonoBehaviour
      *   [X] Wait time(Vector3 con X= inizio, Y= quelli a metà, Z= fine)
      *   [ ] Un'opzione per l'easing (bool easingAttivo + AnimationCurve)
      */
+    [SerializeField] bool sonoAttivo;
+
+    [Space(10)]
     [SerializeField] StileMovim_EnumT stileMovimento; 
 
     [Space(20)]
     [SerializeField] Transform[] posizioni;
     [SerializeField] float velPiatt = 1;
     int prossimaPosiz = 0;
-
-    bool sonoAttivo;
 
     bool reverse;
 
@@ -37,7 +38,7 @@ public class PiattMovScript : MonoBehaviour
     float tempoTrascorso, quantoDevoAspettare;
     bool stoAspettando;
 
-    /*
+    /* //Inutilizzato
     [Space(15)]
     [SerializeField] bool isEasingAttivo = false;
     [SerializeField] AnimationCurve curvaEasing = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
