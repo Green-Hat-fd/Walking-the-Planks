@@ -50,6 +50,11 @@ public class OpzioniSO_Script : ScriptableObject
         moltipSensibilita = s;
     }
 
+    public float LeggiSensibilita()
+    {
+        return moltipSensibilita;
+    }
+
     #endregion
 
 
@@ -61,8 +66,11 @@ public class OpzioniSO_Script : ScriptableObject
     public void CambiaLingua(Lingue_Enum l)
     {
         linguaScelta = l;
-        //0: English (default negli switch)
-        //1: Italiano
+    }
+
+    public Lingue_Enum LeggiLinguaScelta()
+    {
+        return linguaScelta;
     }
 
     #endregion
@@ -81,6 +89,15 @@ public class OpzioniSO_Script : ScriptableObject
     public void CambiaVolumeSuoni(float vS)
     {
         volumeSuoni = vS / 100f;
+    }
+
+    public float LeggiVolumeMusica()
+    {
+        return volumeMusica;
+    }
+    public float LeggiVolumeSuoni()
+    {
+        return volumeSuoni;
     }
 
     #endregion

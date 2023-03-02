@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class RotazioneTelecamPrimaPers : MonoBehaviour
 {
+    [SerializeField] OpzioniSO_Script opzioni_SO;
+
+    [Space(15)]
     [SerializeField] float velRotazione = 10;
 
     [SerializeField] Transform corpoGiocat;
@@ -16,7 +19,7 @@ public class RotazioneTelecamPrimaPers : MonoBehaviour
 
     void Update()
     {
-        //Renstringe
+        //Blocca (o no) il mouse al centro
         Cursor.lockState = mouseAlCentro
                            ?
                           CursorLockMode.Locked
@@ -29,8 +32,8 @@ public class RotazioneTelecamPrimaPers : MonoBehaviour
 
 
         //Movimento mouse * sensibilità (dalle impost.)
-//        mouseX *= OpzioniMainScript.moltipSensibilita;
-//        mouseY *= OpzioniMainScript.moltipSensibilita;
+        mouseX *= opzioni_SO.LeggiSensibilita();
+        mouseY *= opzioni_SO.LeggiSensibilita();
 
 
         xRotaz -= mouseY;
