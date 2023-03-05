@@ -28,6 +28,7 @@ public class BotteRuzzolanteScript : MonoBehaviour
 
     GameObject DEBUG_OBJ;
 
+
     void Start()
     {
         giocatSalito = true;  //TODO: toglimi
@@ -53,7 +54,7 @@ public class BotteRuzzolanteScript : MonoBehaviour
         if (Vector3.Angle(inizioAngolo, destraIniziale) > 90)
         {
             fineAngolo = -destraIniziale;
-            assePositNegatAngolo = -davantiIniziale;
+            assePositNegatAngolo = -davantiIniziale;  //TODO: trova il modo per avere sempre la  iniziale/non cambiata
         }
         else
         {
@@ -86,7 +87,7 @@ public class BotteRuzzolanteScript : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (voglioIlDebug)
+        if (voglioIlDebug && DEBUG_OBJ)
         {
             //Seguira' il giocatore se la variabile e' vera
             Vector3 posizInizio = debugSopraGiocat

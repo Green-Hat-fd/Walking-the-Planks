@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(RumScript))]
 public class MovimGiocatRb : MonoBehaviour
 {
     Rigidbody rb;
+    RumScript rumScr;
 
     [SerializeField] float velGiocat = 10f;
     [SerializeField] float potenzaSalto = 7.5f;
@@ -14,21 +16,26 @@ public class MovimGiocatRb : MonoBehaviour
     float movimX, movimZ;
     
     Vector3 muovi;
+    float _potSaltoEffettiva;
 
     [Space(20)]
     [SerializeField] float sogliaRilevaTerreno = 0.25f;
     float mezzaAltezzaGiocat;
     Vector3 dimensBoxcast = new Vector3(0.65f, 0f, 0.65f);
     
+    RaycastHit pendenzaHit;
+    Vector3 modificatPendenza = Vector3.one;
+
     bool siTrovaATerra = false;
 
-    bool saltoAvvenuto = false;
+    bool hoSaltato = false;
 
 
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        rumScr = GetComponent<RumScript>();
         rb.freezeRotation = true;
 
         mezzaAltezzaGiocat = GetComponent<CapsuleCollider>().height / 2;
@@ -43,12 +50,30 @@ public class MovimGiocatRb : MonoBehaviour
         muovi = transform.forward * movimZ + transform.right * movimX;      //Vettore movimento orizzontale
 
 
+        #region Controlla se e' stato bevuto il Rum
+
+        if (rumScr.LeggiAttivo())
+        {
+            //Applica gli effetti di velocita' e salto aumentati
+            muovi *= rumScr.LeggiMoltipVelGiocat();
+            _potSaltoEffettiva = potenzaSalto * rumScr.LeggiMoltipSaltoGiocat();
+        }
+        else
+        {
+            //Rimuove gli effetti
+            muovi *= 1;
+            _potSaltoEffettiva = potenzaSalto;
+        } 
+        #endregion
+
+
         //Cambia l'attrito se si trova in aria
         rb.drag = siTrovaATerra ? attritoTerr : attritoAria;
 
 
         //Prende l'input di salto
-        saltoAvvenuto = GameManager.inst.inputManager.Giocatore.Salto.triggered;
+        hoSaltato = GameManager.inst.inputManager.Giocatore.Salto.triggered;
+
     }
 
 
@@ -59,17 +84,16 @@ public class MovimGiocatRb : MonoBehaviour
 
 
         //Salta se premi Spazio e si trova a terra
-        if (saltoAvvenuto && siTrovaATerra)
+        if (hoSaltato && siTrovaATerra)
         {
             //Resetta la velocita' Y e applica la forza d'impulso verso l'alto
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            rb.AddForce(transform.up * potenzaSalto, ForceMode.Impulse);
+            rb.AddForce(transform.up * _potSaltoEffettiva, ForceMode.Impulse);
         }
 
 
-        //Movimento orizzontale del giocatore
-        if(!saltoAvvenuto)
-            rb.AddForce(muovi.normalized * velGiocat * 10f, ForceMode.Force);
+        //Movimento orizzontale (semplice) del giocatore
+        rb.AddForce(muovi.normalized * velGiocat * 10f, ForceMode.Force);
 
 
         #region Limitazione della velocita'
@@ -86,11 +110,33 @@ public class MovimGiocatRb : MonoBehaviour
         }
 
         #endregion
+
+
+        #region Controllo in pendenza
+
+        //
+
+        #endregion
+    }
+
+    bool InPendenza()
+    {
+        if(Physics.Raycast(transform.position, -transform.up, out pendenzaHit, mezzaAltezzaGiocat + sogliaRilevaTerreno))
+        {
+            //Prende l'angolo della pendenza
+            //(tra il vett. "sotto" e la normale del terreno)
+            float angolo = Vector3.Angle(transform.up, pendenzaHit.normal);
+            
+            return angolo != 0 && angolo <= 30;
+        }
+
+        return false;   //Nel caso non colpisce nulla
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawWireCube(transform.position+(-transform.up * mezzaAltezzaGiocat) + (-transform.up * sogliaRilevaTerreno), dimensBoxcast + (-transform.up * mezzaAltezzaGiocat) + (-transform.up * sogliaRilevaTerreno));
+        Gizmos.DrawWireCube(transform.position + (-transform.up * mezzaAltezzaGiocat) + (-transform.up * sogliaRilevaTerreno)/2,
+                            dimensBoxcast + (-transform.up * sogliaRilevaTerreno));
     }
 }

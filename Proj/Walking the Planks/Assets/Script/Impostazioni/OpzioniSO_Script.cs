@@ -40,7 +40,7 @@ public class OpzioniSO_Script : ScriptableObject
 
 
     //Opzioni
-    #region Sensibilità Mouse
+    #region Sensibilita' Mouse
 
     [Space(15)]
     [SerializeField] float moltipSensibilita = 1f;

@@ -49,6 +49,14 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Uso Rum"",
+                    ""type"": ""Button"",
+                    ""id"": ""82dc36c7-d7da-484a-a419-acdaa5f40eac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -139,6 +147,17 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""action"": ""Sparo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c441abc-3fd1-40f6-bf68-67da88cc9289"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Uso Rum"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -189,6 +208,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Giocatore_RotazioneVista = m_Giocatore.FindAction("RotazioneVista", throwIfNotFound: true);
         m_Giocatore_Salto = m_Giocatore.FindAction("Salto", throwIfNotFound: true);
         m_Giocatore_Sparo = m_Giocatore.FindAction("Sparo", throwIfNotFound: true);
+        m_Giocatore_UsoRum = m_Giocatore.FindAction("Uso Rum", throwIfNotFound: true);
         // Generali
         m_Generali = asset.FindActionMap("Generali", throwIfNotFound: true);
         m_Generali_Pausa = m_Generali.FindAction("Pausa", throwIfNotFound: true);
@@ -245,6 +265,7 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_Giocatore_RotazioneVista;
     private readonly InputAction m_Giocatore_Salto;
     private readonly InputAction m_Giocatore_Sparo;
+    private readonly InputAction m_Giocatore_UsoRum;
     public struct GiocatoreActions
     {
         private @InputManager m_Wrapper;
@@ -253,6 +274,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         public InputAction @RotazioneVista => m_Wrapper.m_Giocatore_RotazioneVista;
         public InputAction @Salto => m_Wrapper.m_Giocatore_Salto;
         public InputAction @Sparo => m_Wrapper.m_Giocatore_Sparo;
+        public InputAction @UsoRum => m_Wrapper.m_Giocatore_UsoRum;
         public InputActionMap Get() { return m_Wrapper.m_Giocatore; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -274,6 +296,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Sparo.started -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnSparo;
                 @Sparo.performed -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnSparo;
                 @Sparo.canceled -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnSparo;
+                @UsoRum.started -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnUsoRum;
+                @UsoRum.performed -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnUsoRum;
+                @UsoRum.canceled -= m_Wrapper.m_GiocatoreActionsCallbackInterface.OnUsoRum;
             }
             m_Wrapper.m_GiocatoreActionsCallbackInterface = instance;
             if (instance != null)
@@ -290,6 +315,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Sparo.started += instance.OnSparo;
                 @Sparo.performed += instance.OnSparo;
                 @Sparo.canceled += instance.OnSparo;
+                @UsoRum.started += instance.OnUsoRum;
+                @UsoRum.performed += instance.OnUsoRum;
+                @UsoRum.canceled += instance.OnUsoRum;
             }
         }
     }
@@ -333,6 +361,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         void OnRotazioneVista(InputAction.CallbackContext context);
         void OnSalto(InputAction.CallbackContext context);
         void OnSparo(InputAction.CallbackContext context);
+        void OnUsoRum(InputAction.CallbackContext context);
     }
     public interface IGeneraliActions
     {

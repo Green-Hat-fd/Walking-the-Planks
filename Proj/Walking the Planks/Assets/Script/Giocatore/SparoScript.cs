@@ -38,7 +38,7 @@ public class SparoScript : MonoBehaviour
     {
         return hitInfo.transform  //Se il raycast ha colpito qualcosa
                &&
-               !hitInfo.transform.CompareTag("Player")  //Se non è il giocatore
+               !hitInfo.transform.CompareTag("Player")  //Se non e' il giocatore
                &&
                hitInfo.transform.CompareTag(tagDaComparare);
     }
@@ -46,6 +46,6 @@ public class SparoScript : MonoBehaviour
     {
         return hitInfo.transform  //Se il raycast ha colpito qualcosa
                &&
-               !hitInfo.transform.CompareTag("Player");  //Se non è il giocatore
+               !hitInfo.transform.CompareTag("Player");  //Se non e' il giocatore
     }
 }

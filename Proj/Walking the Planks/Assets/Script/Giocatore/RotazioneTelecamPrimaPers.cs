@@ -31,13 +31,13 @@ public class RotazioneTelecamPrimaPers : MonoBehaviour
         float mouseY = GameManager.inst.inputManager.Giocatore.RotazioneVista.ReadValue<Vector2>().y * velRotazione * Time.deltaTime;
 
 
-        //Movimento mouse * sensibilità (dalle impost.)
+        //Movimento mouse * sensibilita' (dalle impost.)
         mouseX *= opzioni_SO.LeggiSensibilita();
         mouseY *= opzioni_SO.LeggiSensibilita();
 
 
         xRotaz -= mouseY;
-        xRotaz = Mathf.Clamp(xRotaz, -90f, 90f);        //Restrige la rotazione tra su (-90°) e giù (90°)
+        xRotaz = Mathf.Clamp(xRotaz, -90f, 90f);        //Restrige la rotazione tra su (-90°) e giu' (90°)
 
         transform.localRotation = Quaternion.Euler(xRotaz, 0f, 0f);         //La Y la porta come rotazione X della camera...
         corpoGiocat.Rotate(Vector3.up * mouseX);           //...e la X come rotazione Y del giocatore
