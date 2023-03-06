@@ -59,6 +59,7 @@ public class PiattMovScript : MonoBehaviour
         */
         #endregion
 
+
         #region Cambia il tempo di attesa 
 
         //Capisce in che punto si trova e agisce di conseguenza
@@ -89,10 +90,11 @@ public class PiattMovScript : MonoBehaviour
 
         #endregion
 
+
         if (stoAspettando)
         {
             //Se e' passato abbastanza tempo...
-            if (tempoTrascorso >= tempoAttesa[0])
+            if (tempoTrascorso >= quantoDevoAspettare)
             {
                 stoAspettando = false;  //Non aspettare piu', muoviti! (vedi else sotto)
                 tempoTrascorso = 0;     //Resetta il timer
@@ -105,8 +107,8 @@ public class PiattMovScript : MonoBehaviour
         }
         else
         {
+            //Movimento verso la prossima posizione (solo se e' attivo)
             if (sonoAttivo)
-                //Movimento verso la prossima posizione
                 transform.position = Vector3.MoveTowards(transform.position,
                                                          posizioni[prossimaPosiz].position,
                                                          velPiatt * Time.deltaTime);
@@ -116,7 +118,7 @@ public class PiattMovScript : MonoBehaviour
         //Controllo delle posizioni
         if(transform.position == posizioni[prossimaPosiz].position)
         {
-            //int old_posiz = prossimaPosiz;
+        //    int old_posiz = prossimaPosiz;
 
             switch (stileMovimento)
             {
@@ -157,11 +159,37 @@ public class PiattMovScript : MonoBehaviour
                 #endregion
             }
 
-            //distMaxPrimaEDopo = Vector3.Distance(posizioni[old_posiz].position, posizioni[prossimaPosiz].position);
+        //    distMaxPrimaEDopo = Vector3.Distance(posizioni[old_posiz].position, posizioni[prossimaPosiz].position);
 
             stoAspettando = true;
         }
     }
+
+    #region Fa entrare e uscire il giocatore
+
+    private void OnTriggerStay(Collider other)
+    {
+        //Se e' entrato il giocatore
+        if (other.gameObject.CompareTag("Player"))
+        {
+            //Diventa figlio della piattaforma
+            other.gameObject.transform.SetParent(gameObject.transform);
+            print("ENTRATO");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //Se e' uscito il giocatore
+        if (other.gameObject.CompareTag("Player"))
+        {
+            //Lo toglie dalla piattaforma
+            other.gameObject.transform.SetParent(null);
+            print("uscito");
+        }
+    }
+
+    #endregion
 
     public void AttivaPiattaforma()
     {

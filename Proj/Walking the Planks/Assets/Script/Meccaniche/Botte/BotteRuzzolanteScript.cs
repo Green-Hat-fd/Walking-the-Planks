@@ -9,10 +9,11 @@ public class BotteRuzzolanteScript : MonoBehaviour
     [SerializeField] float potenza = 15;
     [Range(0, 10)]
     [SerializeField] float maxVelocitaBotte = 5f;
-    Vector3 davantiIniziale, destraIniziale;
+    Vector3 sopraIniziale, destraIniziale, davantiIniziale;
 
     Vector3 inizioAngolo, fineAngolo, assePositNegatAngolo;
 
+    GameObject giocat_Obj;
     bool giocatSalito;
 
     float movimZ;
@@ -23,17 +24,12 @@ public class BotteRuzzolanteScript : MonoBehaviour
     #region Tooltip()
     [Tooltip("(Funziona solo se \"VoglioIlDebug\" è attiva)\nVero = Il debug sarà sulla testa del giocatore \nFalso = Il debug sarà al centro del mondo")]
     #endregion
-    [InspectorName("Debug sopra il giocatore")]
     [SerializeField] bool debugSopraGiocat;
-
-    GameObject DEBUG_OBJ;
 
 
     void Start()
     {
-        giocatSalito = true;  //TODO: toglimi
-        DEBUG_OBJ = GameObject.FindGameObjectWithTag("Player");
-
+        sopraIniziale = transform.up;
         davantiIniziale = transform.forward;
         destraIniziale = transform.right;
 
@@ -45,7 +41,9 @@ public class BotteRuzzolanteScript : MonoBehaviour
         //Negativo -> per andare nella direzione opposta al giocatore
         movimZ = -GameManager.inst.inputManager.Giocatore.Movimento.ReadValue<Vector2>().y;
 
-        inizioAngolo = DEBUG_OBJ.transform.forward;  //TODO: togli questo e metti quello del giocatore
+        if (giocat_Obj)
+            inizioAngolo = giocat_Obj.transform.forward;
+
 
         #region Calcolo angolo giocatore-botte
 
@@ -54,12 +52,12 @@ public class BotteRuzzolanteScript : MonoBehaviour
         if (Vector3.Angle(inizioAngolo, destraIniziale) > 90)
         {
             fineAngolo = -destraIniziale;
-            assePositNegatAngolo = -davantiIniziale;  //TODO: trova il modo per avere sempre la  iniziale/non cambiata
+            assePositNegatAngolo = -sopraIniziale;
         }
         else
         {
             fineAngolo = destraIniziale;
-            assePositNegatAngolo = davantiIniziale;
+            assePositNegatAngolo = sopraIniziale;
         }
 
         //Calcolo della velocita' rispetto all'angolazione del giocatore
@@ -77,7 +75,7 @@ public class BotteRuzzolanteScript : MonoBehaviour
     {
         if(giocatSalito && movimZ != 0)
         {
-            rb.AddForce((transform.forward  * potenza) * movimZ * angoloGiocat);
+            rb.AddForce((davantiIniziale  * potenza) * movimZ * angoloGiocat);  //Movimento della botte rispetto al giocat.
         }
 
         //Limita la velocita' della botte se eccede(supera) il limite di velocita'
@@ -85,16 +83,33 @@ public class BotteRuzzolanteScript : MonoBehaviour
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocitaBotte);
     }
 
+    #region Funzioni Set custom
+
+    public void ScriviGiocat_Obj(GameObject obj)
+    {
+        giocat_Obj = obj;
+    }
+    public GameObject LeggiGiocat_Obj()
+    {
+        return giocat_Obj;
+    }
+    public void ScriviGiocatSalito(bool b)
+    {
+        giocatSalito = b;
+    }
+
+    #endregion
+
     private void OnDrawGizmos()
     {
-        if (voglioIlDebug && DEBUG_OBJ)
+        if (voglioIlDebug && giocat_Obj)
         {
             //Seguira' il giocatore se la variabile e' vera
             Vector3 posizInizio = debugSopraGiocat
                                    ?
-                                  DEBUG_OBJ.transform.position + Vector3.up * 4f
+                                  giocat_Obj.transform.position + Vector3.up * 2f
                                    :
-                                  new Vector3(0, 4f);
+                                  transform.position + new Vector3(0, 4f);
 
 
             //Direzione da dove prendere l'angolo

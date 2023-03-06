@@ -6,6 +6,7 @@ TagManager:
   tags:
   - piatt-mov
   - Gun-Target
+  - Gun-Box
   layers:
   - Default
   - TransparentFX

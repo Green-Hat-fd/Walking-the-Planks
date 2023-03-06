@@ -8,15 +8,15 @@ public class MovimGiocatRb : MonoBehaviour
     Rigidbody rb;
     RumScript rumScr;
 
-    [SerializeField] float velGiocat = 10f;
-    [SerializeField] float potenzaSalto = 7.5f;
+    [SerializeField] float velGiocat = 7.5f;
+    [SerializeField] float potenzaSalto = 8.5f;
     [Space(10)]
-    [SerializeField] float attritoTerr = 5f;
-    [SerializeField] float attritoAria = 1f;
+    [SerializeField] float attritoTerr = 4;
+    [SerializeField] float attritoAria = 0;
     float movimX, movimZ;
     
     Vector3 muovi;
-    float _potSaltoEffettiva;
+    float _pot_salto;
 
     [Space(20)]
     [SerializeField] float sogliaRilevaTerreno = 0.25f;
@@ -24,7 +24,6 @@ public class MovimGiocatRb : MonoBehaviour
     Vector3 dimensBoxcast = new Vector3(0.65f, 0f, 0.65f);
     
     RaycastHit pendenzaHit;
-    Vector3 modificatPendenza = Vector3.one;
 
     bool siTrovaATerra = false;
 
@@ -56,18 +55,18 @@ public class MovimGiocatRb : MonoBehaviour
         {
             //Applica gli effetti di velocita' e salto aumentati
             muovi *= rumScr.LeggiMoltipVelGiocat();
-            _potSaltoEffettiva = potenzaSalto * rumScr.LeggiMoltipSaltoGiocat();
+            _pot_salto = potenzaSalto * rumScr.LeggiMoltipSaltoGiocat();
         }
         else
         {
             //Rimuove gli effetti
             muovi *= 1;
-            _potSaltoEffettiva = potenzaSalto;
+            _pot_salto = potenzaSalto;
         } 
         #endregion
 
 
-        //Cambia l'attrito se si trova in aria
+        //Cambia l'attrito se si trova o a terra in aria
         rb.drag = siTrovaATerra ? attritoTerr : attritoAria;
 
 
@@ -81,6 +80,8 @@ public class MovimGiocatRb : MonoBehaviour
     {
         //Calcolo se si trova a terra
         siTrovaATerra = Physics.BoxCast(transform.position, dimensBoxcast, -transform.up, Quaternion.identity, mezzaAltezzaGiocat + sogliaRilevaTerreno);
+        
+        float moltVelAria = !siTrovaATerra ? 0.5f : 1;   //Dimezza la velocita' orizz. se si trova in aria
 
 
         //Salta se premi Spazio e si trova a terra
@@ -88,12 +89,12 @@ public class MovimGiocatRb : MonoBehaviour
         {
             //Resetta la velocita' Y e applica la forza d'impulso verso l'alto
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            rb.AddForce(transform.up * _potSaltoEffettiva, ForceMode.Impulse);
+            rb.AddForce(transform.up * _pot_salto, ForceMode.Impulse);
         }
 
 
         //Movimento orizzontale (semplice) del giocatore
-        rb.AddForce(muovi.normalized * velGiocat * 10f, ForceMode.Force);
+        rb.AddForce(muovi.normalized * velGiocat * moltVelAria * 10f, ForceMode.Force);
 
 
         #region Limitazione della velocita'
@@ -127,7 +128,7 @@ public class MovimGiocatRb : MonoBehaviour
             //(tra il vett. "sotto" e la normale del terreno)
             float angolo = Vector3.Angle(transform.up, pendenzaHit.normal);
             
-            return angolo != 0 && angolo <= 30;
+            return angolo != 0;
         }
 
         return false;   //Nel caso non colpisce nulla
