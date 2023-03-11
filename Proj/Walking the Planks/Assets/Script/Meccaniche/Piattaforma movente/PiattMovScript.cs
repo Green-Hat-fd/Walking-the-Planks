@@ -165,12 +165,14 @@ public class PiattMovScript : MonoBehaviour
         }
     }
 
-    #region Fa entrare e uscire il giocatore
+    #region Fa entrare e uscire il giocatore o la scatola
 
     private void OnTriggerStay(Collider other)
     {
-        //Se e' entrato il giocatore
-        if (other.gameObject.CompareTag("Player"))
+        //Se e' entrato il giocatore o la scatola
+        if (other.gameObject.CompareTag("Player")
+            ||
+            other.gameObject.CompareTag("Gun-Box"))
         {
             //Diventa figlio della piattaforma
             other.gameObject.transform.SetParent(gameObject.transform);
@@ -180,8 +182,10 @@ public class PiattMovScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //Se e' uscito il giocatore
-        if (other.gameObject.CompareTag("Player"))
+        //Se e' uscito il giocatore o la scatola
+        if (other.gameObject.CompareTag("Player")
+            ||
+            other.gameObject.CompareTag("Gun-Box"))
         {
             //Lo toglie dalla piattaforma
             other.gameObject.transform.SetParent(null);

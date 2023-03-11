@@ -78,8 +78,8 @@ public class BotteRuzzolanteScript : MonoBehaviour
             rb.AddForce((davantiIniziale  * potenza) * movimZ * angoloGiocat);  //Movimento della botte rispetto al giocat.
         }
 
-        //Limita la velocita' della botte se eccede(supera) il limite di velocita'
-        if (rb.velocity.z > maxVelocitaBotte)
+        //Limita la velocita' della botte se eccede(supera) la velocita' max
+        if (rb.velocity.z > maxVelocitaBotte || rb.velocity.z < maxVelocitaBotte)
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocitaBotte);
     }
 

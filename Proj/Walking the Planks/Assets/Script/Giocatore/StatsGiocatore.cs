@@ -10,37 +10,52 @@ public class StatsGiocatore : MonoBehaviour
 
     [Space(15)]
     [SerializeField]
-    GameObject cameraTerzaPers,
-               cameraGiocat;  //La telecamera in prima persona (default nel gioco)
+    GameObject cameraTerzaPers;
+    [SerializeField]
+    GameObject cameraGiocat;  //La telecamera in prima persona (default nel gioco)
+    MovimGiocatRb movimGiocatScript;
 
-    bool sonoMorto;
+    [SerializeField]bool sonoMorto;
 
+    [Space(15)]
+    [SerializeField] CheckpointSO_Script checkpoint;
+
+
+
+    private void Start()
+    {
+        movimGiocatScript = GetComponent<MovimGiocatRb>();
+    }
 
     void Update()
     {
+        if (sonoMorto)
         {
-            if (sonoMorto)
-            {
-                //cameraGiocat.SetActive(false);
-                //cameraTerzaPers.SetActive(true);
+            cameraGiocat.SetActive(false);
+            cameraTerzaPers.SetActive(true);
+            movimGiocatScript.enabled = false;
 
-                if (tempoTrascorso >= secDiAttesa)
-                {
-                    sonoMorto = false;
-                    tempoTrascorso = 0;
-                }
-                else
-                {
-                    tempoTrascorso += Time.deltaTime;
-                }
+            if (tempoTrascorso >= secDiAttesa)
+            {
+                //Ritorna al checkpoint
+                transform.position = checkpoint.LeggiPosizioneCheckpoint();
+
+                sonoMorto = false;
+                tempoTrascorso = 0;
             }
             else
             {
-                //Ritorna al checkpoint
-
-                //cameraGiocat.SetActive(true);
-                //cameraTerzaPers.SetActive(false);
+                tempoTrascorso += Time.deltaTime;
             }
+        }
+        else
+        {
+            cameraGiocat.SetActive(true);
+            cameraTerzaPers.SetActive(false);
+            movimGiocatScript.enabled = true;
+
+            if(tempoTrascorso != 0)
+                tempoTrascorso = 0;   //Reset -- misura di sicurezza
         }
     }
 

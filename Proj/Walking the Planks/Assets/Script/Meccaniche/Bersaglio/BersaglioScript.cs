@@ -18,9 +18,9 @@ public class BersaglioScript : MonoBehaviour
         objDaAttivare.Invoke();
 
 
-        #region Polishing
+        #region Feedback
 
-        //TODO: polishing (particelle, SFX)
+        //TODO: feedback (particelle, SFX)
 
         #endregion
 

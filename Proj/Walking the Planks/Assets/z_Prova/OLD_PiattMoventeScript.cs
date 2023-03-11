@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PiattMoventeScript : MonoBehaviour
+public class OLD_PiattMoventeScript : MonoBehaviour
 {
     Vector3 pIniz;
     

@@ -4,55 +4,30 @@ using UnityEngine;
 
 public class RumScript : MonoBehaviour
 {
+    [SerializeField] RumSO_Script rum_SO;
+
+    [Space(15)]
     [SerializeField] GameObject[] oggettiDaMostrare;
 
-    //TODO: Inserisci le stats che modifica quando c'e' l'effetto
-    [Header("—  Effetti (prima e dopo)  —")]
-    [SerializeField] float moltipVelocita = 1.5f; 
-    [SerializeField] float moltipSalto = 1.25f;
+    //---- Effetti positivi ----
     float _moltipVelGiocat,
           _moltipSaltoGiocat;
 
-    [Space(7.5f)]
+    [Space(10f)]
     [SerializeField] GameObject effettoVisivo;  //L'effetto negativo mostrato quando finiscono quelli positivi
 
-    [Header("—  Tempistiche  —")]
-    [SerializeField] float durataEffetti = 25;
-    #region Tooltip()
-    [Tooltip("Indica quanto tempo deve passare per avere gli effetti negativi\ne per poter tornare ad utilizzare di nuovo il Rum")]
-    #endregion
-    [SerializeField] float cooldown = 5;
-    float tempoTrascorso_Effetti = 0,
+    //---- Tempistiche ----
+    float tempoTrascorso_Effetti = 0,     //tempoTrascorso servono per tenere traccia del tempo nei diversi timer
           tempoTrascorso_Cooldown = 0,
-          _secMaxEffetti,
+          _secMaxEffetti,                 //_secMax servono per controllare quanto deve durare ogni timer
           _sexMaxCooldown;
-
-    [Header("—  Curva dell'assuefazione  —")]
-    [SerializeField] AnimationCurve curvaAssuefazione;   //Serve per cambiare la durata ogni volta che si beve il Rum
-    #region Tooltip()
-    [Tooltip("I secondi da togliere agli effetti")]
-    #endregion
-    [SerializeField] float secAssuefazioneEffetti = 22.5f;
-    #region Tooltip()
-    [Tooltip("I secondi da aggiungere al cooldown")]
-    #endregion
-    [SerializeField] float secAssuefazioneCooldown = 25f;
-    #region Tooltip()
-    [Tooltip("Le volte che bisogna bere \nper arrivare al max della curva")]
-    #endregion
-    [Space(7.5f)]
-    [SerializeField] int maxBevuteAssuefazione = 75;
-    int numeroBevute = 0;
-
-    bool possoBere = true;   //Usato per non poter usare il Rum se e' gia' attivo
-    bool attivo = false;
 
 
 
     private void Start()
     {
-        _secMaxEffetti = durataEffetti;
-        _sexMaxCooldown = cooldown;
+        _secMaxEffetti = rum_SO.LeggiDurataEffetti();
+        _sexMaxCooldown = rum_SO.LeggiCooldown();
 
         effettoVisivo.SetActive(false);
     }
@@ -60,28 +35,35 @@ public class RumScript : MonoBehaviour
     void Update()
     {
         bool hoBevuto = GameManager.inst.inputManager.Giocatore.UsoRum.triggered;
-
+        
         
         #region Cambio delle durate dal numero di bevute
 
-        float puntoX_dellaCurva = numeroBevute / maxBevuteAssuefazione;         //Rende il numero tra 0 e 1
-        float puntoSullaCurva = curvaAssuefazione.Evaluate(puntoX_dellaCurva);  //Prende la Y sulla curva rispetto alla X
+        float puntoX_dellaCurva = rum_SO.LeggiNumeroBevute() / rum_SO.LeggiMaxBevuteAssuefaz();   //Rende il numero tra 0 e 1
+        float puntoSullaCurva = rum_SO.LeggiValoreCurvaAssuefaz(puntoX_dellaCurva);               //Prende la Y sulla curva rispetto alla X
 
-
-        //Diminuisce la durata degli effetti rispetto alle bevute
-        _secMaxEffetti = durataEffetti - (puntoSullaCurva * secAssuefazioneEffetti);
+        //Diminuisce la durata degli effetti rispetto alle bevute ()
+        _secMaxEffetti = rum_SO.LeggiDurataEffetti() - (puntoSullaCurva * rum_SO.LeggiSecAssuefazEffetti());
 
         //Aumenta la durata del cooldown rispetto alle bevute
-        _sexMaxCooldown = cooldown + (puntoSullaCurva * secAssuefazioneCooldown);
+        _sexMaxCooldown = rum_SO.LeggiCooldown() + (puntoSullaCurva * rum_SO.LeggiSecAssuefazCooldown());
+
+            #region Spiegazione sull'operazione (puntoSullaCurva * secAssuefazione)
+            /* secAssuefazione (entrambe le variabili)
+             * servono per capire quanto bisogna
+             * togliere o aggiungere alle durate iniziali
+             */
+            #endregion
+
 
         #endregion
 
 
-        if (hoBevuto && possoBere)
-            attivo = true;
+        if (hoBevuto && rum_SO.LeggiPossoBere())
+            rum_SO.AttivaRum();
 
 
-        if (attivo)
+        if (rum_SO.LeggiAttivo())
         {
             //Se la durata degli effetti e' finita...
             if (tempoTrascorso_Effetti >= _secMaxEffetti)
@@ -97,10 +79,10 @@ public class RumScript : MonoBehaviour
                     #endregion
               
 
-                    attivo = false;
-                    possoBere = true;   //Il giocatore puo' utilizzare di nuovo il Rum
+                    rum_SO.DisattivaRum();
+                    rum_SO.PossoBereDiNuovo();   //Il giocatore puo' utilizzare di nuovo il Rum
 
-                    numeroBevute++;    //Aumenta il conteggio delle bevute
+                    rum_SO.AumentaNumBevute();    //Aumenta il conteggio delle bevute
 
 
                     //Reset di entrambi i timer (effetti e cooldown)
@@ -142,11 +124,11 @@ public class RumScript : MonoBehaviour
                     obj.SetActive(true);
 
                 //Aumenta velocita' e salto del giocatore
-                _moltipVelGiocat  =  moltipVelocita;
-                _moltipSaltoGiocat = moltipSalto;
+                _moltipVelGiocat  =  rum_SO.LeggiMoltiplVelocita();
+                _moltipSaltoGiocat = rum_SO.LeggiMoltiplSalto();
 
                 //Rimuove la possibilita' di bere un'altra volta
-                possoBere = false;
+                rum_SO.NonPossoBere();
 
                 #endregion
 
@@ -167,9 +149,9 @@ public class RumScript : MonoBehaviour
     {
         return _moltipSaltoGiocat;
     }
-    public bool LeggiAttivo()
+    public bool SonoAttivo()
     {
-        return attivo;
+        return rum_SO.LeggiAttivo();
     }
 
     #endregion
