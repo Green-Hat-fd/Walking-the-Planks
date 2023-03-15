@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CannoneSempliceScript : MonoBehaviour
 {
+    ObjectPoolingScript poolingScr;
+
     [SerializeField] bool sonoAttivo;
 
     [Space(10)]
@@ -13,8 +15,16 @@ public class CannoneSempliceScript : MonoBehaviour
 
     [Space(15)]
     [SerializeField] Transform puntoOrigineProiet;
-    [SerializeField] GameObject proiettile;
+    #region Tooltip()
+    [Tooltip("La tag del proiettile da prendere nella pool")] 
+    #endregion
+    [SerializeField] string proiettile_tag;
 
+
+    private void Awake()
+    {
+        poolingScr = FindObjectOfType<ObjectPoolingScript>();
+    }
 
     void Update()
     {
@@ -34,7 +44,7 @@ public class CannoneSempliceScript : MonoBehaviour
     void SparaPallaDiCannone()
     {
         //Crea e salva la palla di cannone
-        GameObject proiet = Instantiate(proiettile, puntoOrigineProiet.position, Quaternion.identity);
+        GameObject proiet = poolingScr.PrendeOggettoDallaPool(proiettile_tag, puntoOrigineProiet.position, Quaternion.identity);
 
         //Propelle la palla di cannone e la fa rotolare
         proiet.GetComponent<Rigidbody>().AddForce(puntoOrigineProiet.up * potenzaImpulso, ForceMode.Impulse);

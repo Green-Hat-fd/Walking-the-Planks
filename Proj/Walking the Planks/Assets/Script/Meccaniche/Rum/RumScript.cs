@@ -141,18 +141,9 @@ public class RumScript : MonoBehaviour
 
     #region Funzioni Get custom
 
-    public float LeggiMoltipVelGiocat()
-    {
-        return _moltipVelGiocat;
-    }
-    public float LeggiMoltipSaltoGiocat()
-    {
-        return _moltipSaltoGiocat;
-    }
-    public bool SonoAttivo()
-    {
-        return rum_SO.LeggiAttivo();
-    }
+    public float LeggiMoltipVelGiocat() => _moltipVelGiocat;
+    public float LeggiMoltipSaltoGiocat() => _moltipSaltoGiocat;
+    public bool SonoAttivo() => rum_SO.LeggiAttivo();
 
     #endregion
 }

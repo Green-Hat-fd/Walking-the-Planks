@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class PallaCannoneScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        if (!collision.gameObject.CompareTag("CannonBall"))
+        {
+            #region Feedback
+
+            // Feedback
+
+            #endregion
+
+
+            #region Controllo per il giocatore
+
+            //Controlla se ha preso il giocatore
+            if (collision.gameObject.CompareTag("Player"))
+                collision.gameObject.GetComponent<StatsGiocatore>().ScriviSonoMorto(true);
+
+            #endregion
+
+
+            //Vengono riaggunte nella pool
+            FindObjectOfType<ObjectPoolingScript>().RiAggiungiOggetto("Palle di cannone", gameObject);
+        }
     }
 }

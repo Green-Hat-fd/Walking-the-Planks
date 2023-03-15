@@ -36,18 +36,9 @@ public class CheckpointSO_Script : ScriptableObject
 
     #region Funzioni Get custom
 
-    public int LeggiLivello()
-    {
-        return livello;
-    }
-    public int LeggiNumCheckpoint()
-    {
-        return numCheckpoint;
-    }
-    public Vector3 LeggiPosizioneCheckpoint()
-    {
-        return posizCheckpoint;
-    }
+    public int LeggiLivello() => livello;
+    public int LeggiNumCheckpoint() => numCheckpoint;
+    public Vector3 LeggiPosizioneCheckpoint() => posizCheckpoint;
 
     #endregion
 }

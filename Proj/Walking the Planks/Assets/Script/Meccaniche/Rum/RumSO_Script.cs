@@ -51,27 +51,27 @@ public class RumSO_Script : ScriptableObject
     #region Funzioni Get custom
 
     //Effetti positivi
-    public float LeggiMoltiplVelocita() { return moltipVelocita; }
-    public float LeggiMoltiplSalto() { return moltipSalto; }
-    public float LeggiDurataEffetti() { return durataEffetti; }
-    public float LeggiCooldown() { return cooldown; }
+    public float LeggiMoltiplVelocita() => moltipVelocita;
+    public float LeggiMoltiplSalto() => moltipSalto;
+    public float LeggiDurataEffetti() => durataEffetti;
+    public float LeggiCooldown() => cooldown;
 
 
     //Assuefazione
-    public AnimationCurve LeggiCurvaAssuefaz() { return curvaAssuefazione; }
+    public AnimationCurve LeggiCurvaAssuefaz() => curvaAssuefazione;
     /// <summary>
     /// Ritorna il valore Y sulla curva dato <i><b>time</b></i>, ovvero X
     /// </summary>
-    public float LeggiValoreCurvaAssuefaz(float time) { return curvaAssuefazione.Evaluate(time); }
-    public int LeggiNumeroBevute() { return numeroBevute; }
-    public int LeggiMaxBevuteAssuefaz() { return maxBevuteAssuefazione; }
-    public float LeggiSecAssuefazEffetti() { return secAssuefazioneEffetti; }
-    public float LeggiSecAssuefazCooldown() { return secAssuefazioneCooldown; }
+    public float LeggiValoreCurvaAssuefaz(float time) => curvaAssuefazione.Evaluate(time);
+    public int LeggiNumeroBevute() => numeroBevute;
+    public int LeggiMaxBevuteAssuefaz() => maxBevuteAssuefazione;
+    public float LeggiSecAssuefazEffetti() => secAssuefazioneEffetti;
+    public float LeggiSecAssuefazCooldown() => secAssuefazioneCooldown;
 
 
     //Attivazioni
-    public bool LeggiPossoBere() { return possoBere; }
-    public bool LeggiAttivo() { return attivo; }
+    public bool LeggiPossoBere() => possoBere;
+    public bool LeggiAttivo() => attivo;
 
     #endregion
 }

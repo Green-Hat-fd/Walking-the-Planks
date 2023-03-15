@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class StatsGiocatore : MonoBehaviour
 {
-    //
     [SerializeField] float secDiAttesa = 1.5f;
     float tempoTrascorso;
 
@@ -15,7 +14,7 @@ public class StatsGiocatore : MonoBehaviour
     GameObject cameraGiocat;  //La telecamera in prima persona (default nel gioco)
     MovimGiocatRb movimGiocatScript;
 
-    [SerializeField]bool sonoMorto;
+    bool sonoMorto;
 
     [Space(15)]
     [SerializeField] CheckpointSO_Script checkpoint;
@@ -40,6 +39,10 @@ public class StatsGiocatore : MonoBehaviour
                 //Ritorna al checkpoint
                 transform.position = checkpoint.LeggiPosizioneCheckpoint();
 
+                //Resetta tutto il livello
+                FindObjectOfType<LevelManagerScript>().ResetCompleto();
+
+
                 sonoMorto = false;
                 tempoTrascorso = 0;
             }
@@ -61,10 +64,7 @@ public class StatsGiocatore : MonoBehaviour
 
     #region Funzioni Get custom
 
-    bool LeggiSonoMorto()
-    {
-        return sonoMorto;
-    }
+    public bool LeggiSonoMorto() => sonoMorto;
 
     //void Funzione() { }
 
@@ -72,7 +72,7 @@ public class StatsGiocatore : MonoBehaviour
 
     #region Funzioni Set custom
 
-    void ScriviSonoMorto(bool nuovoValore)
+    public void ScriviSonoMorto(bool nuovoValore)
     {
         sonoMorto = nuovoValore;
     }

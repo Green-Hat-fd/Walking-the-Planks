@@ -11,13 +11,6 @@ public enum StileMovim_EnumT
 
 public class PiattMovScript : MonoBehaviour
 {
-    /* TODO:
-     * Piattaforme moventi
-     *   [X] Un'array di transform, dove prendono ogni e la ciclano a ping-pong (ex. 1-2-3-4-3-2-1-2-3-...)
-     *   [X] Velocita'
-     *   [X] Wait time(Vector3 con X= inizio, Y= quelli a metà, Z= fine)
-     *   [ ] Un'opzione per l'easing (bool easingAttivo + AnimationCurve)
-     */
     [SerializeField] bool sonoAttivo;
 
     [Space(10)]
@@ -38,11 +31,13 @@ public class PiattMovScript : MonoBehaviour
     float tempoTrascorso, quantoDevoAspettare;
     bool stoAspettando;
 
-    /* //Inutilizzato
+    #region Non utilizzato
+    /*
     [Space(15)]
     [SerializeField] bool isEasingAttivo = false;
     [SerializeField] AnimationCurve curvaEasing = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
-    */
+    */ 
+    #endregion
 
 
 
@@ -109,9 +104,11 @@ public class PiattMovScript : MonoBehaviour
         {
             //Movimento verso la prossima posizione (solo se e' attivo)
             if (sonoAttivo)
+            {
                 transform.position = Vector3.MoveTowards(transform.position,
                                                          posizioni[prossimaPosiz].position,
                                                          velPiatt * Time.deltaTime);
+            }
         }
 
 
