@@ -9,26 +9,35 @@ public class LevelManagerScript : MonoBehaviour
     class ObjReset_Class
     {
         #region Tooltip()
-        [Tooltip("Se attivo, utilizzerà la posizione attuale dell'oggetto \ncome posizione da usare nel reset")]
-        #endregion
-        [SerializeField] bool usaQuestaPosiz = true;
-        #region Tooltip()
         [Tooltip("L'oggetto la cui posizione sarà resettata")]
         #endregion
         [SerializeField] GameObject obj;
         #region Tooltip()
-        [Tooltip("Inserire la posizione scelta dove \nl'oggetto verrà portato nel reset \nsolo se il bool è disattivo")]
+        [Tooltip("Se attivo, utilizzerà la posizione e rotazione attuale \ndell'oggetto come posizione da usare nel reset")]
         #endregion
-        [SerializeField] Vector3 posizIniziale;
+        [SerializeField] bool usaQuestoTransform = true;
+        #region Tooltip()
+        [Tooltip("Inserire la posizione e rotazione scelta \ndove l'oggetto verrà portato nel reset \nsolo se il bool è disattivo")]
+        #endregion
+        [SerializeField] Vector3 posizIniziale,
+                                 rotazIniziale;
+        Transform transfIniziale;
 
 
-        public void ResetPosizioneObj() { obj.transform.position = posizIniziale; }
+        public void ResetTransformObj()
+        { 
+            obj.transform.position = posizIniziale;
+            obj.transform.eulerAngles = rotazIniziale;
+        }
 
         public void ControllaPosizOriginale()
         {
             //Usa la posizione originale dell'obj come posiz. nel reset
-            if (usaQuestaPosiz)
-                posizIniziale = obj.transform.position;
+            if (usaQuestoTransform)
+                transfIniziale = obj.transform;
+
+            posizIniziale = transfIniziale.position;
+            rotazIniziale = transfIniziale.eulerAngles;
         }
 
         public GameObject LeggiObj() => obj;
@@ -56,11 +65,26 @@ public class LevelManagerScript : MonoBehaviour
     {
         foreach (ObjReset_Class cl in objDaResettare)
         {
-            cl.ResetPosizioneObj();  //Resetta ogni oggetto nella sua posiz. iniziale
+            cl.ResetTransformObj();  //Resetta ogni oggetto nella sua posiz. iniziale
 
             ObjectPoolingScript.ResetTuttiRigidBody(cl.LeggiObj());
         }
 
         altroDaResettare.Invoke();  //Resetta qualsiasi altra cosa da resettare
+    }
+
+    private void Update()
+    {
+        //Controlla ogni oggetto e,
+        //se un oggetto si trova in uno spazio negativo fuori dalla mappa,
+        //lo ripota al suo posto
+        foreach (ObjReset_Class cl in objDaResettare)
+        {
+            if (cl.LeggiObj().transform.position.y <= -700)
+            {
+                cl.ResetTransformObj();
+                ObjectPoolingScript.ResetTuttiRigidBody(cl.LeggiObj());
+            }
+        }
     }
 }

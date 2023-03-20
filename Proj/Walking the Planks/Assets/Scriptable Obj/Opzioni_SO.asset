@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3f0b86f2d67cf4096a27008d99d6ab, type: 3}
   m_Name: Opzioni_SO
   m_EditorClassIdentifier: 
+  moltipSensibilita: 1
+  linguaScelta: 0
+  mixerGenerale: {fileID: 24100000, guid: 6f8ead282174d804daa1fc1b60000204, type: 2}
+  volumeMusica: 1
+  volumeSuoni: 1
+  volumeDialoghi: 1

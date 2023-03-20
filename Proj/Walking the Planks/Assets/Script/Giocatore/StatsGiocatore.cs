@@ -30,6 +30,8 @@ public class StatsGiocatore : MonoBehaviour
     {
         if (sonoMorto)
         {
+            GetComponent<Rigidbody>().drag = 0;
+
             cameraGiocat.SetActive(false);
             cameraTerzaPers.SetActive(true);
             movimGiocatScript.enabled = false;
@@ -60,6 +62,17 @@ public class StatsGiocatore : MonoBehaviour
             if(tempoTrascorso != 0)
                 tempoTrascorso = 0;   //Reset -- misura di sicurezza
         }
+
+        //Controlla se il giocatore si trova in uno spazio
+        //negativo fuori dalla mappa, e lo fa morire
+        if (transform.position.y <= -700)
+            sonoMorto = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawCube(new Vector3(transform.position.x, -700, transform.position.z), new Vector3(100f, 0.1f, 100f));
     }
 
     #region Funzioni Get custom

@@ -43,7 +43,7 @@ public class RotazioneTelecamPrimaPers : MonoBehaviour
         corpoGiocat.Rotate(Vector3.up * mouseX);           //...e la X come rotazione Y del giocatore
     }
 
-    void CambiaMouseAlCentro(bool value)
+    public void CambiaMouseAlCentro(bool value)
     {
         mouseAlCentro = value;
     }

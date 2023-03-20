@@ -21,7 +21,7 @@ public class MovimGiocatRb : MonoBehaviour
     [Space(20)]
     [SerializeField] float sogliaRilevaTerreno = 0.25f;
     float mezzaAltezzaGiocat;
-    Vector3 dimensBoxcast = new Vector3(0.65f, 0f, 0.65f);
+    Vector3 dimensBoxcast = new Vector3(0.51f, 0f, 0.51f);
     
     RaycastHit pendenzaHit;
 
@@ -71,16 +71,16 @@ public class MovimGiocatRb : MonoBehaviour
 
 
         //Prende l'input di salto
-        hoSaltato = GameManager.inst.inputManager.Giocatore.Salto.triggered;
+        hoSaltato = GameManager.inst.inputManager.Giocatore.Salto.ReadValue<float>() > 0;
 
     }
 
-
+    RaycastHit hitBase;
     void FixedUpdate()
     {
         //Calcolo se si trova a terra
-        siTrovaATerra = Physics.BoxCast(transform.position, dimensBoxcast, -transform.up, Quaternion.identity, mezzaAltezzaGiocat + sogliaRilevaTerreno);
-        
+        siTrovaATerra = Physics.BoxCast(transform.position, dimensBoxcast, -transform.up, out hitBase, Quaternion.identity, mezzaAltezzaGiocat + sogliaRilevaTerreno);
+
         float moltVelAria = !siTrovaATerra ? 0.5f : 1;   //Dimezza la velocita' orizz. se si trova in aria
 
 
@@ -136,8 +136,15 @@ public class MovimGiocatRb : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.white;
+        Gizmos.color = new Color(0.85f, 0.85f, 0.85f, 1);
         Gizmos.DrawWireCube(transform.position + (-transform.up * mezzaAltezzaGiocat) + (-transform.up * sogliaRilevaTerreno)/2,
-                            dimensBoxcast + (-transform.up * sogliaRilevaTerreno));
+                            dimensBoxcast * 2 + (-transform.up * sogliaRilevaTerreno));
+
+        Gizmos.color = Color.green;
+        if(siTrovaATerra && hitBase.collider)
+        {
+            Gizmos.DrawLine(hitBase.point + (transform.up*hitBase.distance), hitBase.point);
+            Gizmos.DrawCube(hitBase.point, Vector3.one * 0.1f);
+        }
     }
 }

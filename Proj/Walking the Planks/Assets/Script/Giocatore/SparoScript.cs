@@ -16,6 +16,12 @@ public class SparoScript : MonoBehaviour
     [SerializeField] float secDaAspettareSparo = 0.65f;
     float tempoTrascorso_Sparo;
 
+    [Space(10)]
+    [SerializeField] AudioSource sparoSfx;
+    [SerializeField] AudioClip[] sparoClip;
+    [SerializeField] ParticleSystem proiettPart;
+    [SerializeField] ParticleSystem sparoSparklePoolTag;
+
 
 
     void Update()
@@ -26,8 +32,31 @@ public class SparoScript : MonoBehaviour
             if (GameManager.inst.inputManager.Giocatore.Sparo.ReadValue<float>() > 0)
             {
                 //"Spara" un raycast che simula lo sparo della pistola
-                Physics.Raycast(transform.position, transform.forward, out hitInfo, maxDistSparo);
-            
+                //(non colpisce i Trigger e "~0" significa che collide con tutti i layer)
+                Physics.Raycast(transform.position, transform.forward, out hitInfo, maxDistSparo, ~0, QueryTriggerInteraction.Ignore);
+
+
+                #region Feedback
+
+                //Riproduce un suono a caso tra quelli dati
+                int iSparo = Random.Range(0, sparoClip.Length);
+                sparoSfx.PlayOneShot(sparoClip[iSparo]);
+
+                //Fa vedere la linea lasciata dal proiettile
+                proiettPart.gameObject.SetActive(true);
+                proiettPart.Play();
+
+                //Se ha colpito qualcosa, fa le scentille
+                if(hitInfo.collider && hitInfo.distance <= maxDistSparo)
+                {
+                    GameObject sparoSpark_part = Instantiate(sparoSparklePoolTag.gameObject);
+                    sparoSpark_part.transform.position = hitInfo.point;
+                    sparoSpark_part.transform.forward = hitInfo.normal;
+                }
+
+                #endregion
+
+
                 if (ComparaTagRaycastHitInfo())   //Controlla cosa ho colpito
                 {
                     switch (hitInfo.transform.tag)

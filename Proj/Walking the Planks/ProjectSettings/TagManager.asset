@@ -7,7 +7,6 @@ TagManager:
   - piatt-mov
   - Gun-Target
   - Gun-Box
-  - Undefined
   - CannonBall
   layers:
   - Default
@@ -16,7 +15,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Weapon
   - 
   - 
   - 

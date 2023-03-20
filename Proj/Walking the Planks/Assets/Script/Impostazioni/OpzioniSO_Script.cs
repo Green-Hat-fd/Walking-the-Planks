@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/Opzioni (S.O.)", fileName = "Opzioni_SO")]
 public class OpzioniSO_Script : ScriptableObject
@@ -50,10 +51,7 @@ public class OpzioniSO_Script : ScriptableObject
         moltipSensibilita = s;
     }
 
-    public float LeggiSensibilita()
-    {
-        return moltipSensibilita;
-    }
+    public float LeggiSensibilita() => moltipSensibilita;
 
     #endregion
 
@@ -68,37 +66,53 @@ public class OpzioniSO_Script : ScriptableObject
         linguaScelta = l;
     }
 
-    public Lingue_Enum LeggiLinguaScelta()
-    {
-        return linguaScelta;
-    }
+    public Lingue_Enum LeggiLinguaScelta() => linguaScelta;
 
     #endregion
 
 
-    #region Volume
+    #region Volume e Audio
 
     [Space(15)]
+    [SerializeField] AudioMixer mixerGenerale;
+    [Range(0, 1)]
     [SerializeField] float volumeMusica = 1f;
+    [Range(0, 1)]
     [SerializeField] float volumeSuoni = 1f;
+    [Range(0, 1)]
+    [SerializeField] float volumeDialoghi = 1f;
 
+    ///<summary></summary>
+    /// <param name="vM"> il nuovo volume, nel range [-80; 0]</param>
     public void CambiaVolumeMusica(float vM)
     {
-        volumeMusica = vM / 100f;
+        //Lo mette come volume nel mixer tra [-80; 5] dB
+        mixerGenerale.SetFloat("musVol", vM);
+        
+        volumeMusica = vM;
     }
+    ///<summary></summary>
+    /// <param name="vS"> il nuovo volume, nel range [-80; 0]</param>
     public void CambiaVolumeSuoni(float vS)
     {
-        volumeSuoni = vS / 100f;
+        //Lo mette come volume nel mixer tra [-80; 5] dB
+        mixerGenerale.SetFloat("sfxVol", vS);
+        
+        volumeSuoni = vS;
+    }
+    ///<summary></summary>
+    /// <param name="vD"> il nuovo volume, nel range [-80; 0]</param>
+    public void CambiaVolumeDialoghi(float vD)
+    {
+        //Lo mette come volume nel mixer tra [-80; 5] dB
+        mixerGenerale.SetFloat("dialoghiVol", vD);
+
+        volumeDialoghi = vD;
     }
 
-    public float LeggiVolumeMusica()
-    {
-        return volumeMusica;
-    }
-    public float LeggiVolumeSuoni()
-    {
-        return volumeSuoni;
-    }
+    public float LeggiVolumeMusica() => volumeMusica;
+    public float LeggiVolumeSuoni() => volumeSuoni;
+    public float LeggiVolumeDiaoghi() => volumeDialoghi;
 
     #endregion
 
