@@ -8,6 +8,8 @@ public class AreaBotteScript : MonoBehaviour
 
     float _altezIniziale;
 
+    bool giocatInPosizione;
+
 
     private void Start()
     {
@@ -50,21 +52,34 @@ public class AreaBotteScript : MonoBehaviour
                                   transform.position.y + mezzaAltezGiocat,
                                   transform.position.z);
 
+
         //Restringe il movim. del giocatore solo nell'asse X della botte
         //(se non salta)
-        if(!GameManager.inst.inputManager.Giocatore.Salto.triggered)
+        if (giocatInPosizione && !GameManager.inst.inputManager.Giocatore.Salto.triggered)
+        {
             gObj.transform.position = pos;
+        }
+        else
+        {
+            //Controlla se deve continuare a trascinare o no il giocatore verso "pos"
+            giocatInPosizione = gObj.transform.position == pos;
+
+            //Trascina il giocatore verso "pos"
+            gObj.transform.position = Vector3.MoveTowards(gObj.transform.position, pos, Time.deltaTime * 2.5f);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (botteMainScr.LeggiGiocat_Obj())
         {
-            //Rimuove il giocatore dal movimento ristretto
+            //Rimuove il giocatore dal movimento limitato
             botteMainScr.ScriviGiocat_Obj(null);
             botteMainScr.ScriviGiocatSalito(false);
 
             other.transform.SetParent(null);
+
+            giocatInPosizione = false;
         }
     }
 }

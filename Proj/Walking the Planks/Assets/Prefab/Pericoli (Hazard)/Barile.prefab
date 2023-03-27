@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6846924417103416191}
   - component: {fileID: 8848017285176232847}
+  - component: {fileID: 1520354153550135979}
   m_Layer: 0
   m_Name: Barile
   m_TagString: Untagged
@@ -48,6 +49,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1520354153550135979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6846924417103416190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d344e8817d17d46bf83250e95f6bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6846924418563234009
 GameObject:
   m_ObjectHideFlags: 0

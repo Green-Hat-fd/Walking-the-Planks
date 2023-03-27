@@ -29,16 +29,20 @@ public class PausaScript : MonoBehaviour
         {
             giocoInPausa = !giocoInPausa;
 
+
             #region Tutto cio' che che da cambiare
 
-            rumScr.enabled = !giocoInPausa;                     //(Dis)Abilita lo script del Rum
+            //(Dis)Abilita lo script del Rum
+            rumScr.enabled = !giocoInPausa;
 
             rotazCameraScr.CambiaMouseAlCentro(!giocoInPausa);  //Cambia il mouse dal centro
             sparoScr.enabled = !giocoInPausa;                   //(Dis)Abilita lo script dello sparo
 
-            Time.timeScale = giocoInPausa ? 0 : 1;  //Azzera il tempo di gioco
+            //Azzera il tempo di gioco
+            Time.timeScale = giocoInPausa ? 0 : 1;
 
-            menuPausa.SetActive(giocoInPausa);      //Attiva la schermata di pausa
+            //Attiva la schermata di pausa
+            menuPausa.SetActive(giocoInPausa);
 
             #endregion
         }

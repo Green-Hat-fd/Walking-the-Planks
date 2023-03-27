@@ -177,8 +177,8 @@ public class @InputManager : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""77430a8b-a29a-43a7-aa96-7654c8c5a5f4"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""id"": ""9343ebad-568d-4dda-a089-0300db0535d9"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -188,8 +188,8 @@ public class @InputManager : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9343ebad-568d-4dda-a089-0300db0535d9"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""id"": ""77430a8b-a29a-43a7-aa96-7654c8c5a5f4"",
+                    ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -9,10 +9,13 @@ public class StatsGiocatore : MonoBehaviour
 
     [Space(15)]
     [SerializeField]
-    GameObject cameraTerzaPers;
+    GameObject cameraTerzaPers;  //La telecamera visibile quando il giocat. muore
     [SerializeField]
     GameObject cameraGiocat;  //La telecamera in prima persona (default nel gioco)
+    
     MovimGiocatRb movimGiocatScript;
+    
+    [SerializeField] float velCamTerzaPers = 10f;
 
     bool sonoMorto;
 
@@ -35,6 +38,10 @@ public class StatsGiocatore : MonoBehaviour
             cameraGiocat.SetActive(false);
             cameraTerzaPers.SetActive(true);
             movimGiocatScript.enabled = false;
+
+            //Ruota la camera in terza persona attorno al giocatore
+            cameraTerzaPers.transform.Rotate(0, velCamTerzaPers * Time.deltaTime, 0);
+
 
             if (tempoTrascorso >= secDiAttesa)
             {
