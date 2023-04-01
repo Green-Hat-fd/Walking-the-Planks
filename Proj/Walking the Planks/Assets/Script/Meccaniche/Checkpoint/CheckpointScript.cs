@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CheckpointScript : MonoBehaviour
+public class CheckpointScript : MonoBehaviour, IFeedback
 {
     [SerializeField] CheckpointSO_Script checkpSO;
 
@@ -28,12 +28,13 @@ public class CheckpointScript : MonoBehaviour
             checkpSO.CambiaCheckpoint(indiceScena, _numeroCheckpoint, transform.position + offset);
 
 
-            #region Feedback
-
-            //TODO: feedback (SFX, particelle(?))
-
-            #endregion
+            Feedback();
         }
+    }
+
+    public void Feedback()
+    {
+        //TODO: feedback (SFX, particelle(?))
     }
 
     private void OnDrawGizmos()

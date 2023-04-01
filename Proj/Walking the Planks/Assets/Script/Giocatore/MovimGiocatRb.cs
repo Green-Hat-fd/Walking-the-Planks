@@ -136,10 +136,12 @@ public class MovimGiocatRb : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        //Disegna il BoxCast per capire se e' a terra o meno (togliendo l'altezza del giocatore)
         Gizmos.color = new Color(0.85f, 0.85f, 0.85f, 1);
         Gizmos.DrawWireCube(transform.position + (-transform.up * mezzaAltezzaGiocat) + (-transform.up * sogliaRilevaTerreno)/2,
                             dimensBoxcast * 2 + (-transform.up * sogliaRilevaTerreno));
 
+        //Disegna dove ha colpito se e' a terra e se ha colpito un'oggetto solido (no trigger)
         Gizmos.color = Color.green;
         if(siTrovaATerra && hitBase.collider)
         {

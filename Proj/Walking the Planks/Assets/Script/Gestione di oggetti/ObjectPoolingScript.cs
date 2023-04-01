@@ -62,9 +62,10 @@ public class ObjectPoolingScript : MonoBehaviour
             GameObject obj = poolDict[poolTag].Dequeue();
 
 
-            //Riposiziona, ruota e attiva l'oggetto
+            //Riposiziona, ruota, resetta il Rigidbody e attiva l'oggetto
             obj.transform.position = pos;
             obj.transform.rotation = rot;
+            ResetTuttiRigidBody(obj);
             obj.SetActive(true);
 
 
@@ -78,6 +79,7 @@ public class ObjectPoolingScript : MonoBehaviour
             return null;
     }
 
+
     /// <summary>
     /// Rimette l'oggetto <i><b>obj</b></i> nella pool indicata dal <i><b>tag</b></i>
     /// </summary>
@@ -88,15 +90,7 @@ public class ObjectPoolingScript : MonoBehaviour
         {
             obj.SetActive(false);   //Lo disattiva
 
-
-            #region Altre sistemazioni per oggetti
-
-            ResetTuttiRigidBody(obj);
-
-            #endregion
-
-
-            poolDict[poolTag].Enqueue(obj);
+            poolDict[poolTag].Enqueue(obj);   //Lo rimette in coda
         }
     }
 
@@ -104,13 +98,13 @@ public class ObjectPoolingScript : MonoBehaviour
     {
         //Controlla se l'obj ha il RigidBody e resetta la sua velocita'
         Rigidbody rb_obj = objDaReset.GetComponent<Rigidbody>();
-        
+
         if (rb_obj)
         {
             rb_obj.velocity = Vector3.zero;
             rb_obj.angularVelocity = Vector3.zero;
         }
-        
+
 
         //Controlla se sono i figli ad avere il RigidBody e resetta la loro velocita'
         Rigidbody[] rb_child = objDaReset.GetComponentsInChildren<Rigidbody>();

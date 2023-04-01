@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f02459a67427f469e061a2fa8407ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joint: {fileID: 0}
-  bottoneAttivatore: {fileID: 0}
+  joint: {fileID: 603206391239252062}
+  bottoneAttivatore: {fileID: 603206390538585811}
   sogliaAttivazione: 0.65
   onPressed:
     m_PersistentCalls:

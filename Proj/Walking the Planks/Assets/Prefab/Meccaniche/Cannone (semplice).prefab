@@ -26,7 +26,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3652999493839520978}
   m_Father: {fileID: 3237449051451673290}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -81,6 +82,32 @@ MonoBehaviour:
   secDaAspettare: 10
   puntoOrigineProiet: {fileID: 3237449050628053700}
   proiettile_tag: 
+  sparkle_part: {fileID: 5413753601466117905}
+  misuraSparkle:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -1.1764705
+      outSlope: -1.1764705
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.85
+      value: 0
+      inSlope: -1.1764705
+      outSlope: -1.1764705
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  fumo_part: {fileID: 4774832637108058949}
 --- !u!1 &3237449050994389754
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +300,7 @@ Transform:
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 3237449050628053700}
-  - {fileID: 3237449049538488135}
+  - {fileID: 5413753601466117911}
   m_Father: {fileID: 3237449050684683993}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
@@ -326,7 +353,74 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &1756883840969481623
+--- !u!1001 &3069820947755184754
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3237449050628053700}
+    m_Modifications:
+    - target: {fileID: 1740709753224214176, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740709753224214176, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740709753224214176, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740709753224214176, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740709753224214176, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740709753224214176, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740709753224214176, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740709753224214176, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740709753224214176, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740709753224214176, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740709753224214176, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793928781150581016, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_Name
+      value: CannoneFumo_Part
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+--- !u!4 &3652999493839520978 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1740709753224214176, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+  m_PrefabInstance: {fileID: 3069820947755184754}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4774832637108058949 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7555260198945048887, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+  m_PrefabInstance: {fileID: 3069820947755184754}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9200161887966713287
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -379,12 +473,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3786417095633730257, guid: c3a24cdf3711e9f4c86a2dda9bbbe405, type: 3}
       propertyPath: m_Name
-      value: Sparkles
+      value: CannoneSparkles_Part
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3a24cdf3711e9f4c86a2dda9bbbe405, type: 3}
---- !u!4 &3237449049538488135 stripped
+--- !u!4 &5413753601466117911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3786417095633730256, guid: c3a24cdf3711e9f4c86a2dda9bbbe405, type: 3}
-  m_PrefabInstance: {fileID: 1756883840969481623}
+  m_PrefabInstance: {fileID: 9200161887966713287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5413753601466117905 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3786417095633730262, guid: c3a24cdf3711e9f4c86a2dda9bbbe405, type: 3}
+  m_PrefabInstance: {fileID: 9200161887966713287}
   m_PrefabAsset: {fileID: 0}

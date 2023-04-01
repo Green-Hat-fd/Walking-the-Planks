@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PallaCannoneScript : MonoBehaviour
+public class PallaCannoneScript : MonoBehaviour, IFeedback
 {
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.CompareTag("CannonBall"))
         {
-            #region Feedback
-
-            // Feedback
-
-            #endregion
+            Feedback();
 
 
             #region Controllo per il giocatore
@@ -27,5 +23,10 @@ public class PallaCannoneScript : MonoBehaviour
             //Vengono riaggunte nella pool
             FindObjectOfType<ObjectPoolingScript>().RiAggiungiOggetto("Palle di cannone", gameObject);
         }
+    }
+
+    public void Feedback()
+    {
+        //TODO: feedback (particelle, SFX)
     }
 }

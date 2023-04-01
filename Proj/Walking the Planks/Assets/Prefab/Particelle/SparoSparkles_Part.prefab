@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1288186216339469742}
   - component: {fileID: 7090054451081943411}
   m_Layer: 0
-  m_Name: Sparo_Part
+  m_Name: SparoSparkles_Part
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,9 +225,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9738057, b: 0.34509802, a: 1}
-        key2: {r: 1, g: 0.52214503, b: 0, a: 0}
+        key0: {r: 0.9843137, g: 1, b: 0.99607843, a: 1}
+        key1: {r: 0.99215686, g: 0.90588236, b: 0.29803923, a: 1}
+        key2: {r: 0.9490196, g: 0.5058824, b: 0.13725491, a: 0}
         key3: {r: 1, g: 0.52214503, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -660,7 +660,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 75
+    angle: 65
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -975,7 +975,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 6
+        scalar: 8
         minScalar: 30
         maxCurve:
           serializedVersion: 2

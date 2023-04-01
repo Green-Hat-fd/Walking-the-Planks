@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SparoScript : MonoBehaviour
+public class SparoScript : MonoBehaviour, IFeedback
 {
     [SerializeField] float maxDistSparo = 15f;
     
@@ -19,8 +19,9 @@ public class SparoScript : MonoBehaviour
     [Space(10)]
     [SerializeField] AudioSource sparoSfx;
     [SerializeField] AudioClip[] sparoClip;
-    [SerializeField] ParticleSystem proiettPart;
-    [SerializeField] ParticleSystem sparoSparklePoolTag;
+    //[SerializeField] ParticleSystem proiettPart;
+    [SerializeField] ParticleSystem sparoSparkle_part;
+    [SerializeField] ParticleSystem sparoFuoco_part;
 
 
 
@@ -36,25 +37,7 @@ public class SparoScript : MonoBehaviour
                 Physics.Raycast(transform.position, transform.forward, out hitInfo, maxDistSparo, ~0, QueryTriggerInteraction.Ignore);
 
 
-                #region Feedback
-
-                //Riproduce un suono a caso tra quelli dati
-                int iSparo = Random.Range(0, sparoClip.Length);
-                sparoSfx.PlayOneShot(sparoClip[iSparo]);
-
-                //Fa vedere la linea lasciata dal proiettile
-                proiettPart.gameObject.SetActive(true);
-                proiettPart.Play();
-
-                //Se ha colpito qualcosa, fa le scentille
-                if(hitInfo.collider && hitInfo.distance <= maxDistSparo)
-                {
-                    GameObject sparoSpark_part = Instantiate(sparoSparklePoolTag.gameObject);
-                    sparoSpark_part.transform.position = hitInfo.point;
-                    sparoSpark_part.transform.forward = hitInfo.normal;
-                }
-
-                #endregion
+                Feedback();
 
 
                 if (ComparaTagRaycastHitInfo())   //Controlla cosa ho colpito
@@ -130,4 +113,27 @@ public class SparoScript : MonoBehaviour
     }
 
     #endregion
+
+
+    public void Feedback()
+    {
+        //Riproduce un suono a caso tra quelli dati
+        int iSparo = Random.Range(0, sparoClip.Length);
+        sparoSfx.PlayOneShot(sparoClip[iSparo]);
+
+        //Fa vedere la linea lasciata dal proiettile
+        //proiettPart.gameObject.SetActive(true);
+        //proiettPart.Play();
+
+        //Fa vedere il fuoco della pistola
+        sparoFuoco_part.Play();
+
+        //Se ha colpito qualcosa, fa le scentille
+        if(hitInfo.collider && hitInfo.distance <= maxDistSparo)
+        {
+            GameObject sparoSpark_part = Instantiate(sparoSparkle_part.gameObject);
+            sparoSpark_part.transform.position = hitInfo.point;
+            sparoSpark_part.transform.forward = hitInfo.normal;
+        }
+    }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RumScript : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class RumScript : MonoBehaviour
           tempoTrascorso_Cooldown = 0,
           _secMaxEffetti,                 //_secMax servono per controllare quanto deve durare ogni timer
           _sexMaxCooldown;
+
+
+    //---- Feedback ----
+    [Header("Feedback")]
+    [SerializeField] Slider sliderRum;
 
 
 
@@ -88,6 +94,14 @@ public class RumScript : MonoBehaviour
                     //Reset di entrambi i timer (effetti e cooldown)
                     tempoTrascorso_Cooldown = 0;
                     tempoTrascorso_Effetti = 0;
+
+
+                    #region Feedback
+
+                    //Toglie lo slider del rum
+                    sliderRum.gameObject.SetActive(false);
+
+                    #endregion
                 }
                 else
                 {
@@ -100,6 +114,13 @@ public class RumScript : MonoBehaviour
 
 
                     tempoTrascorso_Cooldown += Time.deltaTime;   //Aumenta il tempo trascorso per il cooldown
+
+                    #region Feedback
+
+                    //Aumenta lo slider rispetto al cooldown
+                    sliderRum.value = tempoTrascorso_Cooldown / _sexMaxCooldown;
+
+                    #endregion
                 }
 
 
@@ -134,6 +155,16 @@ public class RumScript : MonoBehaviour
 
 
                 tempoTrascorso_Effetti += Time.deltaTime;  //Aumenta il conteggio del tempo trascorso
+
+                #region Feedback
+
+                //Mostra lo slider del rum
+                sliderRum.gameObject.SetActive(true);
+
+                //Diminuisce lo slider rispetto a quanto tempo manca
+                sliderRum.value = (_secMaxEffetti - tempoTrascorso_Effetti) / _secMaxEffetti;
+
+                #endregion
             }
         }
     }

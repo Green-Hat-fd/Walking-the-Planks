@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CannoneSpecialeScript : MonoBehaviour
 {
+    ObjectPoolingScript poolingScr;
+
     [SerializeField] bool sonoAttivo;
 
     [Space(10)]
@@ -14,11 +16,27 @@ public class CannoneSpecialeScript : MonoBehaviour
 
     [Space(15)]
     [SerializeField] Transform puntoOrigineProiet;
-    [SerializeField] GameObject proiettile;
+    #region Tooltip()
+    [Tooltip("La tag del proiettile da prendere nella pool")]
+    #endregion
+    [SerializeField] string proiettile_tag;
+
+    [Space(10)]
+    [SerializeField] ParticleSystem sparkle_part;
+    #region Tooltip()
+    [Tooltip("La quantità delle particelle sparticles rispetto al timer")]
+    #endregion
+    [SerializeField] AnimationCurve misuraSparkle;
+    float frequenzaIniziale_Sparkle;
+    [SerializeField] ParticleSystem fumo_part;
 
 
-    void Start()
+    void Awake()
     {
+        poolingScr = FindObjectOfType<ObjectPoolingScript>();
+        frequenzaIniziale_Sparkle = sparkle_part.emission.rateOverTime.constant;  //Prende il rateOverTime iniziale delle partic. sparkles
+
+
         Vector2 rangeTmp;
 
         //Rende il minimo nella X e il massimo nella Y del Vector2
@@ -44,16 +62,24 @@ public class CannoneSpecialeScript : MonoBehaviour
         {
             if(sonoAttivo)
                 tempoTrascorso += Time.deltaTime;  //Aumenta il conteggio del tempo trascorso
+
+            //Cambia le sparkles del cannone rispetto al timer
+            float rapportoQuantita = misuraSparkle.Evaluate(tempoTrascorso / secDaAspettare);
+            var em = sparkle_part.emission;
+            em.rateOverTime = rapportoQuantita * frequenzaIniziale_Sparkle;
         }
     }
 
     void SparaPallaDiCannone()
     {
         //Crea e salva la palla di cannone
-        GameObject proiet = Instantiate(proiettile, puntoOrigineProiet.position, Quaternion.identity);
+        GameObject proiet = poolingScr.PrendeOggettoDallaPool(proiettile_tag, puntoOrigineProiet.position, Quaternion.identity);
 
-        //Propelle la palla di cannone e la fa rotolare
+        //Lancia la palla di cannone
         proiet.GetComponent<Rigidbody>().AddForce(puntoOrigineProiet.up * potenzaImpulso, ForceMode.Impulse);
+
+        //Fa vedere la particella del fumo
+        fumo_part.Play();
     }
 
     void GeneraNuovoTempoRandom()

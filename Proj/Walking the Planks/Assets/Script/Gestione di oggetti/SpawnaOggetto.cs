@@ -20,6 +20,7 @@ public class SpawnaOggetto : MonoBehaviour
     #region Tooltip()
     [Tooltip("[ ! ]  Solo se la booleana sopra è attiva\n\t-----\nQuanto bisogna aspettare prima che \ncrei un'altra copia (in sec)")]
     #endregion
+    [Min(0)]
     [SerializeField] float secDaAspettareSpawn;
     float tempoTrascorso = 0;
 

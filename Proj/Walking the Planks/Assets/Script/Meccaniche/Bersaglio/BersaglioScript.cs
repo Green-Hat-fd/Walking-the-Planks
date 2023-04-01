@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BersaglioScript : MonoBehaviour
+public class BersaglioScript : MonoBehaviour, IFeedback
 {
     [SerializeField] UnityEvent objDaAttivare;
 
@@ -18,11 +18,7 @@ public class BersaglioScript : MonoBehaviour
         objDaAttivare.Invoke();
 
 
-        #region Feedback
-
-        //TODO: feedback (particelle, SFX)
-
-        #endregion
+        Feedback();
 
 
         //Viene tolto solo se la variabile e' vera
@@ -30,5 +26,10 @@ public class BersaglioScript : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public void Feedback()
+    {
+        //TODO: feedback (particelle, SFX)
     }
 }

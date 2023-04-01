@@ -20,10 +20,20 @@ public class CannoneSempliceScript : MonoBehaviour
     #endregion
     [SerializeField] string proiettile_tag;
 
+    [Space(10)]
+    [SerializeField] ParticleSystem sparkle_part;
+    #region Tooltip()
+    [Tooltip("La quantità delle particelle sparticles rispetto al timer")]
+    #endregion
+    [SerializeField] AnimationCurve misuraSparkle;
+    float frequenzaIniziale_Sparkle;
+    [SerializeField] ParticleSystem fumo_part;
+
 
     private void Awake()
     {
         poolingScr = FindObjectOfType<ObjectPoolingScript>();
+        frequenzaIniziale_Sparkle = sparkle_part.emission.rateOverTime.constant;  //Prende il rateOverTime iniziale delle partic. sparkles
     }
 
     void Update()
@@ -38,6 +48,11 @@ public class CannoneSempliceScript : MonoBehaviour
         {
             if(sonoAttivo)
                 tempoTrascorso += Time.deltaTime;  //Aumenta il conteggio del tempo trascorso
+
+            //Cambia le sparkles del cannone rispetto al timer
+            float rapportoQuantita = misuraSparkle.Evaluate(tempoTrascorso / secDaAspettare);
+            var em = sparkle_part.emission;
+            em.rateOverTime = rapportoQuantita * frequenzaIniziale_Sparkle;
         }
     }
 
@@ -46,8 +61,11 @@ public class CannoneSempliceScript : MonoBehaviour
         //Crea e salva la palla di cannone
         GameObject proiet = poolingScr.PrendeOggettoDallaPool(proiettile_tag, puntoOrigineProiet.position, Quaternion.identity);
 
-        //Propelle la palla di cannone e la fa rotolare
+        //Lancia la palla di cannone
         proiet.GetComponent<Rigidbody>().AddForce(puntoOrigineProiet.up * potenzaImpulso, ForceMode.Impulse);
+
+        //Fa vedere la particella del fumo
+        fumo_part.Play();
     }
 
     public void AttivaCannoneSemplice()

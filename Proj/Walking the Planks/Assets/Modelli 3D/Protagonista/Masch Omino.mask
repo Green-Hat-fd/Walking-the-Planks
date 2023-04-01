@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Masch Omino
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_LeftUpLeg
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_LeftUpLeg/Omino_Char_LeftLeg
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_LeftUpLeg/Omino_Char_LeftLeg/Omino_Char_LeftFoot
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_LeftUpLeg/Omino_Char_LeftLeg/Omino_Char_LeftFoot/Omino_Char_LeftToeBase
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_RightUpLeg
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_RightUpLeg/Omino_Char_RightLeg
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_RightUpLeg/Omino_Char_RightLeg/Omino_Char_RightFoot
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_RightUpLeg/Omino_Char_RightLeg/Omino_Char_RightFoot/Omino_Char_RightToeBase
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_Spine
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_Spine/Omino_Char_LeftArm
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_Spine/Omino_Char_LeftArm/Omino_Char_LeftForeArm
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_Spine/Omino_Char_LeftArm/Omino_Char_LeftForeArm/Omino_Char_LeftHand
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_Spine/Omino_Char_Neck
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_Spine/Omino_Char_Neck/Omino_Char_Head
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_Spine/Omino_Char_RightArm
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_Spine/Omino_Char_RightArm/Omino_Char_RightForeArm
+    m_Weight: 1
+  - m_Path: Omino_Char_Reference/Omino_Char_Hips/Omino_Char_Spine/Omino_Char_RightArm/Omino_Char_RightForeArm/Omino_Char_RightHand
+    m_Weight: 1
+  - m_Path: p_OminoIntero_Skin
+    m_Weight: 1

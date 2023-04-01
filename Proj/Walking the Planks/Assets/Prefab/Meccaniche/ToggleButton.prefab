@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95119a8904875944f95dd9d1c7a01edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joint: {fileID: 0}
+  joint: {fileID: 7568483079653309360}
   sogliaAttivazione: 7.5
   onActivated:
     m_PersistentCalls:
@@ -257,7 +257,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: -0.115}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: -0.11499977}
+  m_ConnectedAnchor: {x: 0, y: 0, z: -0.115}
   m_UseSpring: 1
   m_Spring:
     spring: 0.1
