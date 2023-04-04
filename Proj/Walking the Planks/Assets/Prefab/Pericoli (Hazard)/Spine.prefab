@@ -125,3 +125,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a57cc669c03672428250ca8ea0b442c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scatolaRotta_part: {fileID: 2416756975563833568, guid: 94526fce05a6dfc44bd2fe7cd6d7d87b, type: 3}
+  barileRotto_part: {fileID: 0}

@@ -13,7 +13,7 @@ public class PiattMovScript : MonoBehaviour
 {
     [SerializeField] bool sonoAttivo;
 
-    [Space(10)]
+    [Space(5)]
     [SerializeField] StileMovim_EnumT stileMovimento; 
 
     [Space(20)]
@@ -26,7 +26,7 @@ public class PiattMovScript : MonoBehaviour
     #region Tooltip()
     [Tooltip("X = il tempo di attesa nella prima posizione (indice 0), \nY = Tempo di attesa per ogni posiz. in mezzo, \nZ = Tempo di attesa nell'ultima posiz.")]
     #endregion
-    [Space(10)]
+    [Space(5)]
     [SerializeField] Vector3 tempoAttesa;
     float tempoTrascorso, quantoDevoAspettare;
     bool stoAspettando;
@@ -36,10 +36,36 @@ public class PiattMovScript : MonoBehaviour
     [Space(15)]
     [SerializeField] bool isEasingAttivo = false;
     [SerializeField] AnimationCurve curvaEasing = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
-    */ 
+    */
     #endregion
 
+    [Space(20)]
+    [SerializeField] LineRenderer linea;
 
+
+
+    private void Awake()
+    {
+        #region Linea sul percorso
+
+        List<Vector3> pos_temp = new List<Vector3>();
+
+        //Prende le posizioni della piattaforma e le inserisce nella lista
+        foreach (Transform t in posizioni)
+        {
+            pos_temp.Add(t.localPosition);
+        }
+
+        //Se si muove ciclando, aggiunge la prima posizione come ultima, creando una linea circolare
+        if (stileMovimento == StileMovim_EnumT.Cicla)
+            pos_temp.Add(posizioni[0].localPosition);
+
+        //"Disegna" la linea nelle posizioni passate
+        linea.positionCount = pos_temp.Count;
+        linea.SetPositions(pos_temp.ToArray());
+
+        #endregion
+    }
 
     void Update()
     {

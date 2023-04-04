@@ -20,14 +20,23 @@ public class CannoneSempliceScript : MonoBehaviour
     #endregion
     [SerializeField] string proiettile_tag;
 
-    [Space(10)]
+    [Header("—  Feedback  —")]
+    #region Particelle
     [SerializeField] ParticleSystem sparkle_part;
     #region Tooltip()
     [Tooltip("La quantità delle particelle sparticles rispetto al timer")]
     #endregion
     [SerializeField] AnimationCurve misuraSparkle;
     float frequenzaIniziale_Sparkle;
-    [SerializeField] ParticleSystem fumo_part;
+    [SerializeField] ParticleSystem fumo_part; 
+    #endregion
+
+    #region Audio
+    [Space(5)]
+    [SerializeField] AudioSource miccia_sfx;
+    [SerializeField] AudioSource spara_sfx;
+    #endregion
+
 
 
     private void Awake()
@@ -49,10 +58,15 @@ public class CannoneSempliceScript : MonoBehaviour
             if(sonoAttivo)
                 tempoTrascorso += Time.deltaTime;  //Aumenta il conteggio del tempo trascorso
 
-            //Cambia le sparkles del cannone rispetto al timer
+
             float rapportoQuantita = misuraSparkle.Evaluate(tempoTrascorso / secDaAspettare);
+            
+            //Cambia le sparkles del cannone rispetto al timer (solo se e' attivo)
             var em = sparkle_part.emission;
-            em.rateOverTime = rapportoQuantita * frequenzaIniziale_Sparkle;
+            em.rateOverTime = sonoAttivo ? rapportoQuantita * frequenzaIniziale_Sparkle : 0;
+
+            //Cambia il volume della miccia rispetto al timer (solo se e' attivo)
+            miccia_sfx.volume = sonoAttivo ? rapportoQuantita : 0;
         }
     }
 
@@ -64,8 +78,12 @@ public class CannoneSempliceScript : MonoBehaviour
         //Lancia la palla di cannone
         proiet.GetComponent<Rigidbody>().AddForce(puntoOrigineProiet.up * potenzaImpulso, ForceMode.Impulse);
 
+
         //Fa vedere la particella del fumo
         fumo_part.Play();
+
+        //Riproduce il suono dell'esplosione per lo sparo
+        spara_sfx.PlayOneShot(spara_sfx.clip);
     }
 
     public void AttivaCannoneSemplice()

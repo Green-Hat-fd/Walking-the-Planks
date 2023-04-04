@@ -13,6 +13,9 @@ public class CheckpointScript : MonoBehaviour, IFeedback
     [Space(10)]
     [SerializeField] Vector3 offset;
 
+    [Header("—  Feedback  —")]
+    [SerializeField] AudioSource raggiunto_sfx;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -34,7 +37,10 @@ public class CheckpointScript : MonoBehaviour, IFeedback
 
     public void Feedback()
     {
-        //TODO: feedback (SFX, particelle(?))
+        //Riproduce il suono quando viene raggiunto un checkpoint
+        raggiunto_sfx.Play();
+
+        //TODO: feedback (particelle(?))
     }
 
     private void OnDrawGizmos()

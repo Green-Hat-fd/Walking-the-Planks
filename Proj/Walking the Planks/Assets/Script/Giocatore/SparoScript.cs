@@ -16,12 +16,17 @@ public class SparoScript : MonoBehaviour, IFeedback
     [SerializeField] float secDaAspettareSparo = 0.65f;
     float tempoTrascorso_Sparo;
 
-    [Space(10)]
+    [Header("—  Feedback  —")]
+    #region Audio
     [SerializeField] AudioSource sparoSfx;
     [SerializeField] AudioClip[] sparoClip;
+    #endregion
+
+    #region Particelle
     //[SerializeField] ParticleSystem proiettPart;
     [SerializeField] ParticleSystem sparoSparkle_part;
-    [SerializeField] ParticleSystem sparoFuoco_part;
+    [SerializeField] ParticleSystem sparoFuoco_part; 
+    #endregion
 
 
 

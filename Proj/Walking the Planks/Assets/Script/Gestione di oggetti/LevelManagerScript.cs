@@ -49,8 +49,12 @@ public class LevelManagerScript : MonoBehaviour
     #endregion
     [SerializeField] List<ObjReset_Class> objDaResettare;   //Tiene conto di ogni oggetto e della sua posizione iniziale
 
-    [Space(15)]
+    //[Space(15)]
     [SerializeField] UnityEvent altroDaResettare;
+
+    [Space(15)]
+    [Range(-10000, 0)]
+    [SerializeField] float xNegativoReset = -700;
 
 
     void Awake()
@@ -73,14 +77,30 @@ public class LevelManagerScript : MonoBehaviour
         altroDaResettare.Invoke();  //Resetta qualsiasi altra cosa da resettare
     }
 
-    private void Update()
+    /// <param name="obj_reset">L'oggetto da resettare</param>
+    public void ResetSingoloOggetto(GameObject obj_reset)
     {
-        //Controlla ogni oggetto e,
-        //se un oggetto si trova in uno spazio negativo fuori dalla mappa,
-        //lo ripota al suo posto
         foreach (ObjReset_Class cl in objDaResettare)
         {
-            if (cl.LeggiObj().transform.position.y <= -700)
+            //Cerca l'oggetto nella classe
+            if (cl.LeggiObj() == obj_reset)
+            {
+                //Se c'è, fa un reset della posizione, rotazione e del Rigidbody
+                cl.ResetTransformObj();
+                ObjectPoolingScript.ResetTuttiRigidBody(cl.LeggiObj());
+                break;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        //Controlla ogni oggetto...
+        foreach (ObjReset_Class cl in objDaResettare)
+        {
+            //Se un oggetto si trova in uno spazio negativo fuori dalla mappa,
+            //lo ripota al suo posto
+            if (cl.LeggiObj().transform.position.y <= xNegativoReset)
             {
                 cl.ResetTransformObj();
                 ObjectPoolingScript.ResetTuttiRigidBody(cl.LeggiObj());

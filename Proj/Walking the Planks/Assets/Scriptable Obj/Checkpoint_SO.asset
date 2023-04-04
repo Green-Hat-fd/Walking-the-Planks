@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5abea0bca097a6441b7d6ef7e038c805, type: 3}
   m_Name: Checkpoint_SO
   m_EditorClassIdentifier: 
-  livello: 0
+  livello: 1
   numCheckpoint: 1
-  posizCheckpoint: {x: 16, y: 1, z: -14.05}
+  posizCheckpoint: {x: 16, y: 1.25, z: -16}

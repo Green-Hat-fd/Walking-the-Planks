@@ -17,6 +17,12 @@ public class PulsanteToggleScript : MonoBehaviour
     [SerializeField] UnityEvent onActivated,
                                 onDeactivated;
 
+    [Header("—  Feedback  —")]
+    [SerializeField] AudioSource puls_sfxSource;
+    [SerializeField] AudioClip pulsPremuto_sfx,
+                               pulsRilasciato_sfx;
+    float doOnce_sfx = 0;
+
 
     private void Awake()
     {
@@ -39,11 +45,39 @@ public class PulsanteToggleScript : MonoBehaviour
         {
             //Attiva ogni oggetto di conseguenza
             onActivated.Invoke();
+
+            SFX_Premi();        //Feedback sonoro
         }
         else
         {
             //Lo disattiva se viene rilasciato
             onDeactivated.Invoke();
+
+            SFX_Rilascia();     //Feedback sonoro
+        }
+    }
+
+
+    void SFX_Premi()
+    {
+        //Controlla se DoOnce è a 0
+        if (doOnce_sfx <= 0)
+        {
+            //Riproduce il suono del pulsante attivato
+            puls_sfxSource.PlayOneShot(pulsPremuto_sfx);
+
+            doOnce_sfx = 1;       //Porta il DoOnce a 1 -> per il suono quando Rilascia
+        }
+    }
+    void SFX_Rilascia()
+    {
+        //Controlla se DoOnce è a 0
+        if (doOnce_sfx >= 1)
+        {
+            //Riproduce il suono del pulsante disattivato
+            puls_sfxSource.PlayOneShot(pulsRilasciato_sfx);
+
+            doOnce_sfx = 0;       //Porta il DoOnce a 0 -> per il suono quando Preme
         }
     }
 }

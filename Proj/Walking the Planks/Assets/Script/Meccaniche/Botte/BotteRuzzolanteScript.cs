@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BotteRuzzolanteScript : MonoBehaviour
+public class BotteRuzzolanteScript : MonoBehaviour, IFeedback
 {
     Rigidbody rb;
 
@@ -26,6 +26,9 @@ public class BotteRuzzolanteScript : MonoBehaviour
     #endregion
     [SerializeField] bool debugSopraGiocat;
 
+    [Header("—  Feedback  —")]
+    [SerializeField] AudioSource rotolo_sfx;
+
 
     void Start()
     {
@@ -34,6 +37,8 @@ public class BotteRuzzolanteScript : MonoBehaviour
         destraIniziale = transform.right;
 
         rb = GetComponent<Rigidbody>();
+
+        rotolo_sfx.playOnAwake = true;
     }
 
     void Update()
@@ -69,6 +74,25 @@ public class BotteRuzzolanteScript : MonoBehaviour
         angoloGiocat /= 90;
 
         #endregion
+
+
+        Feedback();
+    }
+
+    public void Feedback()
+    {
+        //Effetto sonoro del rotolamento
+        rotolo_sfx.volume = (rb.angularVelocity.magnitude / maxVelocitaBotte) * 0.75f;
+
+        
+        float minVelAttivaSFX = 0.01f;
+
+        //Mette in pausa il suono quando la botte sta ferma
+        //e lo riavvia quando riprende a rotolare
+        if (Mathf.Abs(rotolo_sfx.volume) < minVelAttivaSFX)  //Il volume aumenta solo quando rotola
+            rotolo_sfx.Pause();
+        else
+            rotolo_sfx.UnPause();
     }
 
     private void FixedUpdate()
@@ -79,8 +103,8 @@ public class BotteRuzzolanteScript : MonoBehaviour
         }
 
         //Limita la velocita' della botte se eccede(supera) la velocita' max
-        if (rb.velocity.z > maxVelocitaBotte || rb.velocity.z < maxVelocitaBotte)
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocitaBotte);
+        if (rb.angularVelocity.z > maxVelocitaBotte || rb.angularVelocity.z < maxVelocitaBotte)
+            rb.angularVelocity = Vector3.ClampMagnitude(rb.angularVelocity, maxVelocitaBotte);
     }
 
     #region Funzioni Set custom

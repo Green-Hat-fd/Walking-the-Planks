@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class PallaCannoneScript : MonoBehaviour, IFeedback
 {
+    ObjectPoolingScript poolingScr;
+
+    [Header("—  Feedback  —")]
+    [SerializeField] ParticleSystem pallaRotta_part;
+
+
+
+    private void Awake()
+    {
+        poolingScr = FindObjectOfType<ObjectPoolingScript>();
+        //rottura_sfx = GetComponent<AudioSource>();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.CompareTag("CannonBall"))
@@ -21,12 +34,14 @@ public class PallaCannoneScript : MonoBehaviour, IFeedback
 
 
             //Vengono riaggunte nella pool
-            FindObjectOfType<ObjectPoolingScript>().RiAggiungiOggetto("Palle di cannone", gameObject);
+            poolingScr.RiAggiungiOggetto("Palle di cannone", gameObject);
         }
     }
 
     public void Feedback()
     {
-        //TODO: feedback (particelle, SFX)
+        //Fa vedere le particelle della palla che si rompe
+        //(e riproduce automaticamente il suono nel prefab)
+        Instantiate(pallaRotta_part.gameObject, transform.position, Quaternion.identity);
     }
 }

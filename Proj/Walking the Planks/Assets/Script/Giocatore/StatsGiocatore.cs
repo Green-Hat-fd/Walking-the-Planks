@@ -13,7 +13,7 @@ public class StatsGiocatore : MonoBehaviour
     [SerializeField]
     GameObject cameraGiocat;  //La telecamera in prima persona (default nel gioco)
     
-    MovimGiocatRb movimGiocatScript;
+    MovimGiocatRb movimGiocatScr;
     
     [SerializeField] float velCamTerzaPers = 10f;
 
@@ -21,12 +21,14 @@ public class StatsGiocatore : MonoBehaviour
 
     [Space(15)]
     [SerializeField] CheckpointSO_Script checkpoint;
+    LevelManagerScript levelManagerScr;
 
 
 
     private void Start()
     {
-        movimGiocatScript = GetComponent<MovimGiocatRb>();
+        movimGiocatScr = GetComponent<MovimGiocatRb>();
+        levelManagerScr = FindObjectOfType<LevelManagerScript>();
     }
 
     void Update()
@@ -37,7 +39,7 @@ public class StatsGiocatore : MonoBehaviour
 
             cameraGiocat.SetActive(false);
             cameraTerzaPers.SetActive(true);
-            movimGiocatScript.enabled = false;
+            movimGiocatScr.enabled = false;
 
             //Ruota la camera in terza persona attorno al giocatore
             cameraTerzaPers.transform.Rotate(0, velCamTerzaPers * Time.deltaTime, 0);
@@ -49,7 +51,7 @@ public class StatsGiocatore : MonoBehaviour
                 transform.position = checkpoint.LeggiPosizioneCheckpoint();
 
                 //Resetta tutto il livello
-                FindObjectOfType<LevelManagerScript>().ResetCompleto();
+                levelManagerScr.ResetCompleto();
 
 
                 sonoMorto = false;
@@ -64,7 +66,7 @@ public class StatsGiocatore : MonoBehaviour
         {
             cameraGiocat.SetActive(true);
             cameraTerzaPers.SetActive(false);
-            movimGiocatScript.enabled = true;
+            movimGiocatScr.enabled = true;
 
             if(tempoTrascorso != 0)
                 tempoTrascorso = 0;   //Reset -- misura di sicurezza

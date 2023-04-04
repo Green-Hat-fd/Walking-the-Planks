@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c64c742a2e377674ca245a93da646aac
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - opzioniSO: {fileID: 11400000, guid: fcbf9d01b4925cf439a250fbdb172436, type: 2}
+  - inglese: {fileID: 11400000, guid: cbeaa9681aa1e0f488c4357c090d05b4, type: 2}
+  - italiano: {fileID: 11400000, guid: 6cdcdeb43638171428d9957d45f2d5d7, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

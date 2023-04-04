@@ -125,3 +125,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d344e8817d17d46bf83250e95f6bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pallaRotta_part: {fileID: 2416756975563833568, guid: 9909535475f00064daa89e514c8c6ef4, type: 3}
+  rottura_sfx: {fileID: 0}

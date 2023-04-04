@@ -1409,6 +1409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPausa: {fileID: 1219085007421259442}
+  gruppoSfx: {fileID: 9198830318128198387, guid: 6f8ead282174d804daa1fc1b60000204, type: 2}
 --- !u!114 &4415018302668086793
 MonoBehaviour:
   m_ObjectHideFlags: 0
