@@ -10,9 +10,16 @@ public class OpzioniSO_Script : ScriptableObject
     //Menu principale
     #region Cambia scena
 
+    [Space(15)]
+    CheckpointSO_Script checkpointSO;
+
     public void ScenaScegliTu(int numScena)
     {
         SceneManager.LoadScene(numScena);
+    }
+    public void ScenaAggiunta(string nomeScena)
+    {
+        SceneManager.LoadScene(nomeScena, LoadSceneMode.Additive);
     }
     public void ScenaSuccessiva()
     {
@@ -25,6 +32,13 @@ public class OpzioniSO_Script : ScriptableObject
         int scenaOra = SceneManager.GetActiveScene().buildIndex;
 
         SceneManager.LoadScene(--scenaOra);
+    }
+    public void CaricaUltimaScena()
+    {
+        int scenaDaCheckpoint = checkpointSO.LeggiLivello();
+
+        SceneManager.LoadScene(scenaDaCheckpoint);
+        checkpointSO.CaricaUltimoCheckpoint();
     }
 
     #endregion
@@ -65,6 +79,10 @@ public class OpzioniSO_Script : ScriptableObject
     {
         linguaScelta = l;
     }
+    public void CambiaLingua(int i)
+    {
+        linguaScelta = (Lingue_Enum)i;
+    }
 
     public Lingue_Enum LeggiLinguaScelta() => linguaScelta;
 
@@ -75,12 +93,13 @@ public class OpzioniSO_Script : ScriptableObject
 
     [Space(15)]
     [SerializeField] AudioMixer mixerGenerale;
-    [Range(0, 1)]
-    [SerializeField] float volumeMusica = 1f;
-    [Range(0, 1)]
-    [SerializeField] float volumeSuoni = 1f;
-    [Range(0, 1)]
-    [SerializeField] float volumeDialoghi = 1f;
+    [SerializeField] AnimationCurve curvaAudio;
+    [Range(-80, 5)]
+    [SerializeField] float volumeMusica = 0f;
+    [Range(-80, 5)]
+    [SerializeField] float volumeSuoni = 0f;
+    [Range(-80, 5)]
+    [SerializeField] float volumeDialoghi = 0f;
 
     ///<summary></summary>
     /// <param name="vM"> il nuovo volume, nel range [-80; 0]</param>
@@ -110,8 +129,12 @@ public class OpzioniSO_Script : ScriptableObject
         volumeDialoghi = vD;
     }
 
+    public AnimationCurve LeggiCurvaVolume() => curvaAudio;
+
     public float LeggiVolumeMusica() => volumeMusica;
+    public float LeggiVolumeMusica_Percent() => curvaAudio.Evaluate(volumeMusica);
     public float LeggiVolumeSuoni() => volumeSuoni;
+    public float LeggiVolumeSuoni_Percent() => curvaAudio.Evaluate(volumeSuoni);
     public float LeggiVolumeDiaoghi() => volumeDialoghi;
 
     #endregion
@@ -119,9 +142,14 @@ public class OpzioniSO_Script : ScriptableObject
 
     #region Schermo intero
 
+    [Space(15)]
+    [SerializeField] bool schermoIntero = true;
+
     public void SchermoIntero_OnOff(bool yn)
     {
         Screen.fullScreen = yn;
+
+        schermoIntero = yn;
     }
 
     #endregion

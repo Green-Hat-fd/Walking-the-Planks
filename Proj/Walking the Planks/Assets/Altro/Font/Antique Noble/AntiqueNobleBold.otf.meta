@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: c61243076223843448804bc647004d3b
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - AntiqueNoble
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 40e286cce2218de428f99f0e6d5a2524, type: 3}
+  - {fileID: 12800000, guid: 46287c0025718844b824d79079acf7bc, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

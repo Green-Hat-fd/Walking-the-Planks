@@ -25,20 +25,31 @@ public class SpineScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        switch (collision.gameObject.tag)
+        ControlloCollisioni(collision.gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ControlloCollisioni(other.gameObject);
+    }
+
+
+    void ControlloCollisioni(GameObject obj)
+    {
+        switch (obj.tag)
         {
             //Fa morire il giocatore
             case "Player":
-                collision.gameObject.GetComponent<StatsGiocatore>().ScriviSonoMorto(true);
+                obj.GetComponent<StatsGiocatore>().ScriviSonoMorto(true);
                 break;
 
 
             //"Distrugge" le scatole e i barili
             case "Gun-Box":
-                FeedbackScatola(collision.gameObject);   //Feedback visivo e audio per la scatola
+                FeedbackScatola(obj);   //Feedback visivo e audio per la scatola
 
                 //Viene resettata posizione, rotazione e tutto del Rigidbody
-                levelManagerScr.ResetSingoloOggetto(collision.gameObject);
+                levelManagerScr.ResetSingoloOggetto(obj);
                 break;
 
 
@@ -46,7 +57,7 @@ public class SpineScript : MonoBehaviour
                 //FeedbackBarile();   //Feedback visivo e audio per il barile
                 
                 //Viene riaggiunta nella pool
-                poolingScr.RiAggiungiOggetto("Barili", collision.gameObject);
+                poolingScr.RiAggiungiOggetto("Barili", obj);
                 break;
 
 

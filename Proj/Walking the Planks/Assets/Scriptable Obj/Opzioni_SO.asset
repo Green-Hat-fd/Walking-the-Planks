@@ -13,8 +13,42 @@ MonoBehaviour:
   m_Name: Opzioni_SO
   m_EditorClassIdentifier: 
   moltipSensibilita: 1
-  linguaScelta: 0
+  linguaScelta: 1
   mixerGenerale: {fileID: 24100000, guid: 6f8ead282174d804daa1fc1b60000204, type: 2}
-  volumeMusica: 1
-  volumeSuoni: 1
-  volumeDialoghi: 1
+  curvaAudio:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -80
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.016250003
+      outSlope: 0.016250003
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 5
+      value: 1.1
+      inSlope: 0.020000005
+      outSlope: 0.020000005
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  volumeMusica: 0
+  volumeSuoni: 0
+  volumeDialoghi: 0
+  schermoIntero: 1

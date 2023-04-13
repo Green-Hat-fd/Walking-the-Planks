@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MenuPausaScript : MonoBehaviour
 {
@@ -11,16 +12,22 @@ public class MenuPausaScript : MonoBehaviour
     [SerializeField] Slider sl_volMusica;
     [SerializeField] Slider sl_volSuoni;
     [SerializeField] Slider sl_sensibilitaMouse;
-    [SerializeField] Dropdown dr_lingua;
+    [SerializeField] TMP_Dropdown dr_lingua;
     [SerializeField] Toggle tg_schermoIntero;
 
 
     private void OnEnable()
     {
-        //Cambia ogni elemento grafico della UI alle impostazioni scelte
-        
+        //Cambia ogni elemento grafico della UI seguendo le impostazioni scelte
+        CambiaElementi();
+    }
+
+    public void CambiaElementi()
+    {
         sl_volMusica.value = opz_SO.LeggiVolumeMusica();
         sl_volSuoni.value = opz_SO.LeggiVolumeSuoni();
+        sl_volMusica.onValueChanged.Invoke(1);
+        sl_volSuoni.onValueChanged.Invoke(1);
         sl_sensibilitaMouse.value = opz_SO.LeggiSensibilita();
 
         dr_lingua.value = (int)opz_SO.LeggiLinguaScelta();

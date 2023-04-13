@@ -22,8 +22,20 @@ MonoBehaviour:
   - tag: tExit
     testo: Esci
   - tag: tSensibMouse
-    testo: "Sensibilit\xE0"
+    testo: "Sensibilit\xE0 (Mouse)"
   - tag: tLanguage
     testo: Lingua
   - tag: tFullScreen
     testo: Schermo intero
+  - tag: tBack
+    testo: Indietro
+  - tag: tMusVol
+    testo: Volume musica
+  - tag: tSfxVol
+    testo: Volume effetti sonori
+  - tag: tDialVol
+    testo: Volume dialoghi
+  - tag: tResume
+    testo: Riprendi
+  - tag: tPauseMenu
+    testo: In Pausa

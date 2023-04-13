@@ -3,7 +3,13 @@ guid: 7e34f77642234744ba37ad44075594ee
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - opz_SO: {fileID: 11400000, guid: fcbf9d01b4925cf439a250fbdb172436, type: 2}
+  - sl_volMusica: {instanceID: 0}
+  - sl_volSuoni: {instanceID: 0}
+  - sl_sensibilitaMouse: {instanceID: 0}
+  - dr_lingua: {instanceID: 0}
+  - tg_schermoIntero: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

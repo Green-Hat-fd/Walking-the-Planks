@@ -8,10 +8,14 @@ public class StatsGiocatore : MonoBehaviour
     float tempoTrascorso;
 
     [Space(15)]
-    [SerializeField]
-    GameObject cameraTerzaPers;  //La telecamera visibile quando il giocat. muore
-    [SerializeField]
-    GameObject cameraGiocat;  //La telecamera in prima persona (default nel gioco)
+    [SerializeField] GameObject ragdoll;
+    Animator ragdollAnim;
+    //La telecamera visibile quando il giocat. muore
+    [SerializeField] GameObject cameraTerzaPers;
+    //La telecamera in prima persona (default nel gioco)
+    [SerializeField] GameObject cameraGiocat;
+    //L'empty che raggruppa la telecamera in terza pers. e il Ragdoll
+    GameObject gruppoMorto;
     
     MovimGiocatRb movimGiocatScr;
     
@@ -29,6 +33,10 @@ public class StatsGiocatore : MonoBehaviour
     {
         movimGiocatScr = GetComponent<MovimGiocatRb>();
         levelManagerScr = FindObjectOfType<LevelManagerScript>();
+
+        ragdollAnim = ragdoll.GetComponent<Animator>();
+
+        gruppoMorto = cameraTerzaPers.transform.parent.gameObject;
     }
 
     void Update()
@@ -38,7 +46,10 @@ public class StatsGiocatore : MonoBehaviour
             GetComponent<Rigidbody>().drag = 0;
 
             cameraGiocat.SetActive(false);
-            cameraTerzaPers.SetActive(true);
+            //cameraTerzaPers.SetActive(true);
+            gruppoMorto.SetActive(true);
+            ragdoll.SetActive(true);
+            ragdollAnim.enabled = false;
             movimGiocatScr.enabled = false;
 
             //Ruota la camera in terza persona attorno al giocatore
@@ -49,6 +60,9 @@ public class StatsGiocatore : MonoBehaviour
             {
                 //Ritorna al checkpoint
                 transform.position = checkpoint.LeggiPosizioneCheckpoint();
+
+                //Resetta il RigidBody del giocatore
+                ObjectPoolingScript.ResetTuttiRigidBody(gameObject);
 
                 //Resetta tutto il livello
                 levelManagerScr.ResetCompleto();
@@ -66,6 +80,8 @@ public class StatsGiocatore : MonoBehaviour
         {
             cameraGiocat.SetActive(true);
             cameraTerzaPers.SetActive(false);
+            //gruppoMorto.SetActive(false);
+            StartCoroutine(RitornoRagdoll());
             movimGiocatScr.enabled = true;
 
             if(tempoTrascorso != 0)
@@ -77,6 +93,17 @@ public class StatsGiocatore : MonoBehaviour
         if (transform.position.y <= -700)
             sonoMorto = true;
     }
+
+    IEnumerator RitornoRagdoll()
+    {
+        ragdollAnim.enabled = true;
+
+        yield return new WaitForSeconds(.1f);
+
+        gruppoMorto.SetActive(false);
+        StopAllCoroutines();
+    }
+
 
     private void OnDrawGizmos()
     {

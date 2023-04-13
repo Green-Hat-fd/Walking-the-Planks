@@ -210,7 +210,7 @@ MonoBehaviour:
   potenzaImpulso: 10
   secDaAspettare: 10
   puntoOrigineProiet: {fileID: 3237449050628053700}
-  proiettile_tag: 
+  proiettile_tag: Palle di cannone
   sparkle_part: {fileID: 5413753601466117905}
   misuraSparkle:
     serializedVersion: 2

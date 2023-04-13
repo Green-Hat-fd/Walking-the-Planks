@@ -5,17 +5,26 @@ using UnityEngine.Events;
 
 public class BersaglioScript : MonoBehaviour, IFeedback
 {
+    [SerializeField] GameObject modello;
+    Collider collComp;
+
     [SerializeField] UnityEvent objDaAttivare;
 
     [SerializeField] bool distruggereDopoAttivo = true;
-    bool attivato = false;
 
     [Header("—  Feedback  —")]
     #region Audio
     [SerializeField] AudioSource bers_sfx;
-    [SerializeField] Vector2 rangePitch = new Vector2(0.85f, 1.5f); 
+    [SerializeField] Vector2 rangePitch = new Vector2(0.85f, 1.5f);
     #endregion
 
+
+
+    private void Awake()
+    {
+        modello = transform.GetChild(0).gameObject;
+        collComp = GetComponent<Collider>();
+    }
 
     public void AttivaOggetti()
     {
@@ -31,17 +40,15 @@ public class BersaglioScript : MonoBehaviour, IFeedback
         //Viene tolto solo se la variabile e' vera
         if (distruggereDopoAttivo)
         {
-            attivato = true;
+            MostraONascondiBersaglio(false);
         }
     }
 
-    private void Update()
+    void MostraONascondiBersaglio(bool attivo)
     {
-        if (attivato)
-        {
-            GetComponent<MeshRenderer>().enabled = false;
-            GetComponent<Collider>().enabled = false;
-        }
+        //Nasconde e disattiva/Mostra e attiva il bersagio
+        modello.SetActive(attivo);
+        collComp.enabled = attivo;
     }
 
     public void Feedback()
