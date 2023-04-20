@@ -10,35 +10,48 @@ public class OpzioniSO_Script : ScriptableObject
     //Menu principale
     #region Cambia scena
 
-    [Space(15)]
-    CheckpointSO_Script checkpointSO;
+    [SerializeField] CheckpointSO_Script checkpointSO;
+    [SerializeField] RumSO_Script rumSO;
 
     public void ScenaScegliTu(int numScena)
     {
-        SceneManager.LoadScene(numScena);
+        SceneManager.LoadSceneAsync(numScena);
     }
     public void ScenaAggiunta(string nomeScena)
     {
-        SceneManager.LoadScene(nomeScena, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(nomeScena, LoadSceneMode.Additive);
     }
     public void ScenaSuccessiva()
     {
         int scenaOra = SceneManager.GetActiveScene().buildIndex;
 
-        SceneManager.LoadScene(++scenaOra);
+        SceneManager.LoadSceneAsync(++scenaOra);
     }
     public void ScenaPrecedente()
     {
         int scenaOra = SceneManager.GetActiveScene().buildIndex;
 
-        SceneManager.LoadScene(--scenaOra);
+        SceneManager.LoadSceneAsync(--scenaOra);
     }
     public void CaricaUltimaScena()
     {
         int scenaDaCheckpoint = checkpointSO.LeggiLivello();
 
-        SceneManager.LoadScene(scenaDaCheckpoint);
-        checkpointSO.CaricaUltimoCheckpoint();
+        //Carica l'ultima scena se si ha giocato al gioco, se no ricomincia dalla prima
+        if (scenaDaCheckpoint <= 0)
+        {
+            ScenaSuccessiva();
+            ResetTutto();
+        }
+        else
+            SceneManager.LoadScene(scenaDaCheckpoint);
+    }
+    void ResetTutto()
+    {
+        checkpointSO.CambiaCheckpoint(0, 0, Vector3.zero);
+        rumSO.ResetNumBevute();
+        rumSO.PossoBereDiNuovo();
+        rumSO.DisattivaRum();
     }
 
     #endregion
@@ -94,47 +107,47 @@ public class OpzioniSO_Script : ScriptableObject
     [Space(15)]
     [SerializeField] AudioMixer mixerGenerale;
     [SerializeField] AnimationCurve curvaAudio;
-    [Range(-80, 5)]
+    [Range(0, 110)]
     [SerializeField] float volumeMusica = 0f;
-    [Range(-80, 5)]
+    [Range(0, 110)]
     [SerializeField] float volumeSuoni = 0f;
-    [Range(-80, 5)]
+    [Range(0, 110)]
     [SerializeField] float volumeDialoghi = 0f;
 
     ///<summary></summary>
-    /// <param name="vM"> il nuovo volume, nel range [-80; 0]</param>
+    /// <param name="vM"> il nuovo volume, nel range [0; 1.1]</param>
     public void CambiaVolumeMusica(float vM)
     {
         //Lo mette come volume nel mixer tra [-80; 5] dB
-        mixerGenerale.SetFloat("musVol", vM);
+        mixerGenerale.SetFloat("musVol", curvaAudio.Evaluate(vM));
         
-        volumeMusica = vM;
+        volumeMusica = vM * 100;
     }
     ///<summary></summary>
-    /// <param name="vS"> il nuovo volume, nel range [-80; 0]</param>
+    /// <param name="vS"> il nuovo volume, nel range [0; 1.1]</param>
     public void CambiaVolumeSuoni(float vS)
     {
         //Lo mette come volume nel mixer tra [-80; 5] dB
-        mixerGenerale.SetFloat("sfxVol", vS);
+        mixerGenerale.SetFloat("sfxVol", curvaAudio.Evaluate(vS));
         
-        volumeSuoni = vS;
+        volumeSuoni = vS * 100;
     }
     ///<summary></summary>
-    /// <param name="vD"> il nuovo volume, nel range [-80; 0]</param>
+    /// <param name="vD"> il nuovo volume, nel range [0; 1.1]</param>
     public void CambiaVolumeDialoghi(float vD)
     {
         //Lo mette come volume nel mixer tra [-80; 5] dB
-        mixerGenerale.SetFloat("dialoghiVol", vD);
+        mixerGenerale.SetFloat("dialoghiVol", curvaAudio.Evaluate(vD));
 
-        volumeDialoghi = vD;
+        volumeDialoghi = vD * 100;
     }
 
     public AnimationCurve LeggiCurvaVolume() => curvaAudio;
 
-    public float LeggiVolumeMusica() => volumeMusica;
-    public float LeggiVolumeMusica_Percent() => curvaAudio.Evaluate(volumeMusica);
-    public float LeggiVolumeSuoni() => volumeSuoni;
-    public float LeggiVolumeSuoni_Percent() => curvaAudio.Evaluate(volumeSuoni);
+    public float LeggiVolumeMusica() => curvaAudio.Evaluate(volumeMusica);
+    public float LeggiVolumeMusica_Percent() => volumeMusica / 100;
+    public float LeggiVolumeSuoni() => curvaAudio.Evaluate(volumeSuoni);
+    public float LeggiVolumeSuoni_Percent() => volumeSuoni / 100;
     public float LeggiVolumeDiaoghi() => volumeDialoghi;
 
     #endregion

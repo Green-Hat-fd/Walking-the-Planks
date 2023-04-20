@@ -41,6 +41,7 @@ public class RumSO_Script : ScriptableObject
     #region Funzioni Set custom
 
     public void AumentaNumBevute() { numeroBevute++; }
+    public void ResetNumBevute() { numeroBevute = 0; }
     public void PossoBereDiNuovo() { possoBere = true; }
     public void NonPossoBere() { possoBere = false; }
     public void AttivaRum() { attivo = true; }

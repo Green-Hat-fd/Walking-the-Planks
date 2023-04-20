@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class PulsanteToggleScript : MonoBehaviour
 {
     [SerializeField] HingeJoint joint;
+    JointSpring _jointSpring;
 
     #region Tooltip()
     [Tooltip("La rotazione [-45, 45] per attivare il pulsante")]
@@ -23,6 +24,8 @@ public class PulsanteToggleScript : MonoBehaviour
                                pulsRilasciato_sfx;
     float doOnce_sfx = 0;
 
+    bool attivato = false;
+
 
     private void Awake()
     {
@@ -36,13 +39,21 @@ public class PulsanteToggleScript : MonoBehaviour
                 if(GetComponentInChildren<HingeJoint>())
                     joint = GetComponentInChildren<HingeJoint>();
         }
+
+        _jointSpring = joint.spring;
     }
 
     void Update()
     {
-        //Controlla se il bottone e' stato premuto abbastanza
-        if (joint.angle >= sogliaAttivazione)
+        //Controlla se il bottone e' stato premuto
+        attivato = joint.angle <= sogliaAttivazione;
+
+
+        if (attivato)
         {
+            //Lo manda verso il limite massimo
+            _jointSpring.targetPosition = joint.limits.min;
+            
             //Attiva ogni oggetto di conseguenza
             onActivated.Invoke();
 
@@ -50,11 +61,16 @@ public class PulsanteToggleScript : MonoBehaviour
         }
         else
         {
+            //Lo manda verso il limite minimo
+            _jointSpring.targetPosition = joint.limits.max;
+            
             //Lo disattiva se viene rilasciato
             onDeactivated.Invoke();
 
             SFX_Rilascia();     //Feedback sonoro
         }
+
+        joint.spring = _jointSpring;
     }
 
 

@@ -36,6 +36,9 @@ public class RumScript : MonoBehaviour
         _sexMaxCooldown = rum_SO.LeggiCooldown();
 
         effettoVisivo.SetActive(false);
+
+        rum_SO.DisattivaRum();
+        rum_SO.PossoBereDiNuovo();
     }
 
     void Update()

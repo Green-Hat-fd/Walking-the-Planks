@@ -17,6 +17,14 @@ public class CheckpointScript : MonoBehaviour, IFeedback
     [SerializeField] AudioSource raggiunto_sfx;
 
 
+
+    private void Awake()
+    {
+        //Prende il giocatore e lo rimette nella posizione dell'ultimo checkpoint
+        GameObject giocat = GameObject.FindGameObjectWithTag("Player");
+        giocat.transform.position = checkpSO.LeggiPosizioneCheckpoint();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         //Controlla che sia il giocatore a entrare & che non l'ha gia' preso

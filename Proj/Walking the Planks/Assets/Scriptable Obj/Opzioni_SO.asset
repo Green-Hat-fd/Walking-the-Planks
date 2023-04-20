@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3f0b86f2d67cf4096a27008d99d6ab, type: 3}
   m_Name: Opzioni_SO
   m_EditorClassIdentifier: 
+  checkpointSO: {fileID: 11400000, guid: 8dee62f921f162842a68db10cadab365, type: 2}
   moltipSensibilita: 1
   linguaScelta: 1
   mixerGenerale: {fileID: 24100000, guid: 6f8ead282174d804daa1fc1b60000204, type: 2}
@@ -19,36 +20,36 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -80
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 0
-      value: 1
-      inSlope: 0.016250003
-      outSlope: 0.016250003
-      tangentMode: 34
+      value: -80
+      inSlope: 0
+      outSlope: 201.50323
+      tangentMode: 1
       weightedMode: 0
       inWeight: 0.33333334
+      outWeight: 0.09094488
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0.0000111857
+      outSlope: 49.99999
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 1
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 5
-      value: 1.1
-      inSlope: 0.020000005
-      outSlope: 0.020000005
-      tangentMode: 34
+      time: 1.1
+      value: 5
+      inSlope: 49.99999
+      outSlope: 49.99999
+      tangentMode: 69
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  volumeMusica: 0
-  volumeSuoni: 0
+  volumeMusica: 100
+  volumeSuoni: 100
   volumeDialoghi: 0
-  schermoIntero: 1
+  schermoIntero: 0

@@ -94,6 +94,10 @@ public class ObjectPoolingScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resetta la velocità dei Rigidbody dell'oggetto & di tutti i suoi figli
+    /// </summary>
+    /// <param name="objDaReset">a</param>
     public static void ResetTuttiRigidBody(GameObject objDaReset)
     {
         //Controlla se l'obj ha il RigidBody e resetta la sua velocita'

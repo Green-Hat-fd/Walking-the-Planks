@@ -1,0 +1,351 @@
+fileFormatVersion: 2
+guid: 367676cb843594d4188a59ac12a1c41d
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      74: -2426472575390236465
+    second: PosaDefault
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.35
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Omino_Char_Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Omino_Char_RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: OminoStick_PosaDefault(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: p_OminoIntero_Skin
+      parentName: OminoStick_PosaDefault(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Omino_Char_Reference
+      parentName: OminoStick_PosaDefault(Clone)
+      position: {x: -0, y: 0.000000010430813, z: 0.048944805}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Omino_Char_Hips
+      parentName: Omino_Char_Reference
+      position: {x: -0, y: 2.1870267, z: -0.048944805}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Omino_Char_LeftUpLeg
+      parentName: Omino_Char_Hips
+      position: {x: 0.1515844, y: -0.00922244, z: 0.20999992}
+      rotation: {x: 0.000011935831, y: 0.0047367667, z: -0.9962906, w: 0.0859221}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Omino_Char_LeftLeg
+      parentName: Omino_Char_LeftUpLeg
+      position: {x: -0.9614241, y: -0.000011448913, z: 0.00000011528545}
+      rotation: {x: -0.0012528292, y: 0.0002230992, z: 0.17469622, w: -0.9846216}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000004}
+    - name: Omino_Char_LeftFoot
+      parentName: Omino_Char_LeftLeg
+      position: {x: -1.0525631, y: 0.0000023566204, z: 0.00000025352273}
+      rotation: {x: -0.0010933237, y: 0.00010208835, z: -0.7675224, w: -0.6410212}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: Omino_Char_LeftToeBase
+      parentName: Omino_Char_LeftFoot
+      position: {x: -0.3480097, y: -0.0000000055644365, z: 0.00000025414198}
+      rotation: {x: 5.8207654e-11, y: 5.0931696e-11, z: 0.000000022208658, w: 1}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000005}
+    - name: Omino_Char_RightUpLeg
+      parentName: Omino_Char_Hips
+      position: {x: 0.1515844, y: -0.00922244, z: -0.20999992}
+      rotation: {x: -0.004738301, y: 0.000011712313, z: 0.08592117, w: 0.9962907}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    - name: Omino_Char_RightLeg
+      parentName: Omino_Char_RightUpLeg
+      position: {x: 0.96142334, y: 0.000011417528, z: -0.000000092349744}
+      rotation: {x: -0.0012782555, y: 0.0002268867, z: 0.17469476, w: -0.98462176}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1}
+    - name: Omino_Char_RightFoot
+      parentName: Omino_Char_RightLeg
+      position: {x: 1.0525637, y: -0.000002500774, z: -0.00000038799323}
+      rotation: {x: -0.0010774299, y: 0.00008317472, z: -0.76752186, w: -0.64102185}
+      scale: {x: 1.0000004, y: 1, z: 1.0000002}
+    - name: Omino_Char_RightToeBase
+      parentName: Omino_Char_RightFoot
+      position: {x: 0.3480099, y: -8.862339e-10, z: -0.000000004211963}
+      rotation: {x: -0, y: -0, z: 2.0795454e-10, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1.0000005}
+    - name: Omino_Char_Spine
+      parentName: Omino_Char_Hips
+      position: {x: -0.4544232, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Omino_Char_LeftArm
+      parentName: Omino_Char_Spine
+      position: {x: -0.47215667, y: 0, z: 0.30864823}
+      rotation: {x: 0.001018405, y: 0.7060714, z: 0.0008436254, w: 0.7081394}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: Omino_Char_LeftForeArm
+      parentName: Omino_Char_LeftArm
+      position: {x: -0.9314977, y: 0.000013569503, z: -0.000022123038}
+      rotation: {x: -0.00012597519, y: 0.0002372265, z: -0.0029129384, w: 0.99999577}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000004}
+    - name: Omino_Char_LeftHand
+      parentName: Omino_Char_LeftForeArm
+      position: {x: -0.74761575, y: -0.0000051311436, z: 0.000000055844353}
+      rotation: {x: 0.00000040580926, y: 0.00000005812035, z: 0.00002107266, w: 1}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1}
+    - name: Omino_Char_RightArm
+      parentName: Omino_Char_Spine
+      position: {x: -0.47215667, y: 0, z: -0.30864823}
+      rotation: {x: -0.7060722, y: 0.0010197461, z: 0.70813864, w: -0.0008437275}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000001}
+    - name: Omino_Char_RightForeArm
+      parentName: Omino_Char_RightArm
+      position: {x: 0.93149704, y: -0.000020902307, z: 0.0000266247}
+      rotation: {x: -0.00012640835, y: 0.00023541557, z: -0.0029159216, w: 0.99999577}
+      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000001}
+    - name: Omino_Char_RightHand
+      parentName: Omino_Char_RightForeArm
+      position: {x: 0.7476154, y: -0.000003601318, z: -0.00000005192852}
+      rotation: {x: 0.000000034851837, y: 5.820766e-11, z: 0.000021317464, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    - name: Omino_Char_Neck
+      parentName: Omino_Char_Spine
+      position: {x: -0.4871335, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0.008040562, w: 0.9999677}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Omino_Char_Head
+      parentName: Omino_Char_Neck
+      position: {x: -0.23259982, y: 0.000000013688675, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.35
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -14,13 +14,6 @@ public class CheckpointSO_Script : ScriptableObject
 
 
 
-    public void CaricaUltimoCheckpoint()
-    {
-        GameObject giocat = FindObjectOfType<MovimentoGiocat>().gameObject;
-
-        giocat.transform.position = posizCheckpoint;
-    }
-
     #region Funzioni Set custom
 
     public void CambiaCheckpoint(int scena, int numCheck, Vector3 posCheck)
@@ -28,6 +21,11 @@ public class CheckpointSO_Script : ScriptableObject
         livello = scena;
         numCheckpoint = numCheck;
         posizCheckpoint = posCheck;
+    }
+
+    public void ResetCheckpoint()
+    {
+        CambiaCheckpoint(0, 0, Vector3.zero);
     }
 
     public void ScriviLivello(int nuovoNum)

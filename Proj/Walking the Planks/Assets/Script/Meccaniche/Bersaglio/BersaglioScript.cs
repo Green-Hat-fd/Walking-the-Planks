@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class BersaglioScript : MonoBehaviour, IFeedback
 {
-    [SerializeField] GameObject modello;
+    GameObject mesh;
     Collider collComp;
 
     [SerializeField] UnityEvent objDaAttivare;
@@ -22,7 +22,7 @@ public class BersaglioScript : MonoBehaviour, IFeedback
 
     private void Awake()
     {
-        modello = transform.GetChild(0).gameObject;
+        mesh = transform.GetChild(0).gameObject;
         collComp = GetComponent<Collider>();
     }
 
@@ -47,7 +47,7 @@ public class BersaglioScript : MonoBehaviour, IFeedback
     void MostraONascondiBersaglio(bool attivo)
     {
         //Nasconde e disattiva/Mostra e attiva il bersagio
-        modello.SetActive(attivo);
+        mesh.SetActive(attivo);
         collComp.enabled = attivo;
     }
 

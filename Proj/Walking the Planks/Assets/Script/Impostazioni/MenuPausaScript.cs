@@ -16,18 +16,16 @@ public class MenuPausaScript : MonoBehaviour
     [SerializeField] Toggle tg_schermoIntero;
 
 
-    private void OnEnable()
-    {
-        //Cambia ogni elemento grafico della UI seguendo le impostazioni scelte
-        CambiaElementi();
-    }
 
+    ///<summary>
+    ///Cambia ogni elemento grafico della UI seguendo le impostazioni scelte
+    ///</summary>
     public void CambiaElementi()
     {
-        sl_volMusica.value = opz_SO.LeggiVolumeMusica();
-        sl_volSuoni.value = opz_SO.LeggiVolumeSuoni();
-        sl_volMusica.onValueChanged.Invoke(1);
-        sl_volSuoni.onValueChanged.Invoke(1);
+        sl_volMusica.value = opz_SO.LeggiVolumeMusica_Percent();
+        sl_volSuoni.value = opz_SO.LeggiVolumeSuoni_Percent();
+        //sl_volMusica.onValueChanged.Invoke(1);
+        //sl_volSuoni.onValueChanged.Invoke(1);
         sl_sensibilitaMouse.value = opz_SO.LeggiSensibilita();
 
         dr_lingua.value = (int)opz_SO.LeggiLinguaScelta();

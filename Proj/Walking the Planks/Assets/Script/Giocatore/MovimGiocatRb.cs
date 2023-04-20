@@ -10,10 +10,12 @@ public class MovimGiocatRb : MonoBehaviour
 
     [SerializeField] float velGiocat = 7.5f;
     [SerializeField] float potenzaSalto = 8.5f;
-    [Space(10)]
-    [SerializeField] float attritoTerr = 4;
-    [SerializeField] float attritoAria = 0;
     float movimX, movimZ;
+    #region OLD_Non usato
+    //[Space(10)]
+    //[SerializeField] float attritoTerr = 4;
+    //[SerializeField] float attritoAria = 0;
+    #endregion
     
     Vector3 muovi;
     float _pot_salto;
@@ -21,8 +23,9 @@ public class MovimGiocatRb : MonoBehaviour
     [Space(20)]
     [SerializeField] float sogliaRilevaTerreno = 0.25f;
     float mezzaAltezzaGiocat;
-    Vector3 dimensBoxcast = new Vector3(0.51f, 0f, 0.51f);
-    
+    float raggioSpherecast = 0.5f;
+    //Vector3 dimensBoxcast = new Vector3(0.51f, 0f, 0.51f);
+
     RaycastHit pendenzaHit;
 
     bool siTrovaATerra = false;
@@ -67,7 +70,7 @@ public class MovimGiocatRb : MonoBehaviour
 
 
         //Cambia l'attrito se si trova o a terra in aria
-        rb.drag = siTrovaATerra ? attritoTerr : attritoAria;
+        //rb.drag = siTrovaATerra ? attritoTerr : attritoAria;
 
 
         //Prende l'input di salto
@@ -79,7 +82,11 @@ public class MovimGiocatRb : MonoBehaviour
     void FixedUpdate()
     {
         //Calcolo se si trova a terra
-        siTrovaATerra = Physics.BoxCast(transform.position, dimensBoxcast, -transform.up, out hitBase, Quaternion.identity, mezzaAltezzaGiocat + sogliaRilevaTerreno);
+        siTrovaATerra = Physics.SphereCast(transform.position, raggioSpherecast, -transform.up, out hitBase, mezzaAltezzaGiocat + sogliaRilevaTerreno - raggioSpherecast);
+        #region OLD
+        //siTrovaATerra = Physics.BoxCast(transform.position, dimensBoxcast, -transform.up, out hitBase, Quaternion.identity, mezzaAltezzaGiocat + sogliaRilevaTerreno); 
+        #endregion
+
 
         float moltVelAria = !siTrovaATerra ? 0.5f : 1;   //Dimezza la velocita' orizz. se si trova in aria
 
@@ -138,8 +145,14 @@ public class MovimGiocatRb : MonoBehaviour
     {
         //Disegna il BoxCast per capire se e' a terra o meno (togliendo l'altezza del giocatore)
         Gizmos.color = new Color(0.85f, 0.85f, 0.85f, 1);
-        Gizmos.DrawWireCube(transform.position + (-transform.up * mezzaAltezzaGiocat) + (-transform.up * sogliaRilevaTerreno)/2,
-                            dimensBoxcast * 2 + (-transform.up * sogliaRilevaTerreno));
+        Gizmos.DrawWireSphere(transform.position + (-transform.up * mezzaAltezzaGiocat)
+                               + (-transform.up * sogliaRilevaTerreno)/2
+                               - (-transform.up * raggioSpherecast),
+                              raggioSpherecast);
+        #region OLD
+        //Gizmos.DrawWireCube(transform.position + (-transform.up * mezzaAltezzaGiocat) + (-transform.up * sogliaRilevaTerreno) / 2,
+        //                    dimensBoxcast * 2 + (-transform.up * sogliaRilevaTerreno));
+        #endregion
 
         //Disegna dove ha colpito se e' a terra e se ha colpito un'oggetto solido (no trigger)
         Gizmos.color = Color.green;

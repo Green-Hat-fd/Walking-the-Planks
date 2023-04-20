@@ -38,10 +38,17 @@ public class CannoneSpecialeScript : MonoBehaviour
     [SerializeField] AudioSource spara_sfx;
     #endregion
 
+    #region Animazioni
+    //[Space(5)]
+    Animator sparaAnim;
+    #endregion
+
+
 
     void Awake()
     {
         poolingScr = FindObjectOfType<ObjectPoolingScript>();
+        sparaAnim = transform.GetChild(0).GetComponent<Animator>();
         frequenzaIniziale_Sparkle = sparkle_part.emission.rateOverTime.constant;  //Prende il rateOverTime iniziale delle partic. sparkles
 
 
@@ -97,6 +104,9 @@ public class CannoneSpecialeScript : MonoBehaviour
 
         //Riproduce il suono dell'esplosione per lo sparo
         spara_sfx.PlayOneShot(spara_sfx.clip);
+
+        //Riproduce l'animazione del cannone
+        sparaAnim.SetTrigger("Spara");
     }
 
     void GeneraNuovoTempoRandom()

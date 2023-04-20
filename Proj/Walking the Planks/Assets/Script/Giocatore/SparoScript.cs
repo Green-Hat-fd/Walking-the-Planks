@@ -25,7 +25,11 @@ public class SparoScript : MonoBehaviour, IFeedback
     #region Particelle
     //[SerializeField] ParticleSystem proiettPart;
     [SerializeField] ParticleSystem sparoSparkle_part;
-    [SerializeField] ParticleSystem sparoFuoco_part; 
+    [SerializeField] ParticleSystem sparoFuoco_part;
+    #endregion
+
+    #region Animazioni
+    [SerializeField] Animator pistolaAnim;
     #endregion
 
 
@@ -140,5 +144,8 @@ public class SparoScript : MonoBehaviour, IFeedback
             sparoSpark_part.transform.position = hitInfo.point;
             sparoSpark_part.transform.forward = hitInfo.normal;
         }
+
+        //Anima la pistola
+        pistolaAnim.SetTrigger("Pistola Sparo");
     }
 }

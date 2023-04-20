@@ -9,11 +9,9 @@ public class SpineScript : MonoBehaviour
 
     [Header("—  Feedback (Scatola)  —")]
     [SerializeField] ParticleSystem scatolaRotta_part;
-    AudioSource scatolaRotta_sfx;
 
     [Header("—  Feedback (Barile)  —")]
     [SerializeField] ParticleSystem barileRotto_part;
-    AudioSource barileRotto_sfx;
 
 
 
@@ -77,10 +75,7 @@ public class SpineScript : MonoBehaviour
 
     public void FeedbackScatola(GameObject scatola)
     {
-        //Prende l'AudioClip dalla scatola e riproduce il suono della scatola rotta
         Transform boxTransf = scatola.transform;
-        scatolaRotta_sfx = boxTransf.GetComponent<AudioSource>();
-        scatolaRotta_sfx.Play();
 
         //Fa vedere le particelle della scatola che si rompe
         Instantiate(scatolaRotta_part.gameObject, boxTransf.position, boxTransf.rotation);
@@ -90,5 +85,17 @@ public class SpineScript : MonoBehaviour
     {
         //Feedback (SFX, particelle, ecc.)
         //PS: il feedback è come quello della scatola
+        #region Guida feedback
+        /* Transform boxTransf = scatola.transform;
+         *
+         * //Prende l'AudioClip dalla scatola e riproduce il suono della scatola rotta
+         * scatolaRotta_sfx = boxTransf.GetComponent<AudioSource>();
+         * scatolaRotta_sfx.Play();
+         * 
+         * //Fa vedere le particelle della scatola che si rompe
+         * Instantiate(scatolaRotta_part.gameObject, boxTransf.position, boxTransf.rotation);
+         */ 
+        #endregion
+
     }
 }

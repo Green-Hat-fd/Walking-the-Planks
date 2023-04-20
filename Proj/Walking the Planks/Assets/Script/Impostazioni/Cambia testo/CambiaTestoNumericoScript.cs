@@ -87,7 +87,7 @@ public class CambiaTestoNumericoScript : MonoBehaviour
     #endregion
 
 
-    #region Funz. che converte da [-80; 5] a [0; 100]
+    #region Funz. che converte dal valore dello slider a percentuale
 
     /// <summary>
     /// Prende il numero da AudioMixerGroup e lo converte in percentuale
@@ -96,9 +96,9 @@ public class CambiaTestoNumericoScript : MonoBehaviour
     /// <returns>ritorna il misfatto</returns>
     float DaVolumeAPercent(float num)
     {
-        float ans = opzioniSO.LeggiCurvaVolume().Evaluate(num);
+        //float ans = opzioniSO.LeggiCurvaVolume().Evaluate(num);
 
-        return Mathf.RoundToInt(ans * 100);
+        return Mathf.RoundToInt(num * 100);
     }
 
     #endregion

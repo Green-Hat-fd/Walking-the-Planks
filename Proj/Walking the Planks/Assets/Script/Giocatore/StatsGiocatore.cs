@@ -46,7 +46,7 @@ public class StatsGiocatore : MonoBehaviour
             GetComponent<Rigidbody>().drag = 0;
 
             cameraGiocat.SetActive(false);
-            //cameraTerzaPers.SetActive(true);
+            cameraTerzaPers.SetActive(true);
             gruppoMorto.SetActive(true);
             ragdoll.SetActive(true);
             ragdollAnim.enabled = false;
@@ -88,6 +88,9 @@ public class StatsGiocatore : MonoBehaviour
                 tempoTrascorso = 0;   //Reset -- misura di sicurezza
         }
 
+        cameraTerzaPers.transform.position = ragdoll.transform.position;
+        //cameraTerzaPers.transform.rotation = Quaternion.identity;
+
         //Controlla se il giocatore si trova in uno spazio
         //negativo fuori dalla mappa, e lo fa morire
         if (transform.position.y <= -700)
@@ -97,8 +100,9 @@ public class StatsGiocatore : MonoBehaviour
     IEnumerator RitornoRagdoll()
     {
         ragdollAnim.enabled = true;
+        ObjectPoolingScript.ResetTuttiRigidBody(ragdollAnim.gameObject);
 
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForEndOfFrame();
 
         gruppoMorto.SetActive(false);
         StopAllCoroutines();

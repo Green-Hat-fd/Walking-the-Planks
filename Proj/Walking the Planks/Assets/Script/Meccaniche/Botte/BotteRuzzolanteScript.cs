@@ -32,9 +32,9 @@ public class BotteRuzzolanteScript : MonoBehaviour, IFeedback
 
     void Start()
     {
-        sopraIniziale = transform.up;
-        davantiIniziale = transform.forward;
-        destraIniziale = transform.right;
+        sopraIniziale = transform.parent.up;
+        davantiIniziale = transform.parent.forward;
+        destraIniziale = transform.parent.right;
 
         rb = GetComponent<Rigidbody>();
 
@@ -103,7 +103,7 @@ public class BotteRuzzolanteScript : MonoBehaviour, IFeedback
         }
 
         //Limita la velocita' della botte se eccede(supera) la velocita' max
-        if (rb.angularVelocity.z > maxVelocitaBotte || rb.angularVelocity.z < maxVelocitaBotte)
+        if (Mathf.Abs(rb.angularVelocity.z) > maxVelocitaBotte)
             rb.angularVelocity = Vector3.ClampMagnitude(rb.angularVelocity, maxVelocitaBotte);
     }
 
