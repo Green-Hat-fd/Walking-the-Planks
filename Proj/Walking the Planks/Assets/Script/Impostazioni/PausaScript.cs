@@ -55,8 +55,8 @@ public class PausaScript : MonoBehaviour
 
     void TuttoCioDaCambiare()
     {
-        //(Dis)Abilita lo script del Rum
-        rumScr.enabled = !giocoInPausa;
+        //(Dis)Abilita lo script del Rum (solo se ha raccolto il rum)
+        rumScr.enabled = rumScr.RumRaccolto()  ?  !giocoInPausa  :  false;
 
         rotazCameraScr.CambiaMouseAlCentro(!giocoInPausa);  //Cambia il mouse dal centro
         sparoScr.enabled = !giocoInPausa;                   //(Dis)Abilita lo script dello sparo

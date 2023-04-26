@@ -1991,11 +1991,11 @@ MonoBehaviour:
       - m_Target: {fileID: 11400000, guid: fcbf9d01b4925cf439a250fbdb172436, type: 2}
         m_TargetAssemblyTypeName: OpzioniSO_Script, Assembly-CSharp
         m_MethodName: ScenaAggiunta
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: Gestore
           m_BoolArgument: 0

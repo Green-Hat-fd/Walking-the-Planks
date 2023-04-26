@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccfc72411344f5742a300c63b094aa64, type: 3}
   m_Name: Rum_SO
   m_EditorClassIdentifier: 
-  moltipVelocita: 1.5
+  moltipVelocita: 1.75
   moltipSalto: 1.25
   durataEffetti: 25
   cooldown: 5

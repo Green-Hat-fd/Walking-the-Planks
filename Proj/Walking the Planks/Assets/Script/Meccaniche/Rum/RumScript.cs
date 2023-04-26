@@ -37,7 +37,7 @@ public class RumScript : MonoBehaviour
 
         effettoVisivo.SetActive(false);
 
-        rum_SO.DisattivaRum();
+        rum_SO.DisattivaPoteriRum();
         rum_SO.PossoBereDiNuovo();
     }
 
@@ -69,10 +69,10 @@ public class RumScript : MonoBehaviour
 
 
         if (hoBevuto && rum_SO.LeggiPossoBere())
-            rum_SO.AttivaRum();
+            rum_SO.AttivaPoteriRum();
 
 
-        if (rum_SO.LeggiAttivo())
+        if (rum_SO.LeggiPoteriAttivo())
         {
             //Se la durata degli effetti e' finita...
             if (tempoTrascorso_Effetti >= _secMaxEffetti)
@@ -88,7 +88,7 @@ public class RumScript : MonoBehaviour
                     #endregion
               
 
-                    rum_SO.DisattivaRum();
+                    rum_SO.DisattivaPoteriRum();
                     rum_SO.PossoBereDiNuovo();   //Il giocatore puo' utilizzare di nuovo il Rum
 
                     rum_SO.AumentaNumBevute();    //Aumenta il conteggio delle bevute
@@ -177,7 +177,8 @@ public class RumScript : MonoBehaviour
 
     public float LeggiMoltipVelGiocat() => _moltipVelGiocat;
     public float LeggiMoltipSaltoGiocat() => _moltipSaltoGiocat;
-    public bool SonoAttivo() => rum_SO.LeggiAttivo();
+    public bool SonoAttivoConPoteri() => rum_SO.LeggiPoteriAttivo();
+    public bool RumRaccolto() => rum_SO.LeggiRaccolto();
 
     #endregion
 }

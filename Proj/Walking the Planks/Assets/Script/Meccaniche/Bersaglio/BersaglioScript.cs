@@ -40,15 +40,21 @@ public class BersaglioScript : MonoBehaviour, IFeedback
         //Viene tolto solo se la variabile e' vera
         if (distruggereDopoAttivo)
         {
-            MostraONascondiBersaglio(false);
+            NascondiBersaglio();
         }
     }
 
-    void MostraONascondiBersaglio(bool attivo)
+    public void NascondiBersaglio()
     {
         //Nasconde e disattiva/Mostra e attiva il bersagio
-        mesh.SetActive(attivo);
-        collComp.enabled = attivo;
+        mesh.SetActive(false);
+        collComp.enabled = false;
+    }
+    public void MostraBersaglio()
+    {
+        //Nasconde e disattiva/Mostra e attiva il bersagio
+        mesh.SetActive(true);
+        collComp.enabled = true;
     }
 
     public void Feedback()

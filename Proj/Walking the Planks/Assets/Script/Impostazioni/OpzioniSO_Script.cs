@@ -19,7 +19,11 @@ public class OpzioniSO_Script : ScriptableObject
     }
     public void ScenaAggiunta(string nomeScena)
     {
-        SceneManager.LoadSceneAsync(nomeScena, LoadSceneMode.Additive);
+        SceneManager.LoadScene(nomeScena, LoadSceneMode.Additive);
+    }
+    public void ScenaAggiunta(int numScena)
+    {
+        SceneManager.LoadScene(numScena, LoadSceneMode.Additive);
     }
     public void ScenaSuccessiva()
     {
@@ -40,18 +44,19 @@ public class OpzioniSO_Script : ScriptableObject
         //Carica l'ultima scena se si ha giocato al gioco, se no ricomincia dalla prima
         if (scenaDaCheckpoint <= 0)
         {
-            ScenaSuccessiva();
             ResetTutto();
+            ScenaSuccessiva();
         }
         else
             SceneManager.LoadScene(scenaDaCheckpoint);
     }
     void ResetTutto()
     {
-        checkpointSO.CambiaCheckpoint(0, 0, Vector3.zero);
+        checkpointSO.CambiaCheckpoint(1, 0, Vector3.zero);
         rumSO.ResetNumBevute();
         rumSO.PossoBereDiNuovo();
-        rumSO.DisattivaRum();
+        rumSO.DisattivaPoteriRum();
+        rumSO.CambiaRumRaccolto(false);
     }
 
     #endregion

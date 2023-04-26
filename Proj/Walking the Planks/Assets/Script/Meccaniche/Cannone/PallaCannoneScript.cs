@@ -7,7 +7,7 @@ public class PallaCannoneScript : MonoBehaviour, IFeedback
     ObjectPoolingScript poolingScr;
 
     [Header("—  Feedback  —")]
-    [SerializeField] ParticleSystem pallaRotta_part;
+    [SerializeField] string pallaRotta_part_tag;
 
 
 
@@ -42,6 +42,6 @@ public class PallaCannoneScript : MonoBehaviour, IFeedback
     {
         //Fa vedere le particelle della palla che si rompe
         //(e riproduce automaticamente il suono nel prefab)
-        Instantiate(pallaRotta_part.gameObject, transform.position, Quaternion.identity);
+        poolingScr.PrendeOggettoDallaPool(pallaRotta_part_tag, transform.position, Quaternion.identity);
     }
 }

@@ -54,7 +54,7 @@ public class MovimGiocatRb : MonoBehaviour
 
         #region Controlla se e' stato bevuto il Rum
 
-        if (rumScr.SonoAttivo())
+        if (rumScr.SonoAttivoConPoteri())
         {
             //Applica gli effetti di velocita' e salto aumentati
             muovi *= rumScr.LeggiMoltipVelGiocat();

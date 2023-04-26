@@ -25,7 +25,7 @@ public class CheckpointSO_Script : ScriptableObject
 
     public void ResetCheckpoint()
     {
-        CambiaCheckpoint(0, 0, Vector3.zero);
+        CambiaCheckpoint(-1, 0, Vector3.zero);
     }
 
     public void ScriviLivello(int nuovoNum)

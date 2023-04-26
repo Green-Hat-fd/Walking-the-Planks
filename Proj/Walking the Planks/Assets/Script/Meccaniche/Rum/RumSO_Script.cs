@@ -34,7 +34,8 @@ public class RumSO_Script : ScriptableObject
     int numeroBevute = 0;
 
     bool possoBere = true;   //Usato per non poter usare il Rum se e' gia' attivo
-    bool attivo = false;
+    bool poteriAttivi = false;
+    bool raccolto = false;
 
 
 
@@ -44,8 +45,9 @@ public class RumSO_Script : ScriptableObject
     public void ResetNumBevute() { numeroBevute = 0; }
     public void PossoBereDiNuovo() { possoBere = true; }
     public void NonPossoBere() { possoBere = false; }
-    public void AttivaRum() { attivo = true; }
-    public void DisattivaRum() { attivo = false; }
+    public void AttivaPoteriRum() { poteriAttivi = true; }
+    public void DisattivaPoteriRum() { poteriAttivi = false; }
+    public void CambiaRumRaccolto(bool valore) { raccolto = valore; }
 
     #endregion
 
@@ -72,7 +74,8 @@ public class RumSO_Script : ScriptableObject
 
     //Attivazioni
     public bool LeggiPossoBere() => possoBere;
-    public bool LeggiAttivo() => attivo;
+    public bool LeggiPoteriAttivo() => poteriAttivi;
+    public bool LeggiRaccolto() => raccolto;
 
     #endregion
 }

@@ -96,4 +96,12 @@ public class PulsanteToggleScript : MonoBehaviour
             doOnce_sfx = 0;       //Porta il DoOnce a 0 -> per il suono quando Preme
         }
     }
+
+    public void DisattivaPulsante()
+    {
+        Vector3 angoli = joint.transform.localEulerAngles;
+
+        angoli.z = sogliaAttivazione - 0.5f;
+        joint.transform.localEulerAngles = angoli;
+    }
 }

@@ -77,17 +77,21 @@ public class AreaBotteScript : MonoBehaviour
 
         //Restringe il movim. del giocatore solo nell'asse X della botte
         //(se non salta)
-        if (giocatInPosizione && !GameManager.inst.inputManager.Giocatore.Salto.triggered)
+        //if(!GameManager.inst.inputManager.Giocatore.Salto.triggered)
+        if(GameManager.inst.inputManager.Giocatore.Salto.ReadValue<float>() <= 0)
         {
-            gObj.transform.position = pos;
-        }
-        else
-        {
-            //Controlla se deve continuare a trascinare o no il giocatore verso "pos"
-            giocatInPosizione = gObj.transform.position == pos;
+            if (giocatInPosizione)
+            {
+                gObj.transform.position = pos;
+            }
+            else
+            {
+                //Controlla se deve continuare a trascinare o no il giocatore verso "pos"
+                giocatInPosizione = gObj.transform.position == pos;
 
-            //Trascina il giocatore verso "pos"
-            gObj.transform.position = Vector3.MoveTowards(gObj.transform.position, pos, Time.deltaTime * 2.5f);
+                //Trascina il giocatore verso "pos"
+                gObj.transform.position = Vector3.MoveTowards(gObj.transform.position, pos, Time.deltaTime * 2.5f);
+            } 
         }
     }
 

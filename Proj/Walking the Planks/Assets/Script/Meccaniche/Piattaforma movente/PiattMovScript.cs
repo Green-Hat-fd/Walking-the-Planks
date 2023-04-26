@@ -112,25 +112,25 @@ public class PiattMovScript : MonoBehaviour
         #endregion
 
 
-        if (stoAspettando)
+        if (sonoAttivo)
         {
-            //Se e' passato abbastanza tempo...
-            if (tempoTrascorso >= quantoDevoAspettare)
+            if (stoAspettando)
             {
-                stoAspettando = false;  //Non aspettare piu', muoviti! (vedi else sotto)
-                tempoTrascorso = 0;     //Resetta il timer
+                //Se e' passato abbastanza tempo...
+                if (tempoTrascorso >= quantoDevoAspettare)
+                {
+                    stoAspettando = false;  //Non aspettare piu', muoviti! (vedi else sotto)
+                    tempoTrascorso = 0;     //Resetta il timer
+                }
+                else
+                {
+
+                    tempoTrascorso += Time.deltaTime;  //Aumenta il conteggio del tempo trascorso
+                }
             }
             else
             {
-
-                tempoTrascorso += Time.deltaTime;  //Aumenta il conteggio del tempo trascorso
-            }
-        }
-        else
-        {
-            //Movimento verso la prossima posizione (solo se e' attivo)
-            if (sonoAttivo)
-            {
+                //Movimento verso la prossima posizione (solo se e' attivo)
                 transform.position = Vector3.MoveTowards(transform.position,
                                                          posizioni[prossimaPosiz].position,
                                                          velPiatt * Time.deltaTime);
