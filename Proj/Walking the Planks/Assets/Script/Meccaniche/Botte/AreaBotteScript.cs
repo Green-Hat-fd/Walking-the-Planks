@@ -6,6 +6,8 @@ public class AreaBotteScript : MonoBehaviour
 {
     [SerializeField] BotteRuzzolanteScript botteMainScr;
 
+    [SerializeField] float attritoSopraBotte = 10;
+    [SerializeField] float attritoNormale = 0;
     float _altezIniziale;
 
     bool giocatInPosizione;
@@ -41,7 +43,9 @@ public class AreaBotteScript : MonoBehaviour
             botteMainScr.ScriviGiocatSalito(true);
 
             other.transform.SetParent(transform);
-            other.GetComponent<Rigidbody>().drag = 10;  //TODO: sistema
+
+            //Aumenta l'attrito del giocatore
+            other.GetComponent<MovimGiocatRb>().CambiaAttritoRb(attritoSopraBotte);
         }
     }
 
@@ -104,7 +108,9 @@ public class AreaBotteScript : MonoBehaviour
             botteMainScr.ScriviGiocatSalito(false);
 
             other.transform.SetParent(null);
-            other.GetComponent<Rigidbody>().drag = 0;  //TODO: sistema
+
+            //Diminuisce l'attrito del giocatore
+            other.GetComponent<MovimGiocatRb>().CambiaAttritoRb(attritoNormale);
 
             giocatInPosizione = false;
         }

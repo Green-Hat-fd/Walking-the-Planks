@@ -141,6 +141,11 @@ public class MovimGiocatRb : MonoBehaviour
         return false;   //Nel caso non colpisce nulla
     }
 
+    public void CambiaAttritoRb(float attr)
+    {
+        rb.drag = attr;
+    }
+
     private void OnDrawGizmos()
     {
         //Disegna il BoxCast per capire se e' a terra o meno (togliendo l'altezza del giocatore)

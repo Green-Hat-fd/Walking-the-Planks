@@ -233,7 +233,7 @@ MonoBehaviour:
   attivo: 1
   limiti: {x: -1.83, y: 2.55}
   velocita: 3
-  asseSuCuiMuoversi: 0
+  asseMovimento: 0
 --- !u!135 &65815474
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -366,7 +366,7 @@ MonoBehaviour:
   secDaAspettareSparo: 0.1
   sparoSfx: {fileID: 0}
   sparoClip: []
-  sparoSparkle_part: {fileID: 0}
+  sparoSparkle_part_tag: 
   sparoFuoco_part: {fileID: 0}
   pistolaAnim: {fileID: 0}
 --- !u!114 &76288060
@@ -6033,7 +6033,7 @@ MonoBehaviour:
   attivo: 1
   limiti: {x: -2, y: 2}
   velocita: 2
-  asseSuCuiMuoversi: 0
+  asseMovimento: 0
 --- !u!4 &347342322 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
@@ -7287,6 +7287,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8314364693592043749, guid: 9dc17e98a2add6e489b104da69e7014b, type: 3}
   m_PrefabInstance: {fileID: 414918116}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &652513789 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+  m_PrefabInstance: {fileID: 705369548}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8eaaf6b3bc20144b94f0cd1a414ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &654425786
 GameObject:
   m_ObjectHideFlags: 0
@@ -7319,6 +7330,120 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &705369548
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1500308295}
+    m_Modifications:
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99785894
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.06540306
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 863948187}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MostraBersaglio
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BersaglioScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CannoneSempliceScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501036, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_Name
+      value: Bersaglio (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+--- !u!4 &705369549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+  m_PrefabInstance: {fileID: 705369548}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -7608,6 +7733,123 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8314364693927167262, guid: 9dc17e98a2add6e489b104da69e7014b, type: 3}
   m_PrefabInstance: {fileID: 8314364694695505136}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &863948185
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1500308295}
+    m_Modifications:
+    - target: {fileID: 1415776009985650077, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2432370129741767610, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.6400003
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99785894
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.065403156
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 652513789}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MostraBersaglio
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BersaglioScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: objDaAttivare.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102325234271501036, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_Name
+      value: Bersaglio (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234154533989286382, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8847050734375251204, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+--- !u!4 &863948186 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3102325234271501031, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+  m_PrefabInstance: {fileID: 863948185}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &863948187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3102325234271501035, guid: d1263bd86e3eb8043b0b4ff72ec64d7e, type: 3}
+  m_PrefabInstance: {fileID: 863948185}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8eaaf6b3bc20144b94f0cd1a414ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &879705930 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3237449050684683992, guid: 3729440b229650d449b4921bf9d02880, type: 3}
@@ -7918,7 +8160,7 @@ MonoBehaviour:
   secDaAspettareSparo: 0.1
   sparoSfx: {fileID: 0}
   sparoClip: []
-  sparoSparkle_part: {fileID: 0}
+  sparoSparkle_part_tag: 
   sparoFuoco_part: {fileID: 0}
   pistolaAnim: {fileID: 0}
 --- !u!1 &1118656098
@@ -9187,6 +9429,8 @@ Transform:
   m_Children:
   - {fileID: 2132449528}
   - {fileID: 1206131382}
+  - {fileID: 705369549}
+  - {fileID: 863948186}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9853,9 +10097,15 @@ MonoBehaviour:
   - tag: Barili
     obj: {fileID: 6846924417103416190, guid: 0e6f428019ed63d45bc008da7b260b8b, type: 3}
     dimensione: 10
-  - tag: Sparo_Sparkles
+  - tag: SparoSparkle particella
     obj: {fileID: 7430392308453572454, guid: 6f27726bae6bed447945c99be658360f, type: 3}
     dimensione: 10
+  - tag: PallaCannone particella
+    obj: {fileID: 4190967626395889481, guid: 9909535475f00064daa89e514c8c6ef4, type: 3}
+    dimensione: 10
+  - tag: BersaglioRotto particella
+    obj: {fileID: 4190967626395889481, guid: d01a644fb2604714bad8c80261ed62e9, type: 3}
+    dimensione: 3
 --- !u!4 &1853175693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3237449050684683993, guid: 3729440b229650d449b4921bf9d02880, type: 3}
@@ -11000,6 +11250,10 @@ PrefabInstance:
     - target: {fileID: 579437499882915038, guid: 6c3b6db12eb3ee043a298922863753f3, type: 3}
       propertyPath: m_Name
       value: Checkpoint 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 579437499882915038, guid: 6c3b6db12eb3ee043a298922863753f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c3b6db12eb3ee043a298922863753f3, type: 3}

@@ -12,8 +12,9 @@ public class OpzioniSO_Script : ScriptableObject
 
     [SerializeField] CheckpointSO_Script checkpointSO;
     [SerializeField] RumSO_Script rumSO;
+    [SerializeField] int numScenaGestore;
 
-    public void ScenaScegliTu(int numScena)
+    public void ScenaScelta(int numScena)
     {
         SceneManager.LoadSceneAsync(numScena);
     }
@@ -48,7 +49,7 @@ public class OpzioniSO_Script : ScriptableObject
             ScenaSuccessiva();
         }
         else
-            SceneManager.LoadScene(scenaDaCheckpoint);
+            ScenaScelta(scenaDaCheckpoint);
     }
     void ResetTutto()
     {

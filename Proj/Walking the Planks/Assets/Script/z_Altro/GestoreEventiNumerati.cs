@@ -30,6 +30,29 @@ public class GestoreEventiNumerati : MonoBehaviour
         //Aumenta il conteggio interno
         conta++;
 
+        ControllaConteggio();
+    }
+    public void DiminuisciConta()
+    {
+        //Aumenta il conteggio interno
+        conta--;
+
+        ControllaConteggio();
+    }
+    public void AumentaContaPersonalizzato(int valore)
+    {
+        //Aumenta il conteggio interno
+        conta += valore;
+
+        ControllaConteggio();
+    }
+    public void ResetConta()
+    {
+        conta = 0;
+    }
+
+    void ControllaConteggio()
+    {
         //Controlla se il conteggio corrisponde al numero
         if(conta == eventiNumerati[indiceControllo].numeroDaAspettare)
         {
@@ -39,10 +62,6 @@ public class GestoreEventiNumerati : MonoBehaviour
 
             indiceControllo++;   //Aumenta l'indice da controllare
         }
-    }
-    public void ResetConta()
-    {
-        conta = 0;
     }
 
     //TODO: se hai tempo, fai un algoritmo di ordinamento (sorting algorithm)

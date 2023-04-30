@@ -21,6 +21,8 @@ public class PiattMovScript : MonoBehaviour
     [SerializeField] float velPiatt = 1;
     int prossimaPosiz = 0;
 
+    const float distMinima = 0.05f;
+
     bool reverse;
 
     #region Tooltip()
@@ -69,7 +71,8 @@ public class PiattMovScript : MonoBehaviour
 
     void Update()
     {
-        float distanzaTraPosiz = Vector3.Distance(transform.position, posizioni[prossimaPosiz].position);
+        float distanzaPosiz_Prima = Vector3.Distance(transform.position, posizioni[0].position);
+        float distanzaPosiz_Ultima = Vector3.Distance(transform.position, posizioni[posizioni.Length-1].position);
 
         #region Non utilizzato
         /*float fattEasing = isEasingAttivo
@@ -87,13 +90,13 @@ public class PiattMovScript : MonoBehaviour
         switch (stileMovimento)
         {
             case StileMovim_EnumT.PingPong:
-                if (transform.position == posizioni[0].position)
+                if (distanzaPosiz_Prima <= distMinima)
                 {
                     quantoDevoAspettare = tempoAttesa.x;  //Se si trova nella prima posizione
                 }
                 else
                 {
-                    if (transform.position == posizioni[posizioni.Length-1].position)
+                    if (distanzaPosiz_Ultima <= distMinima)
                     {
                         quantoDevoAspettare = tempoAttesa.z;  //Se si trova all'ultima posizione
                     }
@@ -138,8 +141,10 @@ public class PiattMovScript : MonoBehaviour
         }
 
 
-        //Controllo delle posizioni
-        if(transform.position == posizioni[prossimaPosiz].position)
+        float distanzaTraPosiz = Vector3.Distance(transform.position, posizioni[prossimaPosiz].position);
+
+        //Controllo delle posizioni (se e' arrivato nella posizione desiderata)
+        if (distanzaTraPosiz <= distMinima)
         {
         //    int old_posiz = prossimaPosiz;
 
@@ -225,6 +230,18 @@ public class PiattMovScript : MonoBehaviour
     public void DisattivaPiattaforma()
     {
         sonoAttivo = false;
+    }
+    public void ResetDisattivaPiattaforma()
+    {
+        sonoAttivo = false;
+        prossimaPosiz = 0;
+        transform.position = posizioni[0].position;
+    }
+    public void ResetAttivaPiattaforma()
+    {
+        sonoAttivo = true;
+        prossimaPosiz = 0;
+        transform.position = posizioni[0].position;
     }
 
     private void OnDrawGizmosSelected()

@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scene/Area 2 - Botti e Barili.unity
     guid: c310813f16bb95c429f97f4ee5764f81
   - enabled: 1
-    path: Assets/Scene/Area 3 -.unity
+    path: Assets/Scene/Area 3 - Rum.unity
     guid: 317ad88c76e55634bb59bd48274af6cc
   - enabled: 1
     path: Assets/Scene/Gestore.unity

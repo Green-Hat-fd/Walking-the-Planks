@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class SparoScript : MonoBehaviour, IFeedback
 {
+    ObjectPoolingScript poolingScr;
+
     [SerializeField] float maxDistSparo = 15f;
     
     [Min(0)]
@@ -24,7 +26,7 @@ public class SparoScript : MonoBehaviour, IFeedback
 
     #region Particelle
     //[SerializeField] ParticleSystem proiettPart;
-    [SerializeField] ParticleSystem sparoSparkle_part;
+    [SerializeField] string sparoSparkle_part_tag;
     [SerializeField] ParticleSystem sparoFuoco_part;
     #endregion
 
@@ -33,6 +35,11 @@ public class SparoScript : MonoBehaviour, IFeedback
     #endregion
 
 
+
+    private void Awake()
+    {
+        poolingScr = FindObjectOfType<ObjectPoolingScript>();
+    }
 
     void Update()
     {
@@ -140,7 +147,10 @@ public class SparoScript : MonoBehaviour, IFeedback
         //Se ha colpito qualcosa, fa le scentille
         if(hitInfo.collider && hitInfo.distance <= maxDistSparo)
         {
-            GameObject sparoSpark_part = Instantiate(sparoSparkle_part.gameObject);
+            GameObject sparoSpark_part
+                            = poolingScr.PrendeOggettoDallaPool(sparoSparkle_part_tag,
+                                                                transform.position,
+                                                                Quaternion.identity);
             sparoSpark_part.transform.position = hitInfo.point;
             sparoSpark_part.transform.forward = hitInfo.normal;
         }

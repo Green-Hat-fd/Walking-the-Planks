@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class BersaglioScript : MonoBehaviour, IFeedback
 {
+    ObjectPoolingScript poolingScr;
     GameObject mesh;
     Collider collComp;
 
@@ -18,10 +19,16 @@ public class BersaglioScript : MonoBehaviour, IFeedback
     [SerializeField] Vector2 rangePitch = new Vector2(0.85f, 1.5f);
     #endregion
 
+    #region Particelle
+    [SerializeField] string bersaglioRotto_part_tag;
+    #endregion
+
 
 
     private void Awake()
     {
+        poolingScr = FindObjectOfType<ObjectPoolingScript>();
+        
         mesh = transform.GetChild(0).gameObject;
         collComp = GetComponent<Collider>();
     }
@@ -63,6 +70,7 @@ public class BersaglioScript : MonoBehaviour, IFeedback
         bers_sfx.pitch = Random.Range(rangePitch.x, rangePitch.y);
         bers_sfx.Play();
 
-        //TODO: feedback (particelle)
+        //Fa vedere le particelle della palla che si rompe
+        poolingScr.PrendeOggettoDallaPool(bersaglioRotto_part_tag, transform.position, Quaternion.identity);
     }
 }
