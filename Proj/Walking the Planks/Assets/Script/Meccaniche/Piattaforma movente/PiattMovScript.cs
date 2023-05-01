@@ -148,6 +148,8 @@ public class PiattMovScript : MonoBehaviour
         {
         //    int old_posiz = prossimaPosiz;
 
+            transform.position = posizioni[prossimaPosiz].position;
+
             switch (stileMovimento)
             {
                 #region Ping-Pong

@@ -9,6 +9,7 @@ TagManager:
   - Gun-Box
   - CannonBall
   - Spike
+  - Rum Bottle
   layers:
   - Default
   - TransparentFX

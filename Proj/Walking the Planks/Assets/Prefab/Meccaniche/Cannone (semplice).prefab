@@ -504,7 +504,7 @@ PrefabInstance:
     - target: {fileID: -7983434191167469556, guid: 6f4461b96c8bed14081dcf42739d6cc5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 487db8bf7d8077b47b68bc8d23027ce3, type: 2}
+      objectReference: {fileID: 2100000, guid: 71c30fd8be3bb0e478ea2f233a8978d0, type: 2}
     - target: {fileID: 919132149155446097, guid: 6f4461b96c8bed14081dcf42739d6cc5, type: 3}
       propertyPath: m_Name
       value: Cannone
