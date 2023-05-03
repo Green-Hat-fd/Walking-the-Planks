@@ -43,3 +43,5 @@ MonoBehaviour:
   secAssuefazioneEffetti: 22.5
   secAssuefazioneCooldown: 25
   maxBevuteAssuefazione: 75
+  numeroBevute: 0
+  raccolto: 0

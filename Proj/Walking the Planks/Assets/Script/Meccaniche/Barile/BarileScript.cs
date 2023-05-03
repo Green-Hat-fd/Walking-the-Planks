@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class BarileScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        ControlloCollisioni(collision.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        ControlloCollisioni(other.gameObject);
+    }
+
+
+    void ControlloCollisioni(GameObject obj)
+    {
+        //Fa morire il giocatore se tocca il Barile
+        if (obj.CompareTag("Player"))
+            obj.GetComponent<StatsGiocatore>().ScriviSonoMorto(true);
     }
 }

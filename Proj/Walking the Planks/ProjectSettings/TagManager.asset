@@ -10,6 +10,7 @@ TagManager:
   - CannonBall
   - Spike
   - Rum Bottle
+  - Elev buttons
   layers:
   - Default
   - TransparentFX

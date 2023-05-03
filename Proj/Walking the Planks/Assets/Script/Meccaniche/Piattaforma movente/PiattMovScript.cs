@@ -21,7 +21,7 @@ public class PiattMovScript : MonoBehaviour
     [SerializeField] float velPiatt = 1;
     int prossimaPosiz = 0;
 
-    const float distMinima = 0.05f;
+    const float DISTANZA_MINIMA = 0.05f;
 
     bool reverse;
 
@@ -90,13 +90,13 @@ public class PiattMovScript : MonoBehaviour
         switch (stileMovimento)
         {
             case StileMovim_EnumT.PingPong:
-                if (distanzaPosiz_Prima <= distMinima)
+                if (distanzaPosiz_Prima <= DISTANZA_MINIMA)
                 {
                     quantoDevoAspettare = tempoAttesa.x;  //Se si trova nella prima posizione
                 }
                 else
                 {
-                    if (distanzaPosiz_Ultima <= distMinima)
+                    if (distanzaPosiz_Ultima <= DISTANZA_MINIMA)
                     {
                         quantoDevoAspettare = tempoAttesa.z;  //Se si trova all'ultima posizione
                     }
@@ -144,7 +144,7 @@ public class PiattMovScript : MonoBehaviour
         float distanzaTraPosiz = Vector3.Distance(transform.position, posizioni[prossimaPosiz].position);
 
         //Controllo delle posizioni (se e' arrivato nella posizione desiderata)
-        if (distanzaTraPosiz <= distMinima)
+        if (distanzaTraPosiz <= DISTANZA_MINIMA)
         {
         //    int old_posiz = prossimaPosiz;
 

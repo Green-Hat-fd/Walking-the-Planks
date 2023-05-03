@@ -85,7 +85,7 @@ public class LevelManagerScript : MonoBehaviour
             //Cerca l'oggetto nella classe
             if (cl.LeggiObj() == obj_reset)
             {
-                //Se c'è, fa un reset della posizione, rotazione e del Rigidbody
+                //Se c'e', fa un reset della posizione, rotazione e del Rigidbody
                 cl.ResetTransformObj();
                 ObjectPoolingScript.ResetTuttiRigidBody(cl.LeggiObj());
                 break;

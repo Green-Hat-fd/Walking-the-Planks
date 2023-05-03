@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CheckpointScript : MonoBehaviour, IFeedback
 {
+    [SerializeField] AscensoreSO_Script ascensSO;
     [SerializeField] CheckpointSO_Script checkpSO;
 
     [Tooltip("Il numero di questo checkpoint"), Space(10)]
@@ -21,8 +22,12 @@ public class CheckpointScript : MonoBehaviour, IFeedback
     private void Awake()
     {
         //Prende il giocatore e lo rimette nella posizione dell'ultimo checkpoint
-        GameObject giocat = GameObject.FindGameObjectWithTag("Player");
-        giocat.transform.position = checkpSO.LeggiPosizioneCheckpoint();
+        //(solo se entra dal menu principale)
+        if(ascensSO.LeggiDaDoveCambioScena() == CambioScena_Enum.DaMenuPrincipale)
+        {
+            GameObject giocat = GameObject.FindGameObjectWithTag("Player");
+            giocat.transform.position = checkpSO.LeggiPosizioneCheckpoint();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

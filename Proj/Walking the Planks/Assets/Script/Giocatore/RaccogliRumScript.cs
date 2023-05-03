@@ -14,7 +14,7 @@ public class RaccogliRumScript : MonoBehaviour
     [Space(5)]
     [SerializeField] AudioSource raccolto_sfx;
 
-    Transform objDaMuovere;
+    Transform modelloDaMuovere;
     Vector3 posizIniziale;
     Collider coll;
 
@@ -23,7 +23,7 @@ public class RaccogliRumScript : MonoBehaviour
     private void Awake()
     {
         posizIniziale = transform.position;
-        objDaMuovere = transform.GetChild(0);
+        modelloDaMuovere = transform.GetChild(0);
         coll = GetComponent<Collider>();
 
         rumSO.CambiaRumRaccolto(!gameObject.activeInHierarchy);
@@ -31,11 +31,11 @@ public class RaccogliRumScript : MonoBehaviour
 
     void Update()
     {
-        objDaMuovere.position = posizIniziale + transform.up 
+        modelloDaMuovere.position = posizIniziale + transform.up 
                                                 * Mathf.Sin(Time.time * velOndulamento)
                                                 * altezzaOndulamento;
 
-        objDaMuovere.localEulerAngles += transform.up
+        modelloDaMuovere.localEulerAngles += transform.up
                                          * Time.deltaTime
                                          * velRotazione;
     }
@@ -45,14 +45,14 @@ public class RaccogliRumScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //Attiva il Rum nel giocatore
-            //rumSO.CambiaRumRaccolto(true);
-            other.GetComponent<RumScript>().enabled = true;
+            rumSO.CambiaRumRaccolto(true);
 
             //Feedback
             raccolto_sfx.Play();
+            other.GetComponent<RumScript>().AnimazioneRaccolto();
 
             //Si auto-disattiva
-            objDaMuovere.gameObject.SetActive(false);
+            modelloDaMuovere.gameObject.SetActive(false);
             coll.enabled = false;
         }
     }

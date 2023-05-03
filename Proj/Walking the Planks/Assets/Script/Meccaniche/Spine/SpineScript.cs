@@ -84,7 +84,7 @@ public class SpineScript : MonoBehaviour
     public void Feedback__________()
     {
         //Feedback (SFX, particelle, ecc.)
-        //PS: il feedback è come quello della scatola
+        //PS: il feedback e' come quello della scatola
         #region Guida feedback
         /* Transform boxTransf = scatola.transform;
          *

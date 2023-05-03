@@ -5,6 +5,8 @@ using UnityEngine.Audio;
 
 public class PausaScript : MonoBehaviour
 {
+    [SerializeField] AscensoreSO_Script ascensSO;
+
     bool giocoInPausa = false;
 
     RumScript rumScr;
@@ -36,8 +38,11 @@ public class PausaScript : MonoBehaviour
 
     void Update()
     {
-        //Fa entrare o uscire dalla pausa se si preme il pulsante
-        if (GameManager.inst.inputManager.Generali.Pausa.triggered)
+        bool pulsantePremuto = GameManager.inst.inputManager.Generali.Pausa.triggered;
+
+
+        //Fa entrare o uscire dalla pausa se si preme il pulsante (e si puo' mettere in pausa)
+        if (pulsantePremuto && ascensSO.LeggiPossoMettereInPausa())
         {
             giocoInPausa = !giocoInPausa;
 
@@ -56,7 +61,7 @@ public class PausaScript : MonoBehaviour
     void TuttoCioDaCambiare()
     {
         //(Dis)Abilita lo script del Rum (solo se ha raccolto il rum)
-        rumScr.enabled = rumScr.RumRaccolto()  ?  !giocoInPausa  :  false;
+        rumScr.enabled = !giocoInPausa;
 
         rotazCameraScr.CambiaMouseAlCentro(!giocoInPausa);  //Cambia il mouse dal centro
         sparoScr.enabled = !giocoInPausa;                   //(Dis)Abilita lo script dello sparo

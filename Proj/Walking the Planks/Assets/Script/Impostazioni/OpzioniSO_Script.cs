@@ -10,6 +10,7 @@ public class OpzioniSO_Script : ScriptableObject
     //Menu principale
     #region Cambia scena
 
+    [SerializeField] AscensoreSO_Script ascensSO;
     [SerializeField] CheckpointSO_Script checkpointSO;
     [SerializeField] RumSO_Script rumSO;
     [SerializeField] int numScenaGestore;
@@ -50,10 +51,13 @@ public class OpzioniSO_Script : ScriptableObject
         }
         else
             ScenaScelta(scenaDaCheckpoint);
+
+        ascensSO.ScriviDaDoveCambioScena(CambioScena_Enum.DaMenuPrincipale);
+        ascensSO.ScriviPossoMettereInPausa(true);
     }
     void ResetTutto()
     {
-        checkpointSO.CambiaCheckpoint(1, 0, Vector3.zero);
+        checkpointSO.CambiaCheckpoint(-1, 0, Vector3.zero);
         rumSO.ResetNumBevute();
         rumSO.PossoBereDiNuovo();
         rumSO.DisattivaPoteriRum();

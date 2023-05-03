@@ -91,6 +91,24 @@ public class SparoScript : MonoBehaviour, IFeedback
                             break;
 
                         #endregion
+
+
+                        #region Pulsanti ascensore
+
+                        case "Elev buttons":
+
+                            //Disattiva i pulsanti
+                            hitInfo.collider.enabled = false;
+
+                            //Prende dall'oggetto principale (root object)
+                            GameObject ascensObj = hitInfo.transform.parent.parent.gameObject;
+                            AscensoreScript ascScr = ascensObj.GetComponent<AscensoreScript>();
+
+                            //Avvia l'ascensore per andare in una nuova scena
+                            ascScr.AvviaAscensore();
+                            break;
+
+                        #endregion
                     }
                 }
 

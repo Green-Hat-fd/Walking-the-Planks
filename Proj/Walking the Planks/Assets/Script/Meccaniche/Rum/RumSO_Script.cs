@@ -26,16 +26,18 @@ public class RumSO_Script : ScriptableObject
     [Tooltip("Il massimo dei secondi da aggiungere al cooldown")]
     #endregion
     [SerializeField] float secAssuefazioneCooldown = 25f;
+    
     #region Tooltip()
     [Tooltip("Le volte che bisogna bere \nper arrivare al max della curva")]
     #endregion
     [Space(7.5f)]
     [SerializeField] int maxBevuteAssuefazione = 75;
-    int numeroBevute = 0;
+    [Space(35), Min(0)]
+    [SerializeField] int numeroBevute = 0;
 
     bool possoBere = true;   //Usato per non poter usare il Rum se e' gia' attivo
     bool poteriAttivi = false;
-    bool raccolto = false;
+    [SerializeField] bool raccolto = false;
 
 
 

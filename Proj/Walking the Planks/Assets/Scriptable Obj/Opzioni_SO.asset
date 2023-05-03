@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3f0b86f2d67cf4096a27008d99d6ab, type: 3}
   m_Name: Opzioni_SO
   m_EditorClassIdentifier: 
+  ascensSO: {fileID: 11400000, guid: 8638006ccce9a8f4b8f8c76c09d8dc23, type: 2}
   checkpointSO: {fileID: 11400000, guid: 8dee62f921f162842a68db10cadab365, type: 2}
   rumSO: {fileID: 11400000, guid: 32846973518b37948953d7d075b4a123, type: 2}
   numScenaGestore: 4

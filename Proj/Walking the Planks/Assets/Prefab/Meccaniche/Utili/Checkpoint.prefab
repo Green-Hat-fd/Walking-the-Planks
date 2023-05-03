@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d94bc92f3a637f4eb0de498e0bac4ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ascensSO: {fileID: 11400000, guid: 8638006ccce9a8f4b8f8c76c09d8dc23, type: 2}
   checkpSO: {fileID: 11400000, guid: 8dee62f921f162842a68db10cadab365, type: 2}
   _numeroCheckpoint: 0
   offset: {x: 0, y: -1.25, z: 0}

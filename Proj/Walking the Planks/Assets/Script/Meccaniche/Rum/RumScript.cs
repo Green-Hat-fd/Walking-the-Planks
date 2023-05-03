@@ -26,6 +26,9 @@ public class RumScript : MonoBehaviour
 
     //---- Feedback ----
     [Header("Feedback")]
+    [SerializeField] AudioSource rumBevuto_sfx;
+    
+    [Space(10)]
     [SerializeField] Slider sliderRum;
     [SerializeField] GameObject modelloRum;
     [SerializeField] Animator modelloRumAnim;
@@ -41,11 +44,6 @@ public class RumScript : MonoBehaviour
 
         rum_SO.DisattivaPoteriRum();
         rum_SO.PossoBereDiNuovo();
-    }
-
-    private void OnEnable()
-    {
-        modelloRum.SetActive(true);
     }
 
     void Update()
@@ -75,7 +73,7 @@ public class RumScript : MonoBehaviour
         #endregion
 
 
-        if (hoBevuto && rum_SO.LeggiPossoBere())
+        if (hoBevuto && rum_SO.LeggiPossoBere() && rum_SO.LeggiRaccolto())
         {
             rum_SO.AttivaPoteriRum();
 
@@ -196,5 +194,13 @@ public class RumScript : MonoBehaviour
     void Feedback()
     {
         modelloRumAnim.SetTrigger("Bevuto");
+
+        rumBevuto_sfx.Play();
+    }
+
+    public void AnimazioneRaccolto()
+    {
+        modelloRum.SetActive(true);
+        modelloRumAnim.SetTrigger("Raccolto");
     }
 }
