@@ -55,7 +55,7 @@ public class SpineScript : MonoBehaviour
                 //FeedbackBarile();   //Feedback visivo e audio per il barile
                 
                 //Viene riaggiunta nella pool
-                poolingScr.RiAggiungiOggetto("Barili", obj);
+                poolingScr.RiAggiungiOggetto("Barili", obj.transform.parent.gameObject);
                 break;
 
 

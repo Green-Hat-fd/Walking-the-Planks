@@ -7125,6 +7125,7 @@ MonoBehaviour:
   comeSpawnare: 0
   tagDellaPool: Botte_1
   secDaAspettareSpawn: 0
+  usaQuestaRotazione: 1
 --- !u!4 &602516345 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5636354588170625558, guid: 574f504ef8af5e1468c088e89c786323, type: 3}
@@ -9148,6 +9149,24 @@ PrefabInstance:
     - {fileID: 1274707390, guid: eb325a1267cfed744934fa49ef8a1cd2, type: 3}
     - {fileID: 1946906210, guid: eb325a1267cfed744934fa49ef8a1cd2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eb325a1267cfed744934fa49ef8a1cd2, type: 3}
+--- !u!1 &1313352681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6964604194548103298, guid: 0e6f428019ed63d45bc008da7b260b8b, type: 3}
+  m_PrefabInstance: {fileID: 235026421}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1313352683
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313352681}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: 1.525, z: 0}
 --- !u!4 &1356129090 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8089067814345724341, guid: d16150d748cf3ba4cb4f6cc6fc3a7fc2, type: 3}
@@ -10469,6 +10488,7 @@ MonoBehaviour:
   comeSpawnare: 0
   tagDellaPool: Barili
   secDaAspettareSpawn: 1.1
+  usaQuestaRotazione: 1
 --- !u!4 &1822420484
 Transform:
   m_ObjectHideFlags: 0
@@ -11461,6 +11481,7 @@ MonoBehaviour:
   comeSpawnare: 0
   tagDellaPool: Scatola_1
   secDaAspettareSpawn: 0
+  usaQuestaRotazione: 1
 --- !u!4 &2076046999 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6846924417103416191, guid: 0e6f428019ed63d45bc008da7b260b8b, type: 3}

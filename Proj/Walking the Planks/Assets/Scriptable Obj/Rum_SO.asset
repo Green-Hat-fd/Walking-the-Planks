@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rum_SO
   m_EditorClassIdentifier: 
   moltipVelocita: 1.75
-  moltipSalto: 1.25
+  moltipSalto: 1.5
   durataEffetti: 25
   cooldown: 5
   curvaAssuefazione:

@@ -26,8 +26,6 @@ public class SpawnaOggetto : MonoBehaviour
     [Tooltip("Il tag della pool (nella scena) \nda dove prendere l'oggetto")]
     #endregion
     [SerializeField] string tagDellaPool;
-
-    [Space(10)]
     #region Tooltip()
     [Tooltip("[ ! ]  Solo se lo stile di spawn è a Ripetizione\n\t-----\nQuanto bisogna aspettare prima che \ncrei un'altra copia (in sec)")]
     #endregion
@@ -35,13 +33,17 @@ public class SpawnaOggetto : MonoBehaviour
     [SerializeField] float secDaAspettareSpawn;
     float tempoTrascorso = 0;
 
+    [Space(10)]
+    [SerializeField] bool usaQuestaRotazione = true;
+
 
 
     private void Start()
     {
         poolingScr = FindObjectOfType<ObjectPoolingScript>();
 
-        if (comeSpawnare == StileSpawn.Inizio)
+        //Crea l'oggetto all'inizio della scena
+        //if (comeSpawnare == StileSpawn.Inizio)
             CreaOggetto();
     }
 
@@ -51,7 +53,7 @@ public class SpawnaOggetto : MonoBehaviour
         {
             if (tempoTrascorso >= secDaAspettareSpawn)
             {
-                //Prende l'oggetto dalla pool
+                //Crea l'oggetto
                 CreaOggetto();
 
                 tempoTrascorso = 0;     //Resetta il timer
@@ -65,6 +67,24 @@ public class SpawnaOggetto : MonoBehaviour
 
     public void CreaOggetto()
     {
-        poolingScr.PrendeOggettoDallaPool(tagDellaPool, transform.position, Quaternion.identity);
+        //Lo ruota come l'oggetto se selezionato,
+        //se no, usa la rotazione standard
+        Quaternion rotazDaUsare = usaQuestaRotazione ? transform.rotation : Quaternion.identity;
+
+        //"Crea" l'oggetto (lo prende dalla pool)
+        poolingScr.PrendeOggettoDallaPool(tagDellaPool, transform.position, rotazDaUsare);
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.black * 0.5f;
+        Gizmos.DrawRay(transform.position, transform.forward * 0.5f);   
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.gray;
+        Gizmos.DrawSphere(transform.position, 0.1f);
     }
 }

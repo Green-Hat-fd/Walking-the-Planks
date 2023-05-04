@@ -11,6 +11,7 @@ TagManager:
   - Spike
   - Rum Bottle
   - Elev buttons
+  - Rolling-Barrel
   layers:
   - Default
   - TransparentFX
