@@ -39,3 +39,10 @@ MonoBehaviour:
     testo: Resume
   - tag: tPauseMenu
     testo: Paused
+  - tag: tCongratulations
+    testo: Congratulations !!
+  - tag: tCongratulations_Sub
+    testo: 'You''ve completed the game!
+
+      Now you can have fun with all the
+      different mechanics'

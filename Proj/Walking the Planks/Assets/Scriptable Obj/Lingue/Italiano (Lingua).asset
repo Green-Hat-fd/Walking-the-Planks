@@ -39,3 +39,9 @@ MonoBehaviour:
     testo: Riprendi
   - tag: tPauseMenu
     testo: In Pausa
+  - tag: tCongratulations
+    testo: Congratulazioni !!
+  - tag: tCongratulations_Sub
+    testo: 'Hai completato il gioco!
+
+      Ora puoi divertiti con le diverse meccaniche'

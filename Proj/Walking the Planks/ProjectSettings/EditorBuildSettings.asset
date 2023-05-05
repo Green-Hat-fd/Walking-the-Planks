@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Area 3 - Rum.unity
     guid: 317ad88c76e55634bb59bd48274af6cc
+  - enabled: 1
+    path: Assets/Scene/Finale.unity
+    guid: f9568dbafd295e54e899172d60961008
   - enabled: 0
     path: Assets/Scene/Gestore.unity
     guid: e849bde05f2eee543b3c9b1da2ef1413

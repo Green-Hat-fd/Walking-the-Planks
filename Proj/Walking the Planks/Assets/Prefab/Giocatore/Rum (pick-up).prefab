@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 1818775073}
   - component: {fileID: 3505874114159668778}
   m_Layer: 0
-  m_Name: Rum (raccogli)
+  m_Name: Rum (pick-up)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
