@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class RumScript : MonoBehaviour
 {
     [SerializeField] RumSO_Script rum_SO;
+    [SerializeField] StatsGiocatore statsScript;
 
     [Space(15)]
     [SerializeField] GameObject[] oggettiDaMostrare;
@@ -44,6 +45,9 @@ public class RumScript : MonoBehaviour
 
         rum_SO.DisattivaPoteriRum();
         rum_SO.PossoBereDiNuovo();
+
+        //Attiva o meno il modello se ha raccolto il rum o no
+        modelloRum.SetActive(rum_SO.LeggiRaccolto());
     }
 
     void Update()
@@ -80,8 +84,8 @@ public class RumScript : MonoBehaviour
             Feedback();
         }
 
-
-        if (rum_SO.LeggiPoteriAttivo())
+        //Se i poteri attivi e NON sono morto
+        if (rum_SO.LeggiPoteriAttivo() && !statsScript.LeggiSonoMorto())
         {
             //Se la durata degli effetti e' finita...
             if (tempoTrascorso_Effetti >= _secMaxEffetti)

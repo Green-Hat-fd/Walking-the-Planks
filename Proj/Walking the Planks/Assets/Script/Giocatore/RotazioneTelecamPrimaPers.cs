@@ -26,14 +26,35 @@ public class RotazioneTelecamPrimaPers : MonoBehaviour
                            :
                           CursorLockMode.None ;
 
+        //Prende la rotazione
+        InputAction inputRotazione = GameManager.inst.inputManager.Giocatore.RotazioneVista;
+
+
         //Prende le (X,Y) del mouse
-        float mouseX = GameManager.inst.inputManager.Giocatore.RotazioneVista.ReadValue<Vector2>().x * velRotazione * Time.deltaTime;
-        float mouseY = GameManager.inst.inputManager.Giocatore.RotazioneVista.ReadValue<Vector2>().y * velRotazione * Time.deltaTime;
+        float mouseX = inputRotazione.ReadValue<Vector2>().x * velRotazione * Time.deltaTime;
+        float mouseY = inputRotazione.ReadValue<Vector2>().y * velRotazione * Time.deltaTime;
 
 
         //Movimento mouse * sensibilita' (dalle impost.)
         mouseX *= opzioni_SO.LeggiSensibilita();
         mouseY *= opzioni_SO.LeggiSensibilita();
+
+
+        #region Gamepad
+
+        if(Gamepad.all.Count > 0)   //Se c'e' almeno un Gamepad
+        {
+            string nomeInput = inputRotazione.activeControl.name;
+            string nomeGamepadStickDx = Gamepad.current.rightStick.name;
+
+            //Aumenta la sensibilita' se si usa un controller/gamepad
+            if (nomeInput == nomeGamepadStickDx)
+            {
+                mouseX *= 10;
+                mouseY *= 10;
+            }
+        }
+        #endregion
 
 
         xRotaz -= mouseY;

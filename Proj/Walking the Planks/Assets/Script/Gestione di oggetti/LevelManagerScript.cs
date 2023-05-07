@@ -53,7 +53,7 @@ public class LevelManagerScript : MonoBehaviour
     [SerializeField] UnityEvent altroDaResettare;
 
     [Space(15)]
-    [Range(-10000, 0)]
+    [Range(-1000, 0)]
     [SerializeField] float xNegativoReset = -700;
 
 
@@ -106,5 +106,15 @@ public class LevelManagerScript : MonoBehaviour
                 ObjectPoolingScript.ResetTuttiRigidBody(cl.LeggiObj());
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(0.6f, 0.01f, 0.1f);
+
+        Gizmos.DrawWireCube(new Vector3(transform.position.x,
+                                        xNegativoReset,
+                                        transform.position.z),
+                            new Vector3(150f, 0.1f, 150f));
     }
 }

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9159a1fdb20a842a86ce5cdf678502, type: 3}
+  m_Name: Tutorial (Inglese)
+  m_EditorClassIdentifier: 
+  testiDaModificare:
+  - tag: tTutorial_Movement
+    testo: Use [WASD] to move
+  - tag: tTutorial_LookAround
+    testo: Move the [Mouse] to look around
+  - tag: tTutorial_Jump
+    testo: Press [Space] to jump
+  - tag: tTutorial_Drum
+    testo: You can hop on a drum to make it roll, watch your movement...
+  - tag: tTutorial_Shoot
+    testo: Press [LMB] to shoot
+  - tag: tTutorial_Pause
+    testo: 'Press [Esc] or [P] to pause the game
+
+      (PS: You cannot pause in
+      the elevator)'
+  - tag: tTutorial_DrinkRum
+    testo: Press [F] to drink Rum
+  - tag: tTutorial_RumWarning
+    testo: 'Warning:
+
+      Each time you drink Rum, positive effects'' decrease
+      and negative ones''
+
+      increase'
+  - tag: tTutorial_EndOfGame
+    testo: 'To replay the game from the start, exit and re-open the game
+
+      (all
+      your progress will be lost)'

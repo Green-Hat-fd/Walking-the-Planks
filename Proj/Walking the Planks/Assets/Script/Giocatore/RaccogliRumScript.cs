@@ -26,7 +26,10 @@ public class RaccogliRumScript : MonoBehaviour
         modelloDaMuovere = transform.GetChild(0);
         coll = GetComponent<Collider>();
 
-        rumSO.CambiaRumRaccolto(!gameObject.activeInHierarchy);
+        //Si auto-disattiva se lo si ha raccolto
+        //o si auto-attiva se NON lo si ha ancora raccolto
+        modelloDaMuovere.gameObject.SetActive(!rumSO.LeggiRaccolto());
+        coll.enabled = !rumSO.LeggiRaccolto();
     }
 
     void Update()

@@ -9,23 +9,35 @@ public class StatsGiocatore : MonoBehaviour
 
     [Space(15)]
     [SerializeField] GameObject ragdoll;
+    [SerializeField] Transform ragdollDaSeguire;
     Animator ragdollAnim;
+    Rigidbody[] rb_Ragdoll;
+    CharacterJoint[] charJoint_Ragdoll;
+    Collider[] collider_Ragdoll;
+
     //La telecamera visibile quando il giocat. muore
     [SerializeField] GameObject cameraTerzaPers;
+    
     //La telecamera in prima persona (default nel gioco)
     [SerializeField] GameObject cameraGiocat;
+    
     //L'empty che raggruppa la telecamera in terza pers. e il Ragdoll
     GameObject gruppoMorto;
     
+
     MovimGiocatRb movimGiocatScr;
     
     [SerializeField] float velCamTerzaPers = 10f;
 
     bool sonoMorto;
 
+    [Space(15), Range(-1000, 0)]
+    [SerializeField] float xNegativoReset = -700;
+
     [Space(15)]
     [SerializeField] CheckpointSO_Script checkpoint;
     LevelManagerScript levelManagerScr;
+
 
 
 
@@ -35,6 +47,11 @@ public class StatsGiocatore : MonoBehaviour
         levelManagerScr = FindObjectOfType<LevelManagerScript>();
 
         ragdollAnim = ragdoll.GetComponent<Animator>();
+
+        rb_Ragdoll = ragdollDaSeguire.GetComponentsInChildren<Rigidbody>();
+        charJoint_Ragdoll = ragdollDaSeguire.GetComponentsInChildren<CharacterJoint>();
+        collider_Ragdoll = ragdollDaSeguire.GetComponentsInChildren<Collider>();
+        ragdollAnim.enabled = true;
 
         gruppoMorto = cameraTerzaPers.transform.parent.gameObject;
     }
@@ -46,11 +63,9 @@ public class StatsGiocatore : MonoBehaviour
             GetComponent<Rigidbody>().drag = 0;
 
             cameraGiocat.SetActive(false);
-            cameraTerzaPers.SetActive(true);
-            gruppoMorto.SetActive(true);
-            ragdoll.SetActive(true);
-            ragdollAnim.enabled = false;
             movimGiocatScr.enabled = false;
+            
+            EntraModalitaRagdoll();
 
             //Ruota la camera in terza persona attorno al giocatore
             cameraTerzaPers.transform.Rotate(0, velCamTerzaPers * Time.deltaTime, 0);
@@ -79,40 +94,72 @@ public class StatsGiocatore : MonoBehaviour
         else
         {
             cameraGiocat.SetActive(true);
-            cameraTerzaPers.SetActive(false);
-            //gruppoMorto.SetActive(false);
-            StartCoroutine(RitornoRagdoll());
             movimGiocatScr.enabled = true;
+
+            EsciModalitaRagdoll();
 
             if(tempoTrascorso != 0)
                 tempoTrascorso = 0;   //Reset -- misura di sicurezza
         }
 
-        cameraTerzaPers.transform.position = ragdoll.transform.position;
-        //cameraTerzaPers.transform.rotation = Quaternion.identity;
+        cameraTerzaPers.transform.position = ragdollDaSeguire.position;
 
         //Controlla se il giocatore si trova in uno spazio
         //negativo fuori dalla mappa, e lo fa morire
-        if (transform.position.y <= -700)
+        if (transform.position.y <= xNegativoReset)
             sonoMorto = true;
     }
 
-    IEnumerator RitornoRagdoll()
+    #region Controllo Ragdoll
+
+    void EntraModalitaRagdoll()
     {
-        ragdollAnim.enabled = true;
-        ObjectPoolingScript.ResetTuttiRigidBody(ragdollAnim.gameObject);
+        //Cambia la telecamera
+        cameraTerzaPers.SetActive(true);
 
-        yield return new WaitForEndOfFrame();
-
-        gruppoMorto.SetActive(false);
-        StopAllCoroutines();
+        //Attiva il ragdoll, attivando e tutte le sue componenti
+        ragdoll.SetActive(true);
+        CambiaComponentiRagdoll(true);
     }
+    void EsciModalitaRagdoll()
+    {
+        //Disttiva il ragdoll, disattivando e tutte le sue componenti
+        CambiaComponentiRagdoll(false);
+
+        //Torna alla telecamera in prima persona
+        cameraTerzaPers.SetActive(false);
+    }
+
+    void CambiaComponentiRagdoll(bool valore)
+    {
+        foreach (CharacterJoint joint in charJoint_Ragdoll)
+        {
+            joint.enableCollision = valore;
+        }
+        foreach (Collider col in collider_Ragdoll)
+        {
+            col.enabled = valore;
+        }
+        foreach (Rigidbody rb in rb_Ragdoll)
+        {
+            rb.detectCollisions = valore;
+            rb.useGravity = valore;
+        }
+
+        ragdollAnim.enabled = !valore;
+    }
+
+    #endregion
 
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawCube(new Vector3(transform.position.x, -700, transform.position.z), new Vector3(100f, 0.1f, 100f));
+        
+        Gizmos.DrawWireCube(new Vector3(transform.position.x,
+                                    xNegativoReset,
+                                    transform.position.z),
+                        new Vector3(100f, 0.1f, 100f));
     }
 
     #region Funzioni Get custom

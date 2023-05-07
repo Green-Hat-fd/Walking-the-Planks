@@ -42,9 +42,10 @@ public class OpzioniSO_Script : ScriptableObject
     public void CaricaUltimaScena()
     {
         int scenaDaCheckpoint = checkpointSO.LeggiLivello();
+        int numeroCheckpoint = checkpointSO.LeggiNumCheckpoint();
 
         //Carica l'ultima scena se si ha giocato al gioco, se no ricomincia dalla prima
-        if (scenaDaCheckpoint <= 0)
+        if (scenaDaCheckpoint <= 0 || numeroCheckpoint >= 999)
         {
             ResetTutto();
             ScenaSuccessiva();

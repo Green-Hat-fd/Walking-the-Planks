@@ -1080,18 +1080,6 @@ MonoBehaviour:
           m_StringArgument: Esci
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: fcbf9d01b4925cf439a250fbdb172436, type: 2}
-        m_TargetAssemblyTypeName: OpzioniSO_Script, Assembly-CSharp
-        m_MethodName: EsciDalGioco
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &116417201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2447,7 +2435,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 9198830318128198387, guid: 6f8ead282174d804daa1fc1b60000204, type: 2}
   m_audioClip: {fileID: 8300000, guid: aafc58f3e7e2f214aad411f589691a4f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.85
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3438,11 +3426,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 904141890619685810, guid: 4f07f5c4703a3314ba021a6bce9a40df, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.31034482
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 904141890619685810, guid: 4f07f5c4703a3314ba021a6bce9a40df, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 904141890788547933, guid: 4f07f5c4703a3314ba021a6bce9a40df, type: 3}
       propertyPath: m_RootOrder
@@ -3574,11 +3562,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3448077003133635104, guid: 4f07f5c4703a3314ba021a6bce9a40df, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.9090909
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3448077003133635104, guid: 4f07f5c4703a3314ba021a6bce9a40df, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3553475368314051647, guid: 4f07f5c4703a3314ba021a6bce9a40df, type: 3}
       propertyPath: m_RootOrder
@@ -3610,11 +3598,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4615947966911168019, guid: 4f07f5c4703a3314ba021a6bce9a40df, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.9090909
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4615947966911168019, guid: 4f07f5c4703a3314ba021a6bce9a40df, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6336020542544286185, guid: 4f07f5c4703a3314ba021a6bce9a40df, type: 3}
       propertyPath: m_FillAmount
