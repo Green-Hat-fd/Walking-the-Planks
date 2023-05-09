@@ -14,22 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testiDaModificare:
   - tag: tTutorial_Movement
-    testo: Usa [WASD] per muoversi
+    testo: Usa [WASD]/[Stick Sx] per muoverti
   - tag: tTutorial_LookAround
-    testo: Muovi il [Mouse] per guardare in giro
+    testo: Muovi il [Mouse]/[Stick Dx] per guardare in giro
   - tag: tTutorial_Jump
-    testo: Premi [Spazio] per saltare
+    testo: Premi [Spazio]/[L1] per saltare
   - tag: tTutorial_Drum
     testo: Puoi salire su una botte per farla rotolare, attenzione al movimento...
   - tag: tTutorial_Shoot
-    testo: Premi [Tasto Sx] per sparare
+    testo: Premi [Tasto Sx]/[R2] per sparare
   - tag: tTutorial_Pause
-    testo: 'Premi [Esc] o [P] per mettere in pausa
+    testo: 'Premi [Esc] o [P]/[Start] per mettere in pausa
 
-      (PS: Non puoi mettere in
-      pausa nell''ascensore) '
+      (PS: Non puoi mettere
+      in pausa nell''ascensore) '
   - tag: tTutorial_DrinkRum
-    testo: Premi [F] per bere il Rum
+    testo: Premi [F]/[R1] per bere il Rum
   - tag: tTutorial_RumWarning
     testo: 'Attenzione:
 

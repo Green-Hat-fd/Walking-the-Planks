@@ -22,6 +22,7 @@ public class MovimGiocatRb : MonoBehaviour
 
     [Space(20)]
     [SerializeField] float sogliaRilevaTerreno = 0.25f;
+    float _moltSogliaTerr = 1;
     float mezzaAltezzaGiocat;
     float raggioSpherecast = 0.5f;
     //Vector3 dimensBoxcast = new Vector3(0.51f, 0f, 0.51f);
@@ -82,7 +83,14 @@ public class MovimGiocatRb : MonoBehaviour
     void FixedUpdate()
     {
         //Calcolo se si trova a terra
-        siTrovaATerra = Physics.SphereCast(transform.position, raggioSpherecast, -transform.up, out hitBase, mezzaAltezzaGiocat + sogliaRilevaTerreno - raggioSpherecast);
+        //(non colpisce i Trigger e "~0" significa che collide con tutti i layer)
+        siTrovaATerra = Physics.SphereCast(transform.position,
+                                           raggioSpherecast,
+                                           -transform.up,
+                                           out hitBase,
+                                           mezzaAltezzaGiocat + (sogliaRilevaTerreno*_moltSogliaTerr) - raggioSpherecast,
+                                           ~0,
+                                           QueryTriggerInteraction.Ignore);
         #region OLD
         //siTrovaATerra = Physics.BoxCast(transform.position, dimensBoxcast, -transform.up, out hitBase, Quaternion.identity, mezzaAltezzaGiocat + sogliaRilevaTerreno); 
         #endregion
@@ -145,13 +153,21 @@ public class MovimGiocatRb : MonoBehaviour
     {
         rb.drag = attr;
     }
+    public void RaddoppiaMoltSogliaTerr()
+    {
+        _moltSogliaTerr = 2;
+    }
+    public void ResetMoltSogliaTerr()
+    {
+        _moltSogliaTerr = 1;
+    }
 
     private void OnDrawGizmos()
     {
-        //Disegna il BoxCast per capire se e' a terra o meno (togliendo l'altezza del giocatore)
+        //Disegna lo SphereCast per capire se e' a terra o meno (togliendo l'altezza del giocatore)
         Gizmos.color = new Color(0.85f, 0.85f, 0.85f, 1);
         Gizmos.DrawWireSphere(transform.position + (-transform.up * mezzaAltezzaGiocat)
-                               + (-transform.up * sogliaRilevaTerreno)/2
+                               + (-transform.up * sogliaRilevaTerreno)
                                - (-transform.up * raggioSpherecast),
                               raggioSpherecast);
         #region OLD

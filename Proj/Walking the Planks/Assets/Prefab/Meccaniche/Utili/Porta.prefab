@@ -54,7 +54,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 25
+  MaxDistance: 75
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -64,7 +64,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.2
+      time: 0.1
       value: 1
       inSlope: -2.1972604
       outSlope: -2.1972604
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portaApre_sfx: {fileID: 8300000, guid: 8c403b11108073545830b5bde539f091, type: 3}
-  portaChiude_sfx: {fileID: 0}
+  portaChiude_sfx: {fileID: 8300000, guid: af419bfd3b30a5e4a90f1e7dd51f1d60, type: 3}
 --- !u!1 &875103455753839322
 GameObject:
   m_ObjectHideFlags: 0

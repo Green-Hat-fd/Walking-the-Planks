@@ -6024,7 +6024,7 @@ PrefabInstance:
     - target: {fileID: 5053754914125408211, guid: 5b25b2bcb702e704aa01e44896197204, type: 3}
       propertyPath: immagine
       value: 
-      objectReference: {fileID: 21300000, guid: d6602836ca0f5a94980d720c3d130b74, type: 3}
+      objectReference: {fileID: 21300000, guid: 51cabbfb7e950a7458f6d2da14d65228, type: 3}
     - target: {fileID: 5053754914125408211, guid: 5b25b2bcb702e704aa01e44896197204, type: 3}
       propertyPath: tagDaCercare
       value: tTutorial_Movement
@@ -9562,6 +9562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '"Porta" sopra'
       objectReference: {fileID: 0}
+    - target: {fileID: 6596192328192205009, guid: 3c38b28f5a3871947af8f235ecff4827, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c38b28f5a3871947af8f235ecff4827, type: 3}
 --- !u!1 &1606338423
@@ -11817,7 +11821,7 @@ PrefabInstance:
     - target: {fileID: 5053754914125408211, guid: 5b25b2bcb702e704aa01e44896197204, type: 3}
       propertyPath: immagine
       value: 
-      objectReference: {fileID: 21300000, guid: 3125d05a7e9e901469c358b10b26f653, type: 3}
+      objectReference: {fileID: 21300000, guid: 1bb5153cf1642be469a3d82880411765, type: 3}
     - target: {fileID: 5053754914125408211, guid: 5b25b2bcb702e704aa01e44896197204, type: 3}
       propertyPath: tagDaCercare
       value: tTutorial_Pause
@@ -11932,7 +11936,7 @@ PrefabInstance:
     - target: {fileID: 5053754914125408211, guid: 5b25b2bcb702e704aa01e44896197204, type: 3}
       propertyPath: immagine
       value: 
-      objectReference: {fileID: 21300000, guid: 2337976e07cf061499a843ce7cbe7ff5, type: 3}
+      objectReference: {fileID: 21300000, guid: d0238da272b57cc4eb014ed1950d0a96, type: 3}
     - target: {fileID: 5053754914125408211, guid: 5b25b2bcb702e704aa01e44896197204, type: 3}
       propertyPath: tagDaCercare
       value: tTutorial_Jump
@@ -12202,7 +12206,7 @@ PrefabInstance:
     - target: {fileID: 5053754914125408211, guid: 5b25b2bcb702e704aa01e44896197204, type: 3}
       propertyPath: immagine
       value: 
-      objectReference: {fileID: 21300000, guid: 5f0f5bad681e36a479cba24624f0d215, type: 3}
+      objectReference: {fileID: 21300000, guid: 6967d1ee6639a574094799ca45302e2b, type: 3}
     - target: {fileID: 5053754914125408211, guid: 5b25b2bcb702e704aa01e44896197204, type: 3}
       propertyPath: tagDaCercare
       value: tTutorial_Shoot
@@ -14393,7 +14397,7 @@ PrefabInstance:
     - target: {fileID: 5053754914125408211, guid: 5b25b2bcb702e704aa01e44896197204, type: 3}
       propertyPath: immagine
       value: 
-      objectReference: {fileID: 21300000, guid: a9b707383c091c94690ab85777ac7f8f, type: 3}
+      objectReference: {fileID: 21300000, guid: 2f73a47fff1e6a94785ae65176101f58, type: 3}
     - target: {fileID: 5053754914125408211, guid: 5b25b2bcb702e704aa01e44896197204, type: 3}
       propertyPath: tagDaCercare
       value: tTutorial_LookAround

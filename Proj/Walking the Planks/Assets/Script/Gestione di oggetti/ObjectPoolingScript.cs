@@ -95,6 +95,24 @@ public class ObjectPoolingScript : MonoBehaviour
     }
 
     /// <summary>
+    /// Disattiva tutti gli oggetti della pool indicata dal <i><b>tag</b></i>
+    /// </summary>
+    public void NascondiOgniOggettoDiUnaPool(string poolTag)
+    {
+        //Controlla se c'e' l'oggetto nel dizionario
+        if (poolDict.ContainsKey(poolTag))
+        {
+            //Per ogni oggetto nella pool...
+            foreach(GameObject obj in poolDict[poolTag].ToArray())
+            {
+                obj.SetActive(false);   //Lo disattiva
+
+                poolDict[poolTag].Enqueue(obj);   //Lo rimette in coda
+            }
+        }
+    }
+
+    /// <summary>
     /// Resetta la velocità dei Rigidbody dell'oggetto & di tutti i suoi figli
     /// </summary>
     /// <param name="objDaReset">a</param>

@@ -101,7 +101,7 @@ public class PulsanteToggleScript : MonoBehaviour
     {
         Vector3 angoli = joint.transform.localEulerAngles;
 
-        angoli.z = sogliaAttivazione - 0.5f;
+        angoli.z = 0;
         joint.transform.localEulerAngles = angoli;
     }
 }

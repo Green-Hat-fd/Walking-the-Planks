@@ -59,8 +59,7 @@ public class PiattMovScript : MonoBehaviour
         }
 
         //Se si muove ciclando, aggiunge la prima posizione come ultima, creando una linea circolare
-        if (stileMovimento == StileMovim_EnumT.Cicla)
-            pos_temp.Add(posizioni[0].localPosition);
+        linea.loop = stileMovimento == StileMovim_EnumT.Cicla;
 
         //"Disegna" la linea nelle posizioni passate
         linea.positionCount = pos_temp.Count;

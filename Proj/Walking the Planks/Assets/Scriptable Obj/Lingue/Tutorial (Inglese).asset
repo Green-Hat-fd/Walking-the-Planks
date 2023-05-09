@@ -14,22 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testiDaModificare:
   - tag: tTutorial_Movement
-    testo: Use [WASD] to move
+    testo: Use [WASD]/[L-Stick] to move
   - tag: tTutorial_LookAround
-    testo: Move the [Mouse] to look around
+    testo: Move the [Mouse]/[R-Stick] to look around
   - tag: tTutorial_Jump
-    testo: Press [Space] to jump
+    testo: Press [Space]/[L1] to jump
   - tag: tTutorial_Drum
     testo: You can hop on a drum to make it roll, watch your movement...
   - tag: tTutorial_Shoot
-    testo: Press [LMB] to shoot
+    testo: Press [LMB]/[R2] to shoot
   - tag: tTutorial_Pause
-    testo: 'Press [Esc] or [P] to pause the game
+    testo: 'Press [Esc] or [P]/[Start] to pause the game
 
-      (PS: You cannot pause in
-      the elevator)'
+      (PS: You cannot pause
+      in the elevator)'
   - tag: tTutorial_DrinkRum
-    testo: Press [F] to drink Rum
+    testo: Press [F]/[R1] to drink Rum
   - tag: tTutorial_RumWarning
     testo: 'Warning:
 

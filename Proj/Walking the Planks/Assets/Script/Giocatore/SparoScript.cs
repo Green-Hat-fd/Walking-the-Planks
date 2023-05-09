@@ -176,4 +176,28 @@ public class SparoScript : MonoBehaviour, IFeedback
         //Anima la pistola
         pistolaAnim.SetTrigger("Pistola Sparo");
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.black;
+
+        //Disegna una linea dalla posizione di inizio alla fine
+        Gizmos.DrawLine(transform.position, transform.position + (transform.forward * maxDistSparo));
+
+        RaycastHit rHit;
+        Physics.Raycast(transform.position, transform.forward, out rHit, maxDistSparo, ~0, QueryTriggerInteraction.Ignore);
+
+
+        Gizmos.color = Color.green;
+        if (rHit.normal != Vector3.zero)
+        {
+            //Disegna una linea dal punto di inizio fin dove ha colpito
+            Gizmos.DrawLine(transform.position, rHit.point);
+
+            //Disegna un piccolo cubo dove ha colpito
+            Gizmos.DrawCube(rHit.point, Vector3.one * 0.1f);
+
+        }
+    }
+
 }

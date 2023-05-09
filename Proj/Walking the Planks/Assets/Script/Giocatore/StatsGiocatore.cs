@@ -11,9 +11,9 @@ public class StatsGiocatore : MonoBehaviour
     [SerializeField] GameObject ragdoll;
     [SerializeField] Transform ragdollDaSeguire;
     Animator ragdollAnim;
-    Rigidbody[] rb_Ragdoll;
-    CharacterJoint[] charJoint_Ragdoll;
-    Collider[] collider_Ragdoll;
+    Rigidbody[] ragdoll_gruppoRb;
+    CharacterJoint[] ragdoll_gruppoCharJoint;
+    Collider[] ragdoll_gruppoCollider;
 
     //La telecamera visibile quando il giocat. muore
     [SerializeField] GameObject cameraTerzaPers;
@@ -21,15 +21,16 @@ public class StatsGiocatore : MonoBehaviour
     //La telecamera in prima persona (default nel gioco)
     [SerializeField] GameObject cameraGiocat;
     
-    //L'empty che raggruppa la telecamera in terza pers. e il Ragdoll
-    GameObject gruppoMorto;
-    
 
     MovimGiocatRb movimGiocatScr;
     
     [SerializeField] float velCamTerzaPers = 10f;
 
     bool sonoMorto;
+
+    [Space(15)]
+    [SerializeField] Animator pistolaAnim;
+    [SerializeField] Animator rumAnim;
 
     [Space(15), Range(-1000, 0)]
     [SerializeField] float xNegativoReset = -700;
@@ -48,12 +49,13 @@ public class StatsGiocatore : MonoBehaviour
 
         ragdollAnim = ragdoll.GetComponent<Animator>();
 
-        rb_Ragdoll = ragdollDaSeguire.GetComponentsInChildren<Rigidbody>();
-        charJoint_Ragdoll = ragdollDaSeguire.GetComponentsInChildren<CharacterJoint>();
-        collider_Ragdoll = ragdollDaSeguire.GetComponentsInChildren<Collider>();
+        ragdoll_gruppoRb = ragdollDaSeguire.GetComponentsInChildren<Rigidbody>();
+        ragdoll_gruppoCharJoint = ragdollDaSeguire.GetComponentsInChildren<CharacterJoint>();
+        ragdoll_gruppoCollider = ragdollDaSeguire.GetComponentsInChildren<Collider>();
+        
+        //Resetta il ragdoll
+        ResetPosizioneRotazioneOssaRagdoll();
         ragdollAnim.enabled = true;
-
-        gruppoMorto = cameraTerzaPers.transform.parent.gameObject;
     }
 
     void Update()
@@ -81,6 +83,10 @@ public class StatsGiocatore : MonoBehaviour
 
                 //Resetta tutto il livello
                 levelManagerScr.ResetCompleto();
+
+                //Resetta le animazioni per i modelli della pistola e del Rum
+                pistolaAnim.SetTrigger("Reset Animazione");
+                rumAnim.SetTrigger("Reset Animazione");
 
 
                 sonoMorto = false;
@@ -124,6 +130,7 @@ public class StatsGiocatore : MonoBehaviour
     void EsciModalitaRagdoll()
     {
         //Disttiva il ragdoll, disattivando e tutte le sue componenti
+        ResetPosizioneRotazioneOssaRagdoll();
         CambiaComponentiRagdoll(false);
 
         //Torna alla telecamera in prima persona
@@ -132,21 +139,32 @@ public class StatsGiocatore : MonoBehaviour
 
     void CambiaComponentiRagdoll(bool valore)
     {
-        foreach (CharacterJoint joint in charJoint_Ragdoll)
+        foreach (CharacterJoint joint in ragdoll_gruppoCharJoint)
         {
             joint.enableCollision = valore;
         }
-        foreach (Collider col in collider_Ragdoll)
+        foreach (Collider col in ragdoll_gruppoCollider)
         {
             col.enabled = valore;
         }
-        foreach (Rigidbody rb in rb_Ragdoll)
+        foreach (Rigidbody rb in ragdoll_gruppoRb)
         {
             rb.detectCollisions = valore;
             rb.useGravity = valore;
         }
 
+        #region --Non usato--
+        //GetComponent<Rigidbody>().detectCollisions = !valore;
+        //GetComponent<Rigidbody>().useGravity = !valore; 
+        #endregion
+
         ragdollAnim.enabled = !valore;
+    }
+
+    void ResetPosizioneRotazioneOssaRagdoll()
+    {
+        ragdollDaSeguire.localPosition = Vector3.zero;
+        ragdollDaSeguire.localRotation = Quaternion.identity;
     }
 
     #endregion

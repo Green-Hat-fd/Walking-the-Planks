@@ -298,6 +298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   botteMainScr: {fileID: 6846924416806054658}
+  attritoSopraBotte: 5
+  attritoNormale: 0
 --- !u!1001 &2106388943329301232
 PrefabInstance:
   m_ObjectHideFlags: 0
