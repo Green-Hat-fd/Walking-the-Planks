@@ -20,7 +20,7 @@ MonoBehaviour:
   - tag: tOptions
     testo: Options
   - tag: tExit
-    testo: Exit
+    testo: Quit
   - tag: tSensibMouse
     testo: Mouse Sensitivity
   - tag: tLanguage
@@ -46,3 +46,13 @@ MonoBehaviour:
 
       Now you can have fun with all the
       different mechanics'
+  - tag: tFinal_ButtonA
+    testo: Show again all targets
+  - tag: tFinal_ButtonB
+    testo: Enable/Disable movement of targets
+  - tag: tFinal_ButtonC
+    testo: Enable all disabled platforms
+  - tag: tFinal_ButtonD
+    testo: 'Enable/Disable
+
+      all cannons'

@@ -49,6 +49,7 @@ public class GestoreEventiNumerati : MonoBehaviour
     public void ResetConta()
     {
         conta = 0;
+        indiceControllo = 0;
     }
 
     void ControllaConteggio()

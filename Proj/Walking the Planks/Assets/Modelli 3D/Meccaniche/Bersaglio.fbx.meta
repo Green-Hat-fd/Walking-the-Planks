@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: mat_Bianco
-    second: {fileID: 2100000, guid: 42a7770d5ebda7143ae7587f43957e71, type: 2}
+    second: {fileID: 2100000, guid: 49c3f9c6c9dc61a468bed96331c1465f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -95,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.175
+    globalScale: 17.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

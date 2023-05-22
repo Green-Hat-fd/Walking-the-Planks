@@ -45,6 +45,9 @@ public class CheckpointScript : MonoBehaviour, IFeedback
 
 
             Feedback();
+
+            //Mostra e avvia la ruota del caricamento
+            other.gameObject.GetComponent<PausaScript>().AvviaCaricamento();
         }
     }
 

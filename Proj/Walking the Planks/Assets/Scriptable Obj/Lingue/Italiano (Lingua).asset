@@ -45,3 +45,13 @@ MonoBehaviour:
     testo: 'Hai completato il gioco!
 
       Ora puoi divertiti con le diverse meccaniche'
+  - tag: tFinal_ButtonA
+    testo: Mostra di nuovo tutti i bersagli
+  - tag: tFinal_ButtonB
+    testo: Attiva/Disattiva i bersagli in movimento
+  - tag: tFinal_ButtonC
+    testo: Attiva tutte le piattaforme disattivate
+  - tag: tFinal_ButtonD
+    testo: 'Attiva/Disattiva
+
+      tutti i cannoni'

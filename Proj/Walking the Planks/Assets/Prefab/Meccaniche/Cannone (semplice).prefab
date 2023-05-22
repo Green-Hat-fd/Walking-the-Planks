@@ -366,7 +366,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 16
   m_IsActive: 1
 --- !u!4 &4691818582354107331
 Transform:
@@ -437,6 +437,10 @@ PrefabInstance:
     - target: {fileID: 6793928781150581016, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
       propertyPath: m_Name
       value: CannoneFumo_Part
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793928781150581016, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 138fe05914975914591c033cc5e65d0f, type: 3}
@@ -509,9 +513,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 71c30fd8be3bb0e478ea2f233a8978d0, type: 2}
+    - target: {fileID: -4404851026283235170, guid: 6f4461b96c8bed14081dcf42739d6cc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: -2194324786479148177, guid: 6f4461b96c8bed14081dcf42739d6cc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6f4461b96c8bed14081dcf42739d6cc5, type: 3}
       propertyPath: m_Name
       value: Cannone
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6f4461b96c8bed14081dcf42739d6cc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f4461b96c8bed14081dcf42739d6cc5, type: 3}
@@ -584,6 +600,10 @@ PrefabInstance:
     - target: {fileID: 3786417095633730257, guid: c3a24cdf3711e9f4c86a2dda9bbbe405, type: 3}
       propertyPath: m_Name
       value: CannoneSparkles_Part
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786417095633730257, guid: c3a24cdf3711e9f4c86a2dda9bbbe405, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3a24cdf3711e9f4c86a2dda9bbbe405, type: 3}

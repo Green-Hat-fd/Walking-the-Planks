@@ -23,13 +23,17 @@ public class AreaTutorialScript : MonoBehaviour
     [Min(1)]
     [SerializeField] float secDaAspettare = 7.5f;
     
+    [Space(10)]
+    [SerializeField] bool disattivareQuandoAttivato = true;
     Collider coll;
+    AudioSource avviaTutorial_sfx;
 
 
 
     private void Awake()
     {
         coll = GetComponent<Collider>();
+        avviaTutorial_sfx = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,8 +52,11 @@ public class AreaTutorialScript : MonoBehaviour
             //Avvia il tutorial
             tutScr.AvviaTutorial();
 
-            //Disattiva il trigger
-            coll.enabled = false;
+            //Feedback
+            avviaTutorial_sfx.Play();
+
+            //Disattiva il trigger (se l'ho scelto di disattivare)
+            coll.enabled = !disattivareQuandoAttivato;
         }
     }
 }

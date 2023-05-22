@@ -19,15 +19,17 @@ MonoBehaviour:
     testo: Muovi il [Mouse]/[Stick Dx] per guardare in giro
   - tag: tTutorial_Jump
     testo: Premi [Spazio]/[L1] per saltare
-  - tag: tTutorial_Drum
-    testo: Puoi salire su una botte per farla rotolare, attenzione al movimento...
   - tag: tTutorial_Shoot
     testo: Premi [Tasto Sx]/[R2] per sparare
+  - tag: tTutorial_Drum
+    testo: Puoi salire su una botte per farla rotolare, attenzione al movimento...
   - tag: tTutorial_Pause
     testo: 'Premi [Esc] o [P]/[Start] per mettere in pausa
 
       (PS: Non puoi mettere
       in pausa nell''ascensore) '
+  - tag: tTutorial_Box
+    testo: I colpi della pistola possono sbalzare le scatole
   - tag: tTutorial_DrinkRum
     testo: Premi [F]/[R1] per bere il Rum
   - tag: tTutorial_RumWarning
@@ -35,8 +37,18 @@ MonoBehaviour:
 
       Ogni volta che si beve il Rum, gli effetti positivi
       diminuiscono e quelli negativi aumentano!'
+  - tag: tTutorial_RumPlatforms
+    testo: "Il Rum permette di vedere delle piattaforme viola nascoste all\u2019occhio
+      nudo"
   - tag: tTutorial_EndOfGame
     testo: 'Per poter ricominciare il gioco da capo, esci e riapri il gioco
 
       (tutti
       i tuoi progressi andranno persi)'
+  - tag: tTutorial_WorldKing
+    testo: 'Complimenti,
+
+      ora sei il Re del Mondo!
+
+      (o Regina o Monarca,
+      scegli tu)'

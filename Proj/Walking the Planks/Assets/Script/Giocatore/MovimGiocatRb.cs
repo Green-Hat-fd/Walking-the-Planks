@@ -96,7 +96,7 @@ public class MovimGiocatRb : MonoBehaviour
         #endregion
 
 
-        float moltVelAria = !siTrovaATerra ? 0.5f : 1;   //Dimezza la velocita' orizz. se si trova in aria
+        float moltVelAria = !siTrovaATerra ? 0.65f : 1;   //Diminuisce la velocita' orizz. se si trova in aria
 
 
         //Salta se premi Spazio e si trova a terra
@@ -109,7 +109,16 @@ public class MovimGiocatRb : MonoBehaviour
 
 
         //Movimento orizzontale (semplice) del giocatore
-        rb.AddForce(muovi.normalized * velGiocat * moltVelAria * 10f, ForceMode.Force);
+        rb.AddForce(muovi.normalized * velGiocat * 10f, ForceMode.Force);
+
+        //Applica l'attrito dell'aria al giocatore
+        //(Riduce la velocita' se il giocatore e' in aria e si sta muovendo)
+        if (!siTrovaATerra
+            &&
+            (rb.velocity.x >= 0.05f || rb.velocity.z >= 0.05f))
+        {
+            rb.AddForce(new Vector3(-rb.velocity.x * 0.1f, 0, -rb.velocity.z * 0.1f), ForceMode.Force);
+        }
 
 
         #region Limitazione della velocita'
@@ -121,7 +130,7 @@ public class MovimGiocatRb : MonoBehaviour
         if (velOrizz.magnitude >= velGiocat)
         {
             //Limita la velocita' a quella prestabilita, riportandola al RigidBody
-            Vector3 limitazione = velOrizz.normalized * velGiocat;
+            Vector3 limitazione = velOrizz.normalized * velGiocat * moltVelAria;
             rb.velocity = new Vector3(limitazione.x, rb.velocity.y, limitazione.z);
         }
 

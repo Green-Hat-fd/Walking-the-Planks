@@ -10,6 +10,7 @@ public class StatsGiocatore : MonoBehaviour
     [Space(15)]
     [SerializeField] GameObject ragdoll;
     [SerializeField] Transform ragdollDaSeguire;
+    Vector3 posizInizialeRagdoll;
     Animator ragdollAnim;
     Rigidbody[] ragdoll_gruppoRb;
     CharacterJoint[] ragdoll_gruppoCharJoint;
@@ -52,7 +53,9 @@ public class StatsGiocatore : MonoBehaviour
         ragdoll_gruppoRb = ragdollDaSeguire.GetComponentsInChildren<Rigidbody>();
         ragdoll_gruppoCharJoint = ragdollDaSeguire.GetComponentsInChildren<CharacterJoint>();
         ragdoll_gruppoCollider = ragdollDaSeguire.GetComponentsInChildren<Collider>();
-        
+
+        posizInizialeRagdoll = ragdoll.transform.localPosition;
+
         //Resetta il ragdoll
         ResetPosizioneRotazioneOssaRagdoll();
         ragdollAnim.enabled = true;
@@ -75,11 +78,11 @@ public class StatsGiocatore : MonoBehaviour
 
             if (tempoTrascorso >= secDiAttesa)
             {
-                //Ritorna al checkpoint
-                transform.position = checkpoint.LeggiPosizioneCheckpoint();
-
                 //Resetta il RigidBody del giocatore
                 ObjectPoolingScript.ResetTuttiRigidBody(gameObject);
+
+                //Ritorna al checkpoint
+                transform.position = checkpoint.LeggiPosizioneCheckpoint();
 
                 //Resetta tutto il livello
                 levelManagerScr.ResetCompleto();
@@ -124,12 +127,14 @@ public class StatsGiocatore : MonoBehaviour
         cameraTerzaPers.SetActive(true);
 
         //Attiva il ragdoll, attivando e tutte le sue componenti
+        ragdoll.transform.localPosition = posizInizialeRagdoll;
         ragdoll.SetActive(true);
         CambiaComponentiRagdoll(true);
     }
     void EsciModalitaRagdoll()
     {
         //Disttiva il ragdoll, disattivando e tutte le sue componenti
+        ragdoll.transform.localPosition = posizInizialeRagdoll + Vector3.up*3;
         ResetPosizioneRotazioneOssaRagdoll();
         CambiaComponentiRagdoll(false);
 

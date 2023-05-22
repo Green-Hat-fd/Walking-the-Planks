@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scene/Finale.unity
     guid: f9568dbafd295e54e899172d60961008
   - enabled: 0
-    path: Assets/Scene/Gestore.unity
+    path: Assets/Scene/NO_Gestore.unity
     guid: e849bde05f2eee543b3c9b1da2ef1413
   m_configObjects: {}

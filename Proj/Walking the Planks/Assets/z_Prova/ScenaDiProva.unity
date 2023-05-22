@@ -369,6 +369,11 @@ MonoBehaviour:
   sparoSparkle_part_tag: 
   sparoFuoco_part: {fileID: 0}
   pistolaAnim: {fileID: 0}
+  mirinoImg: {fileID: 0}
+  colore_sparoAVuoto: {r: 0, g: 0, b: 0, a: 0}
+  colore_possoColpireQualcosa: {r: 0, g: 0, b: 0, a: 0}
+  colore_colpitoScatola: {r: 0, g: 0, b: 0, a: 0}
+  colore_colpitoBersaglio: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &76288060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9149,6 +9154,11 @@ MonoBehaviour:
   sparoSparkle_part_tag: 
   sparoFuoco_part: {fileID: 0}
   pistolaAnim: {fileID: 0}
+  mirinoImg: {fileID: 0}
+  colore_sparoAVuoto: {r: 0, g: 0, b: 0, a: 0}
+  colore_possoColpireQualcosa: {r: 0, g: 0, b: 0, a: 0}
+  colore_colpitoScatola: {r: 0, g: 0, b: 0, a: 0}
+  colore_colpitoBersaglio: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1089799785
 GameObject:
   m_ObjectHideFlags: 0
@@ -13254,6 +13264,10 @@ PrefabInstance:
     - target: {fileID: 4415018302564126483, guid: bb36141caa62246468ae18a0a1a8e608, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415018302564126483, guid: bb36141caa62246468ae18a0a1a8e608, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 29.41
       objectReference: {fileID: 0}
     - target: {fileID: 4415018302668086792, guid: bb36141caa62246468ae18a0a1a8e608, type: 3}
       propertyPath: m_RootOrder

@@ -42,6 +42,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   secAssuefazioneEffetti: 22.5
   secAssuefazioneCooldown: 25
-  maxBevuteAssuefazione: 75
+  maxBevuteAssuefazione: 15
   numeroBevute: 0
   raccolto: 0

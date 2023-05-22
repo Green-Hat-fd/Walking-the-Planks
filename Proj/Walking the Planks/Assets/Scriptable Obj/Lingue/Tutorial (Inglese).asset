@@ -19,26 +19,35 @@ MonoBehaviour:
     testo: Move the [Mouse]/[R-Stick] to look around
   - tag: tTutorial_Jump
     testo: Press [Space]/[L1] to jump
-  - tag: tTutorial_Drum
-    testo: You can hop on a drum to make it roll, watch your movement...
   - tag: tTutorial_Shoot
     testo: Press [LMB]/[R2] to shoot
+  - tag: tTutorial_Drum
+    testo: You can hop on a drum to make it roll, watch your movement...
   - tag: tTutorial_Pause
     testo: 'Press [Esc] or [P]/[Start] to pause the game
 
       (PS: You cannot pause
       in the elevator)'
+  - tag: tTutorial_Box
+    testo: The gun is able to move boxes by shooting at them
   - tag: tTutorial_DrinkRum
     testo: Press [F]/[R1] to drink Rum
   - tag: tTutorial_RumWarning
     testo: 'Warning:
 
       Each time you drink Rum, positive effects'' decrease
-      and negative ones''
-
-      increase'
+      and negative ones'' increase'
+  - tag: tTutorial_RumPlatforms
+    testo: Rum makes you see purple platforms invisible to the naked eye
   - tag: tTutorial_EndOfGame
     testo: 'To replay the game from the start, exit and re-open the game
 
       (all
       your progress will be lost)'
+  - tag: tTutorial_WorldKing
+    testo: 'Well done,
+
+      now you''re King of the World!
+
+      (or Queen/Sovereign,
+      you choose)'

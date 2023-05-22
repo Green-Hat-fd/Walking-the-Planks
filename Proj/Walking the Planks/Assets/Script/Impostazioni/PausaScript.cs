@@ -18,6 +18,9 @@ public class PausaScript : MonoBehaviour
     List<AudioSource> tuttiSfxSource;
     [SerializeField] AudioMixerGroup gruppoSfx;
 
+    [Space(15)]
+    [SerializeField] Animator caricamAnim;
+
 
     void Awake()
     {
@@ -82,5 +85,15 @@ public class PausaScript : MonoBehaviour
 
         //Attiva la schermata di pausa
         menuPausa.SetActive(giocoInPausa);
+    }
+
+    public void AvviaCaricamento()
+    {
+        caricamAnim.SetTrigger("Avvia caricam");
+    }
+
+    public void ResetTimeScale()
+    {
+        Time.timeScale = 1;
     }
 }

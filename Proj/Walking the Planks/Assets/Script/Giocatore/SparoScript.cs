@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class SparoScript : MonoBehaviour, IFeedback
@@ -34,6 +35,26 @@ public class SparoScript : MonoBehaviour, IFeedback
     [SerializeField] Animator pistolaAnim;
     #endregion
 
+    #region Colori mirino
+    
+    public enum ObjColpito_Enum
+    {
+        Niente,
+        Bersaglio,
+        Scatola
+    }
+    
+    [Space(10)]
+    [SerializeField] Image mirinoImg;
+    
+    [SerializeField] Color colore_sparoAVuoto;
+    [SerializeField] Color colore_possoColpireQualcosa;
+    [SerializeField] Color colore_colpitoScatola;
+    [SerializeField] Color colore_colpitoBersaglio;
+
+    ObjColpito_Enum ultimoObjColpito = ObjColpito_Enum.Niente;
+    #endregion
+
 
 
     private void Awake()
@@ -43,16 +64,16 @@ public class SparoScript : MonoBehaviour, IFeedback
 
     void Update()
     {
+        //"Spara" un raycast che simula lo sparo della pistola
+        //(non colpisce i Trigger e "~0" significa che collide con tutti i layer)
+        Physics.Raycast(transform.position, transform.forward, out hitInfo, maxDistSparo, ~0, QueryTriggerInteraction.Ignore);
+
+
         if(tempoTrascorso_Sparo >= secDaAspettareSparo)
         {
             //Controlla se ho premuto/tengo premuto il pulsante dello Sparo
             if (GameManager.inst.inputManager.Giocatore.Sparo.ReadValue<float>() > 0)
             {
-                //"Spara" un raycast che simula lo sparo della pistola
-                //(non colpisce i Trigger e "~0" significa che collide con tutti i layer)
-                Physics.Raycast(transform.position, transform.forward, out hitInfo, maxDistSparo, ~0, QueryTriggerInteraction.Ignore);
-
-
                 Feedback();
 
 
@@ -60,12 +81,15 @@ public class SparoScript : MonoBehaviour, IFeedback
                 {
                     switch (hitInfo.transform.tag)
                     {
-                        #region Obiettivo
+                        #region Bersaglio
 
                         case "Gun-Target":
 
                             //Attiva gli oggetti specificati nel bersaglio
                             hitInfo.transform.GetComponent<BersaglioScript>().AttivaOggetti();
+
+                            //Cambia il colore del mirino con quello del bersaglio
+                            ultimoObjColpito = ObjColpito_Enum.Bersaglio;
                             break;
 
                         #endregion
@@ -88,6 +112,9 @@ public class SparoScript : MonoBehaviour, IFeedback
                                                                hitInfo.point,
                                                                ForceMode.Impulse);//*/
                             #endregion
+
+                            //Cambia il colore del mirino con quello della scatola
+                            ultimoObjColpito = ObjColpito_Enum.Scatola;
                             break;
 
                         #endregion
@@ -106,6 +133,10 @@ public class SparoScript : MonoBehaviour, IFeedback
 
                             //Avvia l'ascensore per andare in una nuova scena
                             ascScr.AvviaAscensore();
+
+
+                            //Cambia il colore del mirino con quello del bersaglio
+                            ultimoObjColpito = ObjColpito_Enum.Bersaglio;
                             break;
 
                         #endregion
@@ -118,7 +149,45 @@ public class SparoScript : MonoBehaviour, IFeedback
         else
         {
             tempoTrascorso_Sparo += Time.deltaTime;   //Aumenta il conteggio del tempo trascorso
+
+
+            if (tempoTrascorso_Sparo >= secDaAspettareSparo / 2)
+            {
+                ultimoObjColpito = ObjColpito_Enum.Niente;
+            }
         }
+
+
+        #region Cambio colore del mirino
+
+        switch (ultimoObjColpito)
+        {
+            //Colora il mirino di default se spara il vuoto
+            //oppure
+            //colora il mirino di "coloreColpito" puo' sparare a qualcosa
+            case ObjColpito_Enum.Niente:
+
+                mirinoImg.color = ComparaTagRaycastHitInfo() ? colore_possoColpireQualcosa : colore_sparoAVuoto;
+                break;
+
+
+            //Colora il mirino del colore della scatola
+            //se si colpisce la scatola
+            case ObjColpito_Enum.Scatola:
+
+                mirinoImg.color = colore_colpitoScatola;
+                break;
+
+
+            //Colora il mirino del colore del bersaglio
+            //se si colpisce il bersaglio o i pulsanti dell'ascensore
+            case ObjColpito_Enum.Bersaglio:
+
+                mirinoImg.color = colore_colpitoBersaglio;
+                break;
+        }
+
+        #endregion
     }
 
     #region Funzioni Get custom

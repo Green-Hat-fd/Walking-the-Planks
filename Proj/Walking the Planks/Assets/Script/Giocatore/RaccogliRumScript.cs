@@ -13,6 +13,8 @@ public class RaccogliRumScript : MonoBehaviour
     [SerializeField] float velRotazione = 15f;
     [Space(5)]
     [SerializeField] AudioSource raccolto_sfx;
+    [Space(5)]
+    [SerializeField] ParticleSystem rum_part;
 
     Transform modelloDaMuovere;
     Vector3 posizIniziale;
@@ -29,6 +31,7 @@ public class RaccogliRumScript : MonoBehaviour
         //Si auto-disattiva se lo si ha raccolto
         //o si auto-attiva se NON lo si ha ancora raccolto
         modelloDaMuovere.gameObject.SetActive(!rumSO.LeggiRaccolto());
+        MostraONascondiParticelle(!rumSO.LeggiRaccolto());
         coll.enabled = !rumSO.LeggiRaccolto();
     }
 
@@ -56,8 +59,15 @@ public class RaccogliRumScript : MonoBehaviour
 
             //Si auto-disattiva
             modelloDaMuovere.gameObject.SetActive(false);
+            MostraONascondiParticelle(false);
             coll.enabled = false;
         }
+    }
+
+    void MostraONascondiParticelle(bool daMostrare)
+    {
+        var em = rum_part.emission;
+        em.enabled = daMostrare;
     }
 
 

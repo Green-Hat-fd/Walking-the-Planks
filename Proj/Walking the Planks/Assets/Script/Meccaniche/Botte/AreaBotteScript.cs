@@ -5,6 +5,7 @@ using UnityEngine;
 public class AreaBotteScript : MonoBehaviour
 {
     [SerializeField] BotteRuzzolanteScript botteMainScr;
+    StatsGiocatore statsScr;
 
     [SerializeField] float attritoSopraBotte = 10;
     [SerializeField] float attritoNormale = 0;
@@ -46,57 +47,65 @@ public class AreaBotteScript : MonoBehaviour
 
             //Aumenta l'attrito del giocatore
             other.GetComponent<MovimGiocatRb>().CambiaAttritoRb(attritoSopraBotte);
+
+            //Prende le sue stats
+            statsScr = other.GetComponent<StatsGiocatore>();
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        GameObject gObj = botteMainScr.LeggiGiocat_Obj();
-        float mezzaAltezGiocat = gObj.GetComponent<CapsuleCollider>().height / 2;
+            GameObject gObj = botteMainScr.LeggiGiocat_Obj();
+            float mezzaAltezGiocat = gObj.GetComponent<CapsuleCollider>().height / 2;
 
 
-        #region Calcolo della posizione del giocatore
+            #region Calcolo della posizione del giocatore
 
-        #region OLD_Non usato
-        //---Funziona solo quando il genitore ha rotazione (0, 0, 0)---//
-        //Vector3 pos = new Vector3(gObj.transform.position.x,
-        //                          transform.position.y + mezzaAltezGiocat,
-        //                          transform.position.z); 
-        #endregion
+            #region OLD_Non usato
+            //---Funziona solo quando il genitore ha rotazione (0, 0, 0)---//
+            //Vector3 pos = new Vector3(gObj.transform.position.x,
+            //                          transform.position.y + mezzaAltezGiocat,
+            //                          transform.position.z); 
+            #endregion
 
-        //Prende la rotazione sull'asse Y del genitore e la rende tra 0 e 1
-        float rotazGenitoreClamp = Mathf.Abs(transform.parent.localEulerAngles.y) / 90;
+            //Prende la rotazione sull'asse Y del genitore e la rende tra 0 e 1
+            float rotazGenitoreClamp = Mathf.Abs(transform.parent.localEulerAngles.y) / 90;
 
-        //Capisce qual e' l'asse "destra"/"right" del genitore per far muovere il giocatore solo in quell'asse
-        // (Se ruotato di 0° ==========> lo blocca sull'asse X)
-        // (Se ruotato di 90° o -90° ==> lo blocca sull'asse Z)
-        float bloccoAsseX = Mathf.Lerp(gObj.transform.position.x, transform.position.x, rotazGenitoreClamp);
-        float bloccoAsseZ = Mathf.Lerp(transform.position.z, gObj.transform.position.z, rotazGenitoreClamp);
+            //Capisce qual e' l'asse "destra"/"right" del genitore per far muovere il giocatore solo in quell'asse
+            // (Se ruotato di 0° ==========> lo blocca sull'asse X)
+            // (Se ruotato di 90° o -90° ==> lo blocca sull'asse Z)
+            float bloccoAsseX = Mathf.Lerp(gObj.transform.position.x, transform.position.x, rotazGenitoreClamp);
+            float bloccoAsseZ = Mathf.Lerp(transform.position.z, gObj.transform.position.z, rotazGenitoreClamp);
 
-        //Prende la posizione per far muovere il giocatore in un solo asse
-        Vector3 pos = new Vector3(bloccoAsseX, transform.position.y + mezzaAltezGiocat, bloccoAsseZ);
+            //Prende la posizione per far muovere il giocatore in un solo asse
+            Vector3 pos = new Vector3(bloccoAsseX, transform.position.y + mezzaAltezGiocat, bloccoAsseZ);
 
-        #endregion
+            #endregion
 
 
-        //Restringe il movim. del giocatore solo nell'asse X della botte
-        //(se non salta)
-        //if(!GameManager.inst.inputManager.Giocatore.Salto.triggered)
-        if(GameManager.inst.inputManager.Giocatore.Salto.ReadValue<float>() <= 0)
-        {
-            if (giocatInPosizione)
+            //Restringe il movim. del giocatore solo nell'asse X della botte
+            //(se non salta & non e' morto)
+            if (GameManager.inst.inputManager.Giocatore.Salto.ReadValue<float>() <= 0
+               &&
+               !statsScr.LeggiSonoMorto())
             {
-                gObj.transform.position = pos;
+                if (giocatInPosizione)
+                {
+                    gObj.transform.position = pos;
+                }
+                else
+                {
+                    //Controlla se deve continuare a trascinare o no il giocatore verso "pos"
+                    giocatInPosizione = gObj.transform.position == pos;
+
+                    //Trascina il giocatore verso "pos"
+                    gObj.transform.position = Vector3.MoveTowards(gObj.transform.position, pos, Time.deltaTime * 2.5f);
+                }
             }
-            else
-            {
-                //Controlla se deve continuare a trascinare o no il giocatore verso "pos"
-                giocatInPosizione = gObj.transform.position == pos;
 
-                //Trascina il giocatore verso "pos"
-                gObj.transform.position = Vector3.MoveTowards(gObj.transform.position, pos, Time.deltaTime * 2.5f);
-            } 
-        }
+        //Lo toglie come figlio se il giocatore muore
+        if (other.CompareTag("Player") && statsScr.LeggiSonoMorto())
+            other.transform.SetParent(null);
     }
 
     private void OnTriggerExit(Collider other)

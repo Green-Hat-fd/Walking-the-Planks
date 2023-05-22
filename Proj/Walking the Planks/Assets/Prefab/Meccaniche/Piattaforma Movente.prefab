@@ -421,6 +421,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piattaf_mobile
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c1e26e44a78789547bb109e39d5954e5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1e26e44a78789547bb109e39d5954e5, type: 3}
 --- !u!1 &4563868842679045801 stripped

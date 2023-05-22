@@ -22,6 +22,7 @@ public class MovimOndaSeno : MonoBehaviour
     [SerializeField] AsseMovim_Enum asseMovimento;
 
     Vector3 posizRef;
+    float tempoPassato_ondaSeno = 0;
 
 
 
@@ -50,6 +51,8 @@ public class MovimOndaSeno : MonoBehaviour
                                          + transform.forward * MovimentoTramiteOndaSeno();
                     break;
             }
+
+            tempoPassato_ondaSeno += Time.deltaTime;
         }
     }
 
@@ -68,7 +71,7 @@ public class MovimOndaSeno : MonoBehaviour
         q = maggiore > 0 ? maggiore - m : maggiore + m; //Calcola la distanza dall'origine (0; 0)
 
 
-        return (m * Mathf.Sin(Time.time * velocita)) + q;  //Ritorna la nuova onda seno
+        return (m * Mathf.Sin(tempoPassato_ondaSeno * velocita)) + q;  //Ritorna la nuova onda seno
     }
 
     private void OnDrawGizmos()
